@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import fr.eni.papeterie.dal.DALException;
-import fr.eni.papeterie.dal.Settings;
 
 public class JdbcTools {
 
