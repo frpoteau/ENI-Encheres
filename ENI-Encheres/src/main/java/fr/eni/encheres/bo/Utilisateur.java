@@ -12,7 +12,7 @@ public class Utilisateur {
 	private String ville;
 	private String motDePasse;
 	private int credit;
-	private String administrateur;	
+	private Boolean administrateur;	
 	
 	public Utilisateur() {
 	}
@@ -32,7 +32,7 @@ public class Utilisateur {
 	 * @param administrateur
 	 */
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, String administrateur) {
+			String rue, String codePostal, String ville, String motDePasse, int credit, Boolean administrateur) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -62,7 +62,7 @@ public class Utilisateur {
 	 * @param administrateur
 	 */
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, String administrateur) {
+			String codePostal, String ville, String motDePasse, int credit, Boolean administrateur) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -234,14 +234,14 @@ public class Utilisateur {
 	/**
 	 * @return the administrateur
 	 */
-	public String getAdministrateur() {
+	public Boolean getAdministrateur() {
 		return administrateur;
 	}
 
 	/**
 	 * @param administrateur the administrateur to set
 	 */
-	public void setAdministrateur(String administrateur) {
+	public void setAdministrateur(Boolean administrateur) {
 		this.administrateur = administrateur;
 	}
 
@@ -250,7 +250,7 @@ public class Utilisateur {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
-				+ ", administrateur=" + administrateur + "]";
+				+ ", administrateur=" + ((administrateur==true)?0:1) + "]";
 	}
 	
 	
