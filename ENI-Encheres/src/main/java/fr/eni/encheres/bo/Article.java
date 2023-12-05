@@ -14,11 +14,14 @@ public class Article {
 	private int numeroUtili;
 	private int categorie;
 
+	
+	
 	public Article() {
 		
 	}
 	
-	public Article(int idArticle, String NomArticle, String desc, LocalDate dateD, LocalDate dateF, int prixInit, int prixVente, int numeroUtili, int categorie) {
+	
+	public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalDate dateF, int prixInit, int prixVente, int numeroUtili, int categorie) {
 		this.idArticle=idArticle;
 		this.nomArticle=nomArticle;
 		this.desc=desc;
@@ -27,10 +30,22 @@ public class Article {
 		this.prixInit=prixInit;
 		this.prixVente=prixVente;
 		this.numeroUtili=numeroUtili;
-		this.categorie=categorie;
+		this.categorie=categorie;	
+	}
 		
+	
+	public Article( String nomArticle, String desc, LocalDate dateD, LocalDate dateF, int prixInit, int prixVente, int numeroUtili, int categorie) {
+			this.nomArticle=nomArticle;
+			this.desc=desc;
+			this.dateD=dateD;
+			this.dateF=dateF;
+			this.prixInit=prixInit;
+			this.prixVente=prixVente;
+			this.numeroUtili=numeroUtili;
+			this.categorie=categorie;
 	}
 
+	
 	public int getIdArticle() {
 		return idArticle;
 	}
