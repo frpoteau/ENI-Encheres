@@ -1,8 +1,10 @@
-package fr.eni.encheres.dal;
+package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import fr.eni.encheres.dal.Settings;
 
 
 public class JdbcTools {
