@@ -3,7 +3,7 @@ package fr.eni.encheres.bo;
 import java.time.LocalDate;
 
 public class Article {
-	
+
 	private int idArticle;
 	private String nomArticle;
 	private String desc;
@@ -14,13 +14,13 @@ public class Article {
 	private int numeroUtili;
 	private int categorie;
 
-	
-	
+
+
 	public Article() {
-		
+
 	}
-	
-	
+
+
 	public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalDate dateF, int prixInit, int prixVente, int numeroUtili, int categorie) {
 		this.idArticle=idArticle;
 		this.nomArticle=nomArticle;
@@ -30,10 +30,10 @@ public class Article {
 		this.prixInit=prixInit;
 		this.prixVente=prixVente;
 		this.numeroUtili=numeroUtili;
-		this.categorie=categorie;	
+		this.categorie=categorie;
 	}
-		
-	
+
+
 	public Article( String nomArticle, String desc, LocalDate dateD, LocalDate dateF, int prixInit, int prixVente, int numeroUtili, int categorie) {
 			this.nomArticle=nomArticle;
 			this.desc=desc;
@@ -45,7 +45,7 @@ public class Article {
 			this.categorie=categorie;
 	}
 
-	
+
 	public int getIdArticle() {
 		return idArticle;
 	}
@@ -124,5 +124,5 @@ public class Article {
 				+ ", dateF=" + dateF + ", prixInit=" + prixInit + ", prixVente=" + prixVente + ", numeroUtili="
 				+ numeroUtili + ", categorie=" + categorie + "]";
 	}
-		
+
 }
