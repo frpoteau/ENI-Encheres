@@ -29,17 +29,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(SQL_INSERT);
-			rqt = setString(1, u.getPseudo());
-			rqt = setString(2, u.getNom());
-			rqt = setString(3, u.getPrenom());
-			rqt = setString(4, u.getEmail());
-			rqt = setString(5, u.getTelephone());
-			rqt = setString(6, u.getRue());
-			rqt = setString(7, u.getCodePostal());
-			rqt = setString(8, u.getVille());
-			rqt = setString(9, u.getMotDePasse());
-			rqt = setInt(10, u.getCredit());
-			rqt = setBoolean(11, u.getAdministrateur());
+			rqt.setString(1, u.getPseudo());
+			rqt.setString(2, u.getNom());
+			rqt.setString(3, u.getPrenom());
+			rqt.setString(4, u.getEmail());
+			rqt.setString(5, u.getTelephone());
+			rqt.setString(6, u.getRue());
+			rqt.setString(7, u.getCodePostal());
+			rqt.setString(8, u.getVille());
+			rqt.setString(9, u.getMotDePasse());
+			rqt.setInt(10, u.getCredit());
+			rqt.setBoolean(11, u.getAdministrateur());
 		}catch(SQLException e) {
 				e.printStackTrace();
 		}finally {
@@ -56,11 +56,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	@Override
 	public Utilisateur selectBy(int id) {
 		Connection cnx = null;
+		Utilisateur u = null;
 		PreparedStatement rqt;
 		try {
 			cnx=JdbcTools.getConnection();
 			rqt=cnx.prepareStatement(SQL_SELECTBY_ID);
-			rqt=setInt(1, id);
+			rqt.setInt(1, id);
 			rqt.executeQuery();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -73,7 +74,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	public List<Utilisateur> selectAll() {
 		Connection cnx = null;
 		Utilisateur u = null;
-		List<Utilisateur> utilisateur = new ArrayList();
+		List<Utilisateur> utilisateur = new ArrayList<>();
 		ResultSet rs;
 		Statement rqt;
 		try {
