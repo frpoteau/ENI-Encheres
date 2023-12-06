@@ -25,6 +25,8 @@
 	
 	        <label for="rememberMe">Se souvenir de moi</label>
 	        <input type="checkbox" id="rememberMe" name="rememberMe"><br>
+	        
+	        <a href="register.jsp">Mot de passe oublié ?</a>
 	
 	        <a href="index.jsp" class="home-button"><button type="submit">Se connecter</button></a>
 	    </form>
