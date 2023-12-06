@@ -7,14 +7,14 @@
 	<head>
 	    <meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Plateforme d'enchères des objets de seconde main</title>
+    	<title>Connexion</title>
 	</head>
 	
 	<body>
 	
 		<a href="#">[Déconnecté]</a>
-	    
-	    <h1>Bienvenue sur la plateforme d'enchères des objets de seconde main</h1>
+		
+	    <h1>Se connecter</h1>
 	    
 	    <form action="loginServlet" method="post">
 	        <label for="email">Email :</label>
@@ -29,13 +29,9 @@
 	        <a href="index.jsp" class="home-button"><button type="submit">Se connecter</button></a>
 	    </form>
 	    
-	    <p><a href="register.jsp">Créer un compte</a></p>
+	    <p>Pas encore de compte ? <a href="register.jsp">Créer un compte</a></p>
 	    
-	    <p>En tant qu’utilisateur non connecté, je peux lister les enchères en cours.
-	    Je peux filtrer ma recherche par catégorie, et par nom d’article (l’article est affiché si il contient le critère saisi)
-	    - Pour consulter le détail des enchères, l’utilisateur doit se connecter.</p>
-	    
-	    <a href="encheres.jsp" class="home-button">Consultez nos enchères en cours</a>
+		<a href="index.jsp" class="home-button">Page d'Accueil</a>
 	    
 	</body>
 
