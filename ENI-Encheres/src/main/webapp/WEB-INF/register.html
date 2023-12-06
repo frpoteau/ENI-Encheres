@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+	
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<title>Inscription</title>
+	</head>
+
+	<body>
+		
+	    <h1>Créer un compte</h1>
+	    
+	    <form action="registrationServlet" method="post">
+	        <label for="pseudo">Pseudo :</label>
+	        <input type="text" id="pseudo" name="pseudo" required><br>
+	
+	        <!-- Ajoutez d'autres champs du formulaire (Nom, Prénom, Email, etc.) ici -->
+	
+	        <label for="password">Mot de passe :</label>
+	        <input type="password" id="password" name="password" required><br>
+	
+	        <label for="confirmPassword">Confirmer le mot de passe :</label>
+	        <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+	
+	        <button type="submit">Créer un compte</button>
+	    </form>
+	    <p>Déjà un compte ? <a href="login.html">Se connecter</a></p>
+	    
+	</body>
+	
+</html>
