@@ -37,17 +37,14 @@ public class JdbcTools {
 	
 	/**
 	 * Permet la fermeture de la connection
+	 * @throws SQLException 
 	 * 
-	 */public static void closeConnection(Connection connection) {
-			try {
+	 */
+	public static void closeConnection(Connection connection) throws SQLException {
 				if(connection!=null && !connection.isClosed()) {
 					connection.close();
 				}
-			} catch (SQLException e) {
-				// TODO brancher les messages d'erreur
-	            System.err.println("Erreur lors de la fermeture de la connexion : " + e.getMessage());
-			}
-		}
+	}
 }
 	
 	

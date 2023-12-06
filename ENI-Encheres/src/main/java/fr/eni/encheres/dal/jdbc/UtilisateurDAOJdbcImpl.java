@@ -45,7 +45,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}finally {
 				if(cnx!=null) {
 					try {
-						JdbcTools.closeConnection();
+						JdbcTools.closeConnection(cnx);
 					}catch(SQLException e){
 						e.printStackTrace();
 					}
@@ -89,7 +89,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}finally {
 			if(cnx!=null) {
 				try {
-				JdbcTools.closeConnection();
+				JdbcTools.closeConnection(cnx);
 				}catch(SQLException e) {
 					e.printStackTrace();
 				}
