@@ -18,8 +18,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 												+ "	+\"	FROM Utilisateur WHERE noUtilisateur = ?";
 	private static final String SQL_SELECT_ALL ="SELECT noUtilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 												+ " +\" FROM Utilisateur";
-	private static final String SQL_UPDATE ="UPDATE Utilisateur SET pseudo=?, nom=?, prenom=?, email=?, rue=?, code_postal=?, ville=? WHERE noUtilisateur=?";
+	private static final String SQL_UPDATE ="UPDATE Utilisateur SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=? WHERE noUtilisateur=?";
 	private static final String SQL_DELETE ="DELETE FROM Utilisateur WHERE noUtilisateur=?";
+	
 	
 
 	@Override
@@ -53,6 +54,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}
 		}
 
+	
+	
 	@Override
 	public Utilisateur selectBy(int id) {
 		Connection cnx = null;
@@ -70,6 +73,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return u;
 	}
 
+	
+	
 	@Override
 	public List<Utilisateur> selectAll() {
 		Connection cnx = null;
@@ -99,18 +104,53 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return utilisateur;
 	}
 
+	
+	
 	@Override
 	public void update(Utilisateur u) {
-		// TODO Auto-generated method stub
-		
+		Connection cnx = null;
+		PreparedStatement rqt;
+		try {
+			cnx=JdbcTools.getConnection();
+			rqt=cnx.prepareStatement(SQL_UPDATE);
+			rqt.setString(1, u.getPseudo());
+			rqt.setString(2, u.getNom());
+			rqt.setString(3, u.getPrenom());
+			rqt.setString(4, u.getEmail());
+			rqt.setString(5,  u.getTelephone());
+			rqt.setString(6,  u.getRue());
+			rqt.setString(7,  u.getCodePostal());
+			rqt.setString(8,  u.getVille());
+			rqt.executeUpdate();
+			JdbcTools.closeConnection(cnx);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
+	
+	
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		Connection cnx = null;
+		PreparedStatement rqt;
+		try {
+			cnx=JdbcTools.getConnection();
+			rqt=cnx.prepareStatement(SQL_DELETE);
+			rqt.setInt(1, u.getNoUtilisateur());
+			rqt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(cnx!= null) {
+				try {
+					JdbcTools.closeConnection(cnx);
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
-	
 	
 	
 	
