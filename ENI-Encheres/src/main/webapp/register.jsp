@@ -13,8 +13,7 @@
 	</head>
 
 	<body>
-		<a href="#" class="text-xs">[Déconnecté]</a> 
-		
+	
 		<main>
 		  <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
 		  
@@ -23,6 +22,7 @@
 		        
 		        
 		          <h2 class="text-3xl font-bold leading-7 text-gray-900 antialiased underline">Créer un compte</h2>
+		          
 		          <p class="mt-1 leading-6 text-gray-600">Bienvenue sur ENI-Enchères, votre portail exclusif pour 
 		          découvrir des trésors uniques et participer à des enchères passionnantes. La première étape pour plonger 
 		          dans cet univers excitant est de créer votre compte personnel.</p>
@@ -108,9 +108,8 @@
                    </div>
 	    		   
 	    		   <div>
-	    		   <button
-                type="submit"
-                class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 leading-6 text-white shadow-sm"
+	    		   
+	    		   <button type="submit"class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 leading-6 text-white shadow-sm"
               >
                 Créer un compte
               </button>

@@ -30,10 +30,10 @@
             <label for="password">Mot de Passe :</label>
             <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
                 
-            <label for="rememberMe">Se souvenir de moi</label>
+            <label for="rememberMe">Se souvenir de moi</label><!-- TODO -->
             <input type="checkbox" id="rememberMe" name="rememberMe"><br>        
             
-            <a href="register.jsp">Mot de passe oublié ?</a>
+            <a href="reinitpassword.jsp">Mot de passe oublié ?</a>
     
             <button type="submit">Se Connecter</button>
         
