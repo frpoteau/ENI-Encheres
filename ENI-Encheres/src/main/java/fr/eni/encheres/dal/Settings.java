@@ -7,8 +7,8 @@ import java.util.Properties;
 public class Settings {
 	//permet d'externaliser les informations
 		private static Properties properties;
-		
-		
+
+
 		static {
 			properties = new Properties();
 			try {
@@ -17,7 +17,7 @@ public class Settings {
 				e.printStackTrace();
 			}
 		}
-		
+
 		//création de la méthode
 		public static String getProperties(String Key) {
 			return properties.getProperty(Key);

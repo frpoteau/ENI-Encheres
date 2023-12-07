@@ -46,7 +46,7 @@
 	        <input type="password" id="password" name="password" required><br>
 	
 	        <label for="confirmPassword">Confirmer le mot de passe :</label>
-	        <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+	        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Entrez votre adresse e-mail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"><br>
 	
 	        <button type="submit">Créer un compte</button>
 	        

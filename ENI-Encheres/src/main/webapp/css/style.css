@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.875rem; 
+    line-height: 2.25rem;
+    font-weight: 700;
+    text-decoration: underline;
+    -webkit-font-smoothing : antialiased;
+}
+
+.main {
+	padding: 24px;
+}
