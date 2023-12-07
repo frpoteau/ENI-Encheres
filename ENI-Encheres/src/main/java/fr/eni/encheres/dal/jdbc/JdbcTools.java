@@ -31,7 +31,20 @@ public class JdbcTools {
 	 * @throws SQLException
 	 */
 	public static Connection getConnection() throws SQLException {
-				Connection con = DriverManager.getConnection(url, user, password);
-		return con;
+				Connection cnx = DriverManager.getConnection(url, user, password);
+		return cnx;
+	}
+	
+	/**
+	 * Permet la fermeture de la connection
+	 * @throws SQLException 
+	 * 
+	 */
+	public static void closeConnection(Connection connection) throws SQLException {
+				if(connection!=null && !connection.isClosed()) {
+					connection.close();
+				}
 	}
 }
+	
+	
