@@ -25,7 +25,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	@Override
 	public void insert(Article a) {
-
 		Connection cnx = null;
 		PreparedStatement rqt;
 		try {
@@ -50,22 +49,17 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				}
 			}
 		}
-=======
-		// TODO Auto-generated method stub
-
-
 	}
 
 	
 	@Override
-	public Article selectBy(int id) {
+	public Article selectBy(Article a) {
 		Connection cnx = null;
-		Article a = null;
 		PreparedStatement rqt;
 		try {
 			cnx=JdbcTools.getConnection();
 			rqt=cnx.prepareStatement(SQL_SELECTBY_ID);
-			rqt.setInt(1, id);
+			rqt.setInt(1, a.getIdArticle());
 			rqt.executeQuery();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -105,7 +99,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
 	@Override
 	public void update(Article a) {
-
 		Connection cnx = null;
 		PreparedStatement rqt;
 		try {
@@ -122,16 +115,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-=======
-		// TODO Auto-generated method stub
-
-
 	}
 
 	@Override
 	public void delete(Article a) {
-
-		Article a = null;
 		Connection cnx = null;
 		PreparedStatement rqt;
 		try {
@@ -150,10 +137,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				}
 			}
 		}
-=======
-		// TODO Auto-generated method stub
-
-
 	}
 	
 	

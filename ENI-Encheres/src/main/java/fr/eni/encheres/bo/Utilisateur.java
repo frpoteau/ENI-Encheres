@@ -1,7 +1,7 @@
 package fr.eni.encheres.bo;
 
 public class Utilisateur {
-	private int noUtilisateur;
+	private int idUtilisateur;
 	private String pseudo;
 	private String nom;
 	private String prenom;
@@ -31,10 +31,10 @@ public class Utilisateur {
 	 * @param credit
 	 * @param administrateur
 	 */
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+	public Utilisateur(int idUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, Boolean administrateur) {
 		super();
-		this.noUtilisateur = noUtilisateur;
+		this.idUtilisateur = idUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -80,15 +80,15 @@ public class Utilisateur {
 	/**
 	 * @return the noUtilisateur
 	 */
-	public int getNoUtilisateur() {
-		return noUtilisateur;
+	public int getIdUtilisateur() {
+		return idUtilisateur;
 	}
 
 	/**
 	 * @param noUtilisateur the noUtilisateur to set
 	 */
-	public void setNoUtilisateur(int noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setIdUtilisateur(int noUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
 	}
 
 	/**
@@ -247,7 +247,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+		return "Utilisateur [noUtilisateur=" + idUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", administrateur=" + ((administrateur==true)?0:1) + "]";

@@ -55,16 +55,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 
 	
+
 	
 	@Override
-	public Utilisateur selectBy(int id) {
+	public Utilisateur selectBy(Utilisateur u) {
 		Connection cnx = null;
-		Utilisateur u = null;
 		PreparedStatement rqt;
 		try {
 			cnx=JdbcTools.getConnection();
 			rqt=cnx.prepareStatement(SQL_SELECTBY_ID);
-			rqt.setInt(1, id);
+			rqt.setInt(1, u.getIdUtilisateur());
 			rqt.executeQuery();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -131,14 +131,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 	
 	@Override
-	public void delete(int id) {
-		Utilisateur u = null;
+	public void delete(Utilisateur u) {
 		Connection cnx = null;
 		PreparedStatement rqt;
 		try {
 			cnx=JdbcTools.getConnection();
 			rqt=cnx.prepareStatement(SQL_DELETE);
-			rqt.setInt(1, u.getNoUtilisateur());
+			rqt.setInt(1, u.getIdUtilisateur());
 			rqt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

@@ -7,12 +7,12 @@ public interface UtilisateurDAO {
 	
 	public void insert(Utilisateur u);
 	
-	public Utilisateur selectBy (int id);
+	public Utilisateur selectBy (Utilisateur u);
 	
 	public List<Utilisateur> selectAll();
 	
 	public void update (Utilisateur u);
 	
-	public void delete (int id);
+	public void delete (Utilisateur u);
 
 }
