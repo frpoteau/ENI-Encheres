@@ -37,7 +37,7 @@ public class UtilisateurManager {
 	public void modifierUtilisateur(Utilisateur u) {
 		utilisateurDAO.update(u);
 	}
-	
+
 	/**
 	 * Selectionner un utilisateur par son ID
 	 * @param id
@@ -45,9 +45,8 @@ public class UtilisateurManager {
 	 */
 	public Utilisateur selectById(int id) {
 		return utilisateurDAO.selectBy(id);
-
 	}
-	
+
 	/**
 	 * Suppression d'un utilisateur
 	 * @param id
@@ -67,20 +66,4 @@ public class UtilisateurManager {
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
 }
-	
-	
-
