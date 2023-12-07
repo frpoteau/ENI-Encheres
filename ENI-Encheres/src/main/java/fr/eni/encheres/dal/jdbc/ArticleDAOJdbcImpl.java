@@ -1,6 +1,7 @@
 package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +18,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SQL_INSERT ="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String SQL_SELECTBY_ID ="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
 												+ " +\" FROM ARTICLES_VENDUS WHERE no_article=? ";
+	//Ajout de SQL_SELECTBY_ (Liste des articles d'un utilisateur, pour voir la liste complète des enchères d'un utilisateur)
+	
+	
 	private static final String SQL_SELECT_ALL ="SELECT no_article, nom_articles, descriptuion, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
 												+ " +\" FROM ARTICLES_VENDUS";
 	private static final String SQL_UPDATE ="UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=? WHERE no_article=?";
@@ -32,8 +36,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt=cnx.prepareStatement(SQL_INSERT);
 			rqt.setString(1, a.getNomArticle());
 			rqt.setString(2,  a.getDesc());
-			rqt.setLocalDate(3, a.getDateD());
-			rqt.setLocalDate(4, a.getDateF());
+			rqt.setDate(3, Date.valueOf(a.getDateD()));
+			rqt.setDate(4, Date.valueOf(a.getDateF()));
 			rqt.setInt(5, a.getPrixInit());
 			rqt.setInt(6, a.getPrixVente());
 			rqt.setInt(7, a.getNumeroUtili());
@@ -106,8 +110,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt=cnx.prepareStatement(SQL_UPDATE);
 			rqt.setString(1, a.getNomArticle());
 			rqt.setString(2, a.getDesc());
-			rqt.setLocalDate(3, a.getDateD());
-			rqt.setLocalDate(4, a.getDateF());
+			rqt.setDate(3, Date.valueOf(a.getDateD()));
+			rqt.setDate(4, Date.valueOf(a.getDateF()));
 			rqt.setInt(5, a.getPrixInit());
 			rqt.setInt(6, a.getPrixVente());
 			rqt.executeUpdate();
