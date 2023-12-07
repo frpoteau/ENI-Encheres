@@ -13,13 +13,13 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
-	private static final String SQL_INSERT ="INSERT INTO Utilisateur (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String SQL_SELECTBY_ID ="SELECT no_Utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
-												+ "	+\"	FROM Utilisateur WHERE noUtilisateur = ?";
-	private static final String SQL_SELECT_ALL ="SELECT noUtilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
-												+ " +\" FROM Utilisateur";
-	private static final String SQL_UPDATE ="UPDATE Utilisateur SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=? WHERE noUtilisateur=?";
-	private static final String SQL_DELETE ="DELETE FROM Utilisateur WHERE noUtilisateur=?";
+	private static final String SQL_INSERT ="INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_SELECTBY_ID ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
+												+ "	+\"	FROM UTLISATEURS WHERE no_utilisateur = ?";
+	private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
+												+ " +\" FROM UTILISATEURS";
+	private static final String SQL_UPDATE ="UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
+	private static final String SQL_DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	
 	
 
@@ -132,6 +132,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 	@Override
 	public void delete(int id) {
+		Utilisateur u = null;
 		Connection cnx = null;
 		PreparedStatement rqt;
 		try {
