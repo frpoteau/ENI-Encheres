@@ -10,7 +10,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public void insert(Article a) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -28,13 +28,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public void update(Article a) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(Article a) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

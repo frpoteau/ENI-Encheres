@@ -12,14 +12,14 @@ public class JdbcTools {
 	private static String url;
 	private static String user ;
 	private static String password;
-	
+
 	static {
 		try {
 			Class.forName(Settings.getProperties("driverdb"));
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		url = Settings.getProperties("urldb");
 		user = Settings.getProperties("userdb");
 		password = Settings.getProperties("passworddb");
@@ -28,7 +28,7 @@ public class JdbcTools {
 	 * Permet la connexion à la BD
 	 * @return con
 	 * @throws DALException
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public static Connection getConnection() throws SQLException {
 				Connection cnx = DriverManager.getConnection(url, user, password);
