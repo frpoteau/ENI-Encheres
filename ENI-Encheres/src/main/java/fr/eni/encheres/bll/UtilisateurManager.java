@@ -1,7 +1,5 @@
 package fr.eni.encheres.bll;
 
-import java.util.List;
-
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
@@ -43,16 +41,16 @@ public class UtilisateurManager {
 	 * @param id
 	 * @return ID de l'utilisateur
 	 */
-	public Utilisateur selectById(int id) {
-		return utilisateurDAO.selectBy(id);
+	public Utilisateur selectById(Utilisateur u) {
+		return utilisateurDAO.selectBy(u);
 	}
 
 	/**
 	 * Suppression d'un utilisateur
 	 * @param id
 	 */
-	public void deleteUtilisateur(int id) {
-		utilisateurDAO.delete(id);
+	public void deleteUtilisateur(Utilisateur u) {
+		utilisateurDAO.delete(u);
 	}
 	
 	/**
