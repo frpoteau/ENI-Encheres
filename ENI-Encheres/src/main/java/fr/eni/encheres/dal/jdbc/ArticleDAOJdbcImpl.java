@@ -107,8 +107,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt=cnx.prepareStatement(SQL_UPDATE);
 			rqt.setString(1, a.getNomArticle());
 			rqt.setString(2, a.getDesc());
-			rqt.setLocalDate(3, a.getDateD());
-			rqt.setLocalDate(4, a.getDateF());
+			rqt.setDate(3, Date.valueOf(a.getDateD()));
+			rqt.setDate(4, Date.valueOf(a.getDateF()));
 			rqt.setInt(5, a.getPrixInit());
 			rqt.setInt(6, a.getPrixVente());
 			rqt.executeUpdate();
