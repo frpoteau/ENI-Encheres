@@ -19,13 +19,7 @@
 	        <label for="email">E-mail :</label>
 	        <input type="email" id="email" name="email" placeholder="Entrez votre adresse e-mail" required>
 	
-	        <label for="password">Mot de Passe :</label>
-	        <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
-		        
-		    <label for="rememberMe">Se souvenir de moi</label><!-- TODO -->
-		    <input type="checkbox" id="rememberMe" name="rememberMe"><br>	        
-	        
-	        <a href="reinitpassword.jsp">Mot de passe oublié ?</a>
+			<button type="submit">Envoyer une demande de réinitialisation de mot de passe</button>
 	
 	        <button type="submit">Se Connecter</button>
 	        
