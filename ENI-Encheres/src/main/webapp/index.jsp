@@ -8,9 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plateforme d'enchères des objets de seconde main</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 	
 <body>
+<h1>Hello world!</h1>
     <% 
         // Vérifie si l'utilisateur est connecté
         Boolean userConnected = (Boolean) session.getAttribute("userConnected");
