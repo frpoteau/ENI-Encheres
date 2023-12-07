@@ -1,5 +1,11 @@
 package fr.eni.encheres.bll;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
@@ -9,6 +15,11 @@ public class UtilisateurManager {
 	private static UtilisateurManager instance;
 	private UtilisateurDAO utilisateurDAO;
 	
+	
+	/**
+	 * Le constructeur permet d'initialiser la variable membre utilisateurDAO pour 
+	 * permettre une communication avec la base de données. 
+	 */
 	private UtilisateurManager() {
 		utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	}
@@ -64,4 +75,35 @@ public class UtilisateurManager {
 		}
 		return false;
 	}
+	
+	public boolean verifierUtilisateur(String email, String password, String dbDriver, String dbUrl, String dbUser, String dbPassword) {
+        try {
+        	// Charge le pilote JDBC spécifié dans le fichier de configuration
+            Class.forName(dbDriver);
+            
+         // Établit la connexion à la base de données avec les informations fournies
+            Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
+         // Prépare une requête SQL pour vérifier les informations de connexion
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+         // Exécute la requête et récupère le résultat
+            ResultSet rs = ps.executeQuery();
+            boolean utilisateurExiste = rs.next();
+            
+         // Ferme la connexion après utilisation
+            con.close();
+
+            return utilisateurExiste;
+            
+            
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+	
+	
 }

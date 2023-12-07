@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.UtilisateurManager;
+
 @WebServlet("/ServletConnectDB")
 public class ServletConnectDB extends HttpServlet 
 {
@@ -55,22 +57,11 @@ public class ServletConnectDB extends HttpServlet
 
         try 
         {
-            // Charge le pilote JDBC spécifié dans le fichier de configuration
-            Class.forName(dbDriver);
-            
-            // Établit la connexion à la base de données avec les informations fournies
-            Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-            // Prépare une requête SQL pour vérifier les informations de connexion
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
-            ps.setString(1, email);
-            ps.setString(2, password);
-
-            // Exécute la requête et récupère le résultat
-            ResultSet rs = ps.executeQuery();
+        	boolean utilisateurExiste = UtilisateurManager.getInstance().verifierUtilisateur(email, password, dbDriver, dbUrl, dbUser, dbPassword);
+       	 
 
             // Vérifie si l'utilisateur existe dans la base de données
-            if (rs.next()) 
+            if (utilisateurExiste) 
             {
                 // Connexion réussie, stockez la variable de session
                 HttpSession session = request.getSession();
@@ -87,10 +78,8 @@ public class ServletConnectDB extends HttpServlet
                 out.println("Email ou mot de passe incorrect.");
             }
 
-            // Ferme la connexion après utilisation
-            con.close();
         } 
-        catch (ClassNotFoundException | SQLException e) 
+        catch (Exception e) 
         {
             // Affiche les détails de l'erreur en cas de problème de connexion
             e.printStackTrace();
