@@ -8,7 +8,7 @@ public interface ArticleDAO {
 
 	public void insert(Article a);
 	
-	public Article selectBy(int id);
+	public Article selectBy(Article a);
 	
 	public List<Article> selectAll();
 	
