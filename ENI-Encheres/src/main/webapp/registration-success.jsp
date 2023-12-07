@@ -10,6 +10,12 @@
 	    <title>Inscription réussie - ENI-Encheres</title>
 	    <link href="css/style.css" rel="stylesheet" />
 	    <script src="https://cdn.tailwindcss.com"></script>
+	    
+	    <script>
+		// Redirige l'utilisateur vers la Servlet AccueilServlet.java au bout de 5 secondes
+		setTimeout(() => { window.location.href = "AccueilServlet"; }, 3000);		
+		</script>
+	    
 	</head>
 
 	<body>

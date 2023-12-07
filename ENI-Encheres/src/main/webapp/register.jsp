@@ -93,6 +93,19 @@
             });
 		    
 		  });
+		  
+			// Contraint la saisie de caractères alphanumériques
+		  const input = document.querySelector("#pseudo");
+
+		  input.oninput = (event) => {
+		    const value = event.target.value;
+
+		    if (!value.match(/^[a-zA-Z0-9]+$/)) {
+		      input.setCustomValidity("La saisie doit être composée uniquement de caractères alphanumériques.");
+		    } else {
+		      input.setCustomValidity("");
+		    }
+		  };
 		</script>
 		
 	</head>
@@ -114,12 +127,10 @@
 		          
 		            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 		            
-		              <div class="sm:col-span-4">
-		                <label for="pseudo" class="block leading-6 text-gray-900">
-		                   Pseudo
-		                </label>
-		                <input type="text" id="pseudo" name="pseudo" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
-		              </div>
+					<div class="sm:col-span-4">
+					  <label for="pseudo" class="block leader-6 text-gray-900"> Pseudo </label>
+					  <input type="text" id="pseudo" name="pseudo" class="mt-2 w-full border py-1.5 arrondi-md px-2" charset="UTF-8" pattern="^[a-zA-Z0-9]+$">
+					</div>
 		              
 		            </div>
 		            

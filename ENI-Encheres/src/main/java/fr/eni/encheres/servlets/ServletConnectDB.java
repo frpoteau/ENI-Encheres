@@ -58,37 +58,32 @@ public class ServletConnectDB extends HttpServlet
             // Charge le pilote JDBC spécifié dans le fichier de configuration
             Class.forName(dbDriver);
             
-            // Établit la connexion à la base de données avec les informations fournies
+            // Récupère la connexion à la base de données
             Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 
-            // Prépare une requête SQL pour vérifier les informations de connexion
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
-            ps.setString(1, email);
-            ps.setString(2, password);
-
-            // Exécute la requête et récupère le résultat
-            ResultSet rs = ps.executeQuery();
-
-            // Vérifie si l'utilisateur existe dans la base de données
-            if (rs.next()) 
-            {
-                // Connexion réussie, stockez la variable de session
-                HttpSession session = request.getSession();
-                session.setAttribute("userConnected", true);
-                session.setAttribute("userEmail", email);
-
-                // Redirection vers index.jsp après connexion réussie
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
-            }
-            else 
-            {
-                // Affiche un message d'erreur si l'email ou le mot de passe est incorrect
-                out.println("Email ou mot de passe incorrect.");
+            // Récupère le crédit de l'utilisateur
+            int credit = 0;
+            try {
+                PreparedStatement ps = con.prepareStatement("SELECT credit FROM UTILISATEURS WHERE email = ?");
+                ps.setString(1, email);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    credit = rs.getInt("credit");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
-            // Ferme la connexion après utilisation
-            con.close();
+            // Ajoute le crédit à la session
+            HttpSession session = request.getSession();
+            session.setAttribute("userConnected", true);
+            session.setAttribute("userEmail", email);
+            session.setAttribute("userCredit", credit);
+
+            // Redirection vers index.jsp après connexion réussie
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
         } 
         catch (ClassNotFoundException | SQLException e) 
         {

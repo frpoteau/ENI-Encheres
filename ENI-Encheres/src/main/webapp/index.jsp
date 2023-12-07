@@ -17,7 +17,8 @@
         if (userConnected != null && userConnected) {
             String userEmail = (String) session.getAttribute("userEmail");
     %>
-        <p>Bienvenue, <%= userEmail %> ! Vous êtes connecté. [<a href="ServletLogout">Déconnexion</a>]</p>
+    
+        <p>Bienvenue, <%= userEmail %> ! Vous êtes connecté. Votre crédit actuel est de : <%= session.getAttribute("userCredit") %> points [<a href="ServletLogout">Déconnexion</a>]</p>
     <%
         } else {
     %>
