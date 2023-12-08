@@ -14,5 +14,7 @@ public interface UtilisateurDAO {
 	public void update (Utilisateur u);
 	
 	public void delete (Utilisateur u);
+	
+	public int soldeCredit(String email);
 
 }

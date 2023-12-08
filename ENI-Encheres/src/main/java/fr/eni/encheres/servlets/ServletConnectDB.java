@@ -57,17 +57,24 @@ public class ServletConnectDB extends HttpServlet
 
         try 
         {
+        	/**
+        	 * Vérifie si l'utilisateur existe
+        	 */
         	boolean utilisateurExiste = UtilisateurManager.getInstance().verifierUtilisateur(email, password, dbDriver, dbUrl, dbUser, dbPassword);
-       	 
 
-            // Vérifie si l'utilisateur existe dans la base de données
-            if (utilisateurExiste) 
+        	if (utilisateurExiste) 
             {
                 // Connexion réussie, stockez la variable de session
                 HttpSession session = request.getSession();
                 session.setAttribute("userConnected", true);
                 session.setAttribute("userEmail", email);
 
+                //Récupère le crédit de l'utilisateur
+                int credit = UtilisateurManager.getInstance().RecuperationCreditUtilisateur(email, dbDriver, dbUrl, dbUser, dbPassword);
+                // Ajoute le crédit à la session
+    	        session.setAttribute("userCredit", credit);
+                
+                
                 // Redirection vers index.jsp après connexion réussie
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
@@ -86,30 +93,5 @@ public class ServletConnectDB extends HttpServlet
             out.println("Erreur de connexion à la base de données.");
         }
         
-        try {
-	        Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-	        
-	        // Récupère le crédit de l'utilisateur
-	        int credit = 0;
-	        try {
-	            PreparedStatement ps = con.prepareStatement("SELECT credit FROM UTILISATEURS WHERE email = ?");
-	            ps.setString(1, email);
-	            ResultSet rs = ps.executeQuery();
-	            if (rs.next()) {
-	                credit = rs.getInt("credit");
-	            }
-	            con.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	
-	        // Ajoute le crédit à la session
-	        HttpSession session = request.getSession();
-	        session.setAttribute("userConnected", true);
-	        session.setAttribute("userEmail", email);
-	        session.setAttribute("userCredit", credit);
-	    	}catch (Exception e) {
-				// TODO: handle exception
-			}
     }
 }

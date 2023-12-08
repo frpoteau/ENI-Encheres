@@ -83,6 +83,16 @@ public class UtilisateurManager {
 		return false;
 	}
 	
+	/**
+	 * Permet de vérifier si l'utilisateur existe dans la base de donnée
+	 * @param email
+	 * @param password
+	 * @param dbDriver
+	 * @param dbUrl
+	 * @param dbUser
+	 * @param dbPassword
+	 * @return
+	 */
 	public boolean verifierUtilisateur(String email, String password, String dbDriver, String dbUrl, String dbUser, String dbPassword) {
         try {
         	// Charge le pilote JDBC spécifié dans le fichier de configuration
@@ -112,5 +122,19 @@ public class UtilisateurManager {
         }
     }
 	
-	
+	/**
+	 * Permet de récupérer le nombre de crédit de l'utilisateur
+	 * @param email
+	 * @param password
+	 * @param dbDriver
+	 * @param dbUrl
+	 * @param dbUser
+	 * @param dbPassword
+	 * @return
+	 */
+	public int RecuperationCreditUtilisateur(String email, String dbDriver, String dbUrl, String dbUser, String dbPassword) {
+		int credit = utilisateurDAO.soldeCredit(email);
+		return credit;
+	}
 }
+

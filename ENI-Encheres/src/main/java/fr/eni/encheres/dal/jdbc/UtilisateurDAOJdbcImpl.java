@@ -18,8 +18,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 	private static final String SQL_SELECTBY_ID ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 												+ "	+\"	FROM UTLISATEURS WHERE no_utilisateur = ?";
+  
+	private static final String SQL_SELECT_CR ="SELECT credit FROM UTILISATEURS WHERE email = ?";
 	
-	private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
+  private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 			+ " +\" FROM UTILISATEURS";
 	
 	private static final String SQL_UPDATE ="UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
@@ -58,9 +60,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 				}
 			}
 		}
-
-	
-
 	
 	@Override
 	public Utilisateur selectBy(Utilisateur u) {
@@ -74,10 +73,33 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-	
 		return u;
 	}
+	
 
+	/**
+	 * Récupère le crédit de l'utilisateur
+	 */
+	@Override
+	public int soldeCredit(String email) {
+		int credit = 0;
+		Connection cnx = null;
+		PreparedStatement rqt;
+		try {
+			cnx=JdbcTools.getConnection();
+			rqt=cnx.prepareStatement(SQL_SELECT_CR); 
+			rqt.setString(1, email);
+			ResultSet rs = rqt.executeQuery();
+			
+			if (rs.next()) {
+                credit = rs.getInt("credit");
+            }
+		}catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return credit; 
+	}
 	
 	@Override
 	public List<Utilisateur> selectAll() {
@@ -104,11 +126,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 				}
 			}
 		}
-		
 		return utilisateur;
 	}
-
-	
 	
 	@Override
 	public void update(Utilisateur u) {
@@ -131,8 +150,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			e.printStackTrace();
 		}
 	}
-
-	
 	
 	@Override
 	public void delete(Utilisateur u) {
@@ -155,7 +172,4 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}
 		}
 	}
-	
-	
-	
 }
