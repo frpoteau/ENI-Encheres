@@ -12,6 +12,8 @@ public interface ArticleDAO {
 	
 	public Article selectByArt(Article a);
 	
+	public Article selectByArtDateDebut(Article a);
+	
 	public List<Article> selectAll();
 	
 	public void update(Article a);
