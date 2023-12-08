@@ -61,8 +61,5 @@ public class ServletAddUsers extends HttpServlet {
 	            response.sendRedirect("register.jsp"); // Rediriger vers la page d'inscription avec un message d'erreur si nécessaire
 	        }
         //}
-      
-        	
-	      
     }
 }
