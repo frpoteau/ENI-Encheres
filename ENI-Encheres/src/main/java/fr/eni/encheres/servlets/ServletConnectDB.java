@@ -49,12 +49,7 @@ public class ServletConnectDB extends HttpServlet
 	        return;
         }
 
-        // Récupère les informations de connexion depuis les propriétés
-        String dbDriver = prop.getProperty("driverdb");
-        String dbUrl = prop.getProperty("urldb");
-        String dbUser = prop.getProperty("userdb");
-        String dbPassword = prop.getProperty("passworddb");
-
+        //connexion
         try 
         {
         	/**
