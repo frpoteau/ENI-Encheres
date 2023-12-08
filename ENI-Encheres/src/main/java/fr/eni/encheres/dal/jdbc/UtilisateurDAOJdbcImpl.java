@@ -39,32 +39,37 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	public void insert(Utilisateur u) {
 		Connection cnx = null;
 		PreparedStatement rqt;
-		try {
-			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(SQL_INSERT);
-			rqt.setString(1, u.getPseudo());
-			rqt.setString(2, u.getNom());
-			rqt.setString(3, u.getPrenom());
-			rqt.setString(4, u.getEmail());
-			rqt.setString(5, u.getTelephone());
-			rqt.setString(6, u.getRue());
-			rqt.setString(7, u.getCodePostal());
-			rqt.setString(8, u.getVille());
-			rqt.setString(9, u.getMotDePasse());
-			rqt.setInt(10, u.getCredit());
-			rqt.setBoolean(11, u.getAdministrateur());
-		}catch(SQLException e) {
-				e.printStackTrace();
-		}finally {
-				if(cnx!=null) {
-					try {
-						JdbcTools.closeConnection(cnx);
-					}catch(SQLException e){
-						e.printStackTrace();
-					}
-				}
+			try {
+				cnx=JdbcTools.getConnection();
+				cnx.setAutoCommit(false);
+				rqt=cnx.prepareStatement(SQL_INSERT);
+				rqt.setString(1, u.getPseudo());
+				rqt.setString(2, u.getNom());
+				rqt.setString(3, u.getPrenom());
+				rqt.setString(4, u.getEmail());
+				rqt.setString(5, u.getTelephone());
+				rqt.setString(6, u.getRue());
+				rqt.setString(7, u.getCodePostal());
+				rqt.setString(8, u.getVille());
+				rqt.setString(9, u.getMotDePasse());
+				rqt.setInt(10, u.getCredit());
+				rqt.setBoolean(11, u.getAdministrateur());
+				
+				int rowsAffected = rqt.executeUpdate();
+				if (rowsAffected == 1) {
+                    // Succès de l'insertion, commit de la transaction
+					cnx.commit();
+                } else {
+                    // Échec de l'insertion, rollback
+                	cnx.rollback();
+                    return;
+                }
+				rqt.close();
 			}
-		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
 	
 	@Override
 	public Utilisateur selectBy(Utilisateur u) {
