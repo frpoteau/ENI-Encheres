@@ -42,7 +42,7 @@ public class UtilisateurManager {
 	 * Ajouter utilisateur
 	 * @param u
 	 */
-	public void ajouterUtilisateur(Utilisateur u) {
+	public void addUser(Utilisateur u) {
 		utilisateurDAO.insert(u);
 	}
 	
@@ -50,7 +50,7 @@ public class UtilisateurManager {
 	 * Modifier un utilisateur
 	 * @param c
 	 */
-	public void modifierUtilisateur(Utilisateur u) {
+	public void updateUser(Utilisateur u) {
 		utilisateurDAO.update(u);
 	}
 
@@ -67,7 +67,7 @@ public class UtilisateurManager {
 	 * Suppression d'un utilisateur
 	 * @param id
 	 */
-	public void deleteUtilisateur(Utilisateur u) {
+	public void deleteUser(Utilisateur u) {
 		utilisateurDAO.delete(u);
 	}
 	
@@ -93,7 +93,7 @@ public class UtilisateurManager {
 	 * @param dbPassword
 	 * @return
 	 */
-	public boolean verifierUtilisateur(String email, String password) {
+	public boolean userExists(String email, String password) {
         boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, password);
 		return utilisateurExiste;
 	}
@@ -108,7 +108,7 @@ public class UtilisateurManager {
 	 * @param dbPassword
 	 * @return la valeur du credit
 	 */
-	public int RecuperationCreditUtilisateur(String email) {
+	public int getCreditUser(String email) {
 		int credit = utilisateurDAO.soldeCredit(email);
 		return credit;
 	}
