@@ -12,7 +12,7 @@ public class ArticleManager {
 	private ArticleDAO articleDAO;
 	
 	
-	//
+	
 	private ArticleManager() {
 		articleDAO = DAOFactory.getArticleDAO();
 	}
@@ -32,7 +32,7 @@ public class ArticleManager {
 	
 	//Selection article par ID
 	public Article selectById (Article a) {
-		return articleDAO.selectBy(a);
+		return articleDAO.selectById(a);
 	}
 	
 	//Selection de la liste de tous les articles
