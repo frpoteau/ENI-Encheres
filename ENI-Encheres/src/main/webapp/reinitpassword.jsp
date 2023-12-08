@@ -21,7 +21,7 @@
 	
 			<button type="submit">Envoyer une demande de réinitialisation de mot de passe</button>
 	
-	        <button type="submit">Se Connecter</button>
+	        <a href="login.jsp">Se Connecter</a>
 	        
 	    </form>
 	
