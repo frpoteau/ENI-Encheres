@@ -18,7 +18,7 @@
 <body class="bg-white h-screen">
 
   <!-- Header -->
- <%@ include file="/WEB-INF/includes/header.jsp" %>
+ <%@ include file="header.jsp" %>
 
 
 <div class="p-8 my-4 w-full bg-orange-50 text-7xl bg-gradient-to-b from-orange-50 to-white">
@@ -76,9 +76,8 @@
     
     <!-- Condition pour cacher le paragraphe lorsque l'utilisateur est connecté -->
     <% if (userConnected == null || !userConnected) { %>
-        <p>En tant qu’utilisateur non connecté, je peux lister les enchères en cours.
-            Je peux filtrer ma recherche par catégorie, et par nom d’article (l’article est affiché si il contient le critère saisi)
-            - Pour consulter le détail des enchères, l’utilisateur doit se connecter.</p>
+        <p>Enchères en cours : recherche par catégorie et par nom d’article (l’article est affiché si il contient le critère saisi)
+           Pour consulter le détail des enchères, vous devez vous connecter.</p>
     <% } %>
     
     <a href="encheres.jsp" class="home-button">Consultez nos enchères en cours</a>
