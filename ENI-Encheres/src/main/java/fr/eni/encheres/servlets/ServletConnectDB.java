@@ -36,12 +36,9 @@ public class ServletConnectDB extends HttpServlet
         String password = request.getParameter("password");
 
 
-        //connexion
         try 
         {
-        	/**
-        	 * Vérifie si l'utilisateur existe
-        	 */
+        	// Vérifie si l'utilisateur existe
         	boolean utilisateurExiste = UtilisateurManager.getInstance().userExists(email, password);
 
         	if (utilisateurExiste) 
@@ -53,7 +50,6 @@ public class ServletConnectDB extends HttpServlet
 
                 //Récupère le crédit de l'utilisateur
                 int credit = UtilisateurManager.getInstance().getCreditUser(email);
-                // Ajoute le crédit à la session
     	        session.setAttribute("userCredit", credit);
                 
                 
