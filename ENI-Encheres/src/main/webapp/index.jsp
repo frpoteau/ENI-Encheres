@@ -18,15 +18,7 @@
 <body class="bg-white h-screen">
 
   <!-- Header -->
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 border-b border-neutral-100">
-    <div class="flex h-16 items-center justify-between">
-      <a class="h-8 w-8 bg-black"></a>
-<div class="underline flex items-center space-x-3">
-<a href="register.jsp">S'inscrire</a>
-<a href="login.jsp">Se connecter</a>
-</div>
-</div>
-</div>
+ <%@ include file="/WEB-INF/includes/header.jsp" %>
 
 
 <div class="p-8 my-4 w-full bg-orange-50 text-7xl bg-gradient-to-b from-orange-50 to-white">
