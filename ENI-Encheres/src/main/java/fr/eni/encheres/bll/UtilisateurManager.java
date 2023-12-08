@@ -94,33 +94,7 @@ public class UtilisateurManager {
 	 * @return
 	 */
 	public boolean verifierUtilisateur(String email, String password) {
-        /*try {
-        	// Charge le pilote JDBC spécifié dans le fichier de configuration
-            Class.forName(dbDriver);
-            
-         // Établit la connexion à la base de données avec les informations fournies
-            Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-         // Prépare une requête SQL pour vérifier les informations de connexion
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
-            ps.setString(1, email);
-            ps.setString(2, password);
-
-         // Exécute la requête et récupère le résultat
-            ResultSet rs = ps.executeQuery();
-            boolean utilisateurExiste = rs.next();
-            
-         // Ferme la connexion après utilisation
-            con.close();
-
-            return utilisateurExiste;
-            
-            
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            return false;
-        }*/
-		boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, password);
+        boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, password);
 		return utilisateurExiste;
 	}
 	
