@@ -81,15 +81,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 		try (Connection con = JdbcTools.getConnection()) 
 		{
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
-            ps.setString(1, email);
-            ps.setString(2, password);
+            PreparedStatement rqt = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
+            rqt.setString(1, email);
+            rqt.setString(2, password);
 
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = rqt.executeQuery();
             boolean utilisateurExiste = rs.next();
             
-            con.close();
-
             return utilisateurExiste;
 		}catch (SQLException e)
 		{
@@ -103,17 +101,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	@Override
 	public int soldeCredit(String email) {
 		int credit = 0;
-		Connection cnx = null;
-		PreparedStatement rqt;
-		try {
-			cnx=JdbcTools.getConnection();
-			rqt=cnx.prepareStatement(SQL_SELECT_CR); 
+		try (Connection con = JdbcTools.getConnection()) 
+		{
+			PreparedStatement rqt = con.prepareStatement(SQL_SELECT_CR); 
 			rqt.setString(1, email);
 			ResultSet rs = rqt.executeQuery();
 			
 			if (rs.next()) {
                 credit = rs.getInt("credit");
             }
+			
 		}catch (SQLException e) 
 		{
 			e.printStackTrace();
