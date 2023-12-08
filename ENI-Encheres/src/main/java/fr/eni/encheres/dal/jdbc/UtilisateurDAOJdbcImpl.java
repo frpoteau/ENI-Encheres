@@ -20,6 +20,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	private static final String SQL_SELECTBY_ID ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 												+ "	+\"	FROM UTLISATEURS WHERE no_utilisateur = ?";
   
+	private static final String SQL_VERIF_USER = "SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?";
+	private static final String SQL_VERIF_EMAIL = "SELECT COUNT(*) AS email_count FROM user WHERE email = ?";
+	private static final String SQL_VERIF_PSEUDO = "SELECT COUNT(*) AS pseudo_count FROM user WHERE pseudo = ?";
+	
 	private static final String SQL_SELECT_CR ="SELECT credit FROM UTILISATEURS WHERE email = ?";
 	
   private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
@@ -79,9 +83,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 	public boolean verifierUtilisateur(String email, String password) {
 	
-		try (Connection con = JdbcTools.getConnection()) 
+		try (Connection cnx = JdbcTools.getConnection()) 
 		{
-            PreparedStatement rqt = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
+            PreparedStatement rqt = cnx.prepareStatement(SQL_VERIF_USER);
             rqt.setString(1, email);
             rqt.setString(2, password);
 
@@ -189,4 +193,71 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}
 		}
 	}
+	
+	/**
+	 * Vérifie si l'email est unique ou non
+	 * si emailUnique est true alors il est unique
+	 * @return emailUnique
+	 */
+	@Override
+	public boolean singleEmailVerification (String email) {
+		
+		try(Connection cnx = JdbcTools.getConnection()) 
+		{
+			PreparedStatement rqt = cnx.prepareStatement(SQL_VERIF_EMAIL);
+			rqt.setString(1, email);
+			
+			ResultSet rs = rqt.executeQuery();
+			int email_count = rs.getInt("email_count"); //si email_count est différent de 0 alors il existe déjà
+			boolean emailIsUnique;
+			
+			if(email_count > 0) {
+				emailIsUnique = false;
+			}else {
+				emailIsUnique = true;
+			}
+			
+			return emailIsUnique;
+			
+		}catch (SQLException e) {
+		
+		e.printStackTrace();
+		return false;
+		}
+	}
+	
+	/**
+	 * Vérifie si le pseudo est unique ou non
+	 * si pseudoUnique est true alors il est unique
+	 * @return pseudoUnique
+	 */
+	@Override
+	public boolean singlePseudoVerification (String pseudo) {
+	try(Connection cnx = JdbcTools.getConnection()) 
+	{
+		PreparedStatement rqt = cnx.prepareStatement(SQL_VERIF_PSEUDO);
+		rqt.setString(1, pseudo);
+		
+		ResultSet rs = rqt.executeQuery();
+		int pseudo_count = rs.getInt("pseudo_count"); //si pseudo_count est différent de 0 alors il existe déjà
+		boolean pseudoIsUnique;
+		
+		if(pseudo_count > 0) {
+			pseudoIsUnique = false;
+		}else {
+			pseudoIsUnique = true;
+		}
+		
+		return pseudoIsUnique;
+		
+	}catch (SQLException e) {
+	
+	e.printStackTrace();
+	return false;
+	}
+}
+	
+	
+	
+	
 }

@@ -19,6 +19,8 @@ public interface UtilisateurDAO {
 	
 	public int soldeCredit(String email);
 	
+	public boolean singleEmailVerification (String email);
+	public boolean singlePseudoVerification (String pseudo);
 
 
 }

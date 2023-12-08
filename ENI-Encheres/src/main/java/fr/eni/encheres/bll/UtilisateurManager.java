@@ -112,5 +112,25 @@ public class UtilisateurManager {
 		int credit = utilisateurDAO.soldeCredit(email);
 		return credit;
 	}
+	
+	/**
+	 * Permet de vérifier si l'email renseigné est unique
+	 * @param email
+	 * @return emailExists (true or false)
+	 */
+	public boolean emailIsUnique(String email) {
+		boolean emailIsUnique = utilisateurDAO.singleEmailVerification(email);
+		return emailIsUnique;
+	}
+	
+	/**
+	 * Permet de vérifier si le pseudo renseigné est unique
+	 * @param pseudo
+	 * @return pseudoExists (true or false)
+	 */
+	public boolean pseudoIsUnique(String pseudo) {
+		boolean pseudoIsUnique = utilisateurDAO.singlePseudoVerification(pseudo);
+		return pseudoIsUnique;
+	}
 }
 
