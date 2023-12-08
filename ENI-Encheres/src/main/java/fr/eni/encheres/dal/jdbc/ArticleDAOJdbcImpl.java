@@ -23,6 +23,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SQL_SELECT_ART ="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
 												+ " +\" FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
 	
+	private static final String SQL_SELECT_ART_DATE_DEBUT ="SELECT no_article, nom_article, description, date_debut_encheres, prix_initial, prix_vente WWHERE date_debut_encheres=? ";
+	
+	
 	private static final String SQL_SELECT_ALL ="SELECT no_article, nom_articles, descriptuion, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
 												+ " +\" FROM ARTICLES_VENDUS";
 	
@@ -86,6 +89,21 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setInt(1,  a.getNumeroUtili());
 			rqt.executeQuery();
 		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return a;
+	}
+	
+	@Override
+	public Article selectByArtDateDebut(Article a) {
+		Connection cnx = null;
+		PreparedStatement rqt;
+		try {
+			cnx=JdbcTools.getConnection();
+			rqt=cnx.prepareStatement(SQL_SELECT_ART_DATE_DEBUT);
+			rqt.setDate(1,  Date.valueOf(a.getDateD()));
+			rqt.executeQuery();
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return a;
