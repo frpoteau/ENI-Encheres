@@ -61,10 +61,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 				}
 			}
 		}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 	
 	@Override
 	public Utilisateur selectBy(Utilisateur u) {
@@ -81,9 +77,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return u;
 	}
 	
-<<<<<<< Updated upstream
-
-=======
 	public boolean verifierUtilisateur(String email, String password) {
 	
 		try (Connection con = JdbcTools.getConnection()) 
@@ -104,8 +97,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			return false;
 		}
 	}
-	
->>>>>>> Stashed changes
 	/**
 	 * Récupère le crédit de l'utilisateur
 	 */
