@@ -15,6 +15,6 @@ public interface UtilisateurDAO {
 	
 	public void delete (Utilisateur u);
 	
-	public int soldeCredit(Utilisateur u);
+	public int soldeCredit(String email);
 
 }

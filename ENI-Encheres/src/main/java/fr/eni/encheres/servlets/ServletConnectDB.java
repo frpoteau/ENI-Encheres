@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.UtilisateurManager;
-import fr.eni.encheres.bo.Utilisateur;
 
 @WebServlet("/ServletConnectDB")
 public class ServletConnectDB extends HttpServlet 
@@ -62,20 +61,18 @@ public class ServletConnectDB extends HttpServlet
         	 * Vérifie si l'utilisateur existe
         	 */
         	boolean utilisateurExiste = UtilisateurManager.getInstance().verifierUtilisateur(email, password, dbDriver, dbUrl, dbUser, dbPassword);
-        	
-        	
+
         	if (utilisateurExiste) 
             {
-        		
                 // Connexion réussie, stockez la variable de session
                 HttpSession session = request.getSession();
-                
-                Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-             //  int credit = UtilisateurManager.getInstance().RecuperationCreditUtilisateur(utilisateur);
-                
                 session.setAttribute("userConnected", true);
                 session.setAttribute("userEmail", email);
-    	       // session.setAttribute("userCredit", credit);
+
+                //Récupère le crédit de l'utilisateur
+                int credit = UtilisateurManager.getInstance().RecuperationCreditUtilisateur(email, dbDriver, dbUrl, dbUser, dbPassword);
+                // Ajoute le crédit à la session
+    	        session.setAttribute("userCredit", credit);
                 
                 
                 // Redirection vers index.jsp après connexion réussie

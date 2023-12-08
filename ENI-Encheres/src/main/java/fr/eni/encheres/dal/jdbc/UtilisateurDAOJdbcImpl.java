@@ -77,17 +77,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	 * Récupère le crédit de l'utilisateur
 	 */
 	@Override
-	public int soldeCredit(Utilisateur u) {
+	public int soldeCredit(String email) {
 		int credit = 0;
 		Connection cnx = null;
 		PreparedStatement rqt;
 		try {
 			cnx=JdbcTools.getConnection();
-			rqt=cnx.prepareStatement(SQL_SELECT_CR);  //"SELECT credit FROM UTILISATEURS WHERE email = ?";
-			rqt.setString(1, u.getEmail());
+			rqt=cnx.prepareStatement(SQL_SELECT_CR); 
+			rqt.setString(1, email);
 			ResultSet rs = rqt.executeQuery();
-			credit = rs.getInt("credit");
-		}catch (SQLException e) {
+			
+			if (rs.next()) {
+                credit = rs.getInt("credit");
+            }
+		}catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
 		return credit; 
@@ -164,7 +168,4 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}
 		}
 	}
-	
-	
-	
 }

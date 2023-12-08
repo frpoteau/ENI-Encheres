@@ -108,25 +108,18 @@ public class UtilisateurManager {
 
          // Exécute la requête et récupère le résultat
             ResultSet rs = ps.executeQuery();
-            boolean utilisateurExiste;
-            
-            if(rs.next()) {
-            	utilisateurExiste = true;
-            }
-            else{
-            	utilisateurExiste = false;
-            };
+            boolean utilisateurExiste = rs.next();
             
          // Ferme la connexion après utilisation
             con.close();
 
             return utilisateurExiste;
             
+            
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
         }
-        
     }
 	
 	/**
@@ -139,8 +132,9 @@ public class UtilisateurManager {
 	 * @param dbPassword
 	 * @return
 	 */
-	public int RecuperationCreditUtilisateur(Utilisateur u) {
-		return utilisateurDAO.soldeCredit(u);
+	public int RecuperationCreditUtilisateur(String email, String dbDriver, String dbUrl, String dbUser, String dbPassword) {
+		int credit = utilisateurDAO.soldeCredit(email);
+		return credit;
 	}
 }
 
