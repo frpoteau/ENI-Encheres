@@ -21,6 +21,18 @@
                 session.removeAttribute("userConnected");
             }
         %>
+        
+    <% 
+        // Vérifie si l'utilisateur est connecté
+        Boolean userConnected = (Boolean) session.getAttribute("userConnected");
+        if (userConnected != null && userConnected) {
+            String userEmail = (String) session.getAttribute("userEmail");
+    %>
+    
+        <p>Bienvenue, <%= userEmail %> ! Vous êtes connecté. Votre crédit actuel est de : <%= session.getAttribute("userCredit") %> points [<a href="ServletLogout">Déconnexion</a>]</p>
+    <%
+        } else {
+    %>
 
         <div class="flex h-20 items-center justify-end">
             <div class="flex">
@@ -44,5 +56,6 @@
             <a href="reinitpassword.jsp" class="text-sm underline -mt-2">Mot de passe oublié ?</a>
         </div>
     </div>
+    <% } %>
 </body>
 </html>
