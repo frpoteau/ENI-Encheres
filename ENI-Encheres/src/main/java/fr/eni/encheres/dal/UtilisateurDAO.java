@@ -15,6 +15,10 @@ public interface UtilisateurDAO {
 	
 	public void delete (Utilisateur u);
 	
+	public boolean verifierUtilisateur(String email, String password);
+	
 	public int soldeCredit(String email);
+	
+
 
 }

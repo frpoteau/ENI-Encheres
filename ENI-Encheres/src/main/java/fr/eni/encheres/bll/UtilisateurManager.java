@@ -93,8 +93,8 @@ public class UtilisateurManager {
 	 * @param dbPassword
 	 * @return
 	 */
-	public boolean verifierUtilisateur(String email, String password, String dbDriver, String dbUrl, String dbUser, String dbPassword) {
-        try {
+	public boolean verifierUtilisateur(String email, String password) {
+        /*try {
         	// Charge le pilote JDBC spécifié dans le fichier de configuration
             Class.forName(dbDriver);
             
@@ -119,8 +119,10 @@ public class UtilisateurManager {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
-        }
-    }
+        }*/
+		boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, password);
+		return utilisateurExiste;
+	}
 	
 	/**
 	 * Permet de récupérer le nombre de crédit de l'utilisateur
@@ -130,9 +132,9 @@ public class UtilisateurManager {
 	 * @param dbUrl
 	 * @param dbUser
 	 * @param dbPassword
-	 * @return
+	 * @return la valeur du credit
 	 */
-	public int RecuperationCreditUtilisateur(String email, String dbDriver, String dbUrl, String dbUser, String dbPassword) {
+	public int RecuperationCreditUtilisateur(String email) {
 		int credit = utilisateurDAO.soldeCredit(email);
 		return credit;
 	}

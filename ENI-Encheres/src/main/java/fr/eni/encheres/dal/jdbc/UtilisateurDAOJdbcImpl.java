@@ -1,6 +1,7 @@
 package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -60,6 +61,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 				}
 			}
 		}
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 	
 	@Override
 	public Utilisateur selectBy(Utilisateur u) {
@@ -76,7 +81,31 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return u;
 	}
 	
+<<<<<<< Updated upstream
 
+=======
+	public boolean verifierUtilisateur(String email, String password) {
+	
+		try (Connection con = JdbcTools.getConnection()) 
+		{
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?");
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+            boolean utilisateurExiste = rs.next();
+            
+            con.close();
+
+            return utilisateurExiste;
+		}catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+>>>>>>> Stashed changes
 	/**
 	 * Récupère le crédit de l'utilisateur
 	 */

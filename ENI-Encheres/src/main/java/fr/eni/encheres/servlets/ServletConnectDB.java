@@ -60,7 +60,7 @@ public class ServletConnectDB extends HttpServlet
         	/**
         	 * Vérifie si l'utilisateur existe
         	 */
-        	boolean utilisateurExiste = UtilisateurManager.getInstance().verifierUtilisateur(email, password, dbDriver, dbUrl, dbUser, dbPassword);
+        	boolean utilisateurExiste = UtilisateurManager.getInstance().verifierUtilisateur(email, password);
 
         	if (utilisateurExiste) 
             {
@@ -70,7 +70,7 @@ public class ServletConnectDB extends HttpServlet
                 session.setAttribute("userEmail", email);
 
                 //Récupère le crédit de l'utilisateur
-                int credit = UtilisateurManager.getInstance().RecuperationCreditUtilisateur(email, dbDriver, dbUrl, dbUser, dbPassword);
+                int credit = UtilisateurManager.getInstance().RecuperationCreditUtilisateur(email);
                 // Ajoute le crédit à la session
     	        session.setAttribute("userCredit", credit);
                 
