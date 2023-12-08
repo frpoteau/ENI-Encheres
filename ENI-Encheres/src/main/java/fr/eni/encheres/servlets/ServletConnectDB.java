@@ -35,19 +35,6 @@ public class ServletConnectDB extends HttpServlet
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Charge les propriétés depuis le fichier de configuration
-        Properties prop = new Properties();
-        
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("/fr/eni/encheres/dal/settings.properties")) 
-        {
-            prop.load(input);
-        } 
-        catch (IOException e) 
-        {
-	        e.printStackTrace();
-	        out.println("Erreur de chargement du fichier de configuration.");
-	        return;
-        }
 
         //connexion
         try 
