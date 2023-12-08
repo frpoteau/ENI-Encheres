@@ -33,7 +33,7 @@
 		<br/>
 		<input type="submit" value="Valider" onClick="functionSubmit('')"> <!-- Retour sur la page user avec les modifications -->
 		<br/>
-		<input type="submit" value="Annuler" onClick="functionSubmit('')"> <!-- Retour sur la page user sans les modifications -->
+		<input type="submit" value="Annuler" onClick="functionSubmit('userProfil.jsp')"> <!-- Retour sur la page user sans les modifications -->
 		
 	</form>
 

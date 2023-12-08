@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletUpdateUser
+ * Servlet implementation class ServletUserProfil
  */
-@WebServlet("/ServletUpdateUser")
-public class ServletUpdateUser extends HttpServlet {
+@WebServlet("/ServletUserProfil")
+public class ServletUserProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletUpdateUser() {
+    public ServletUserProfil() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +28,24 @@ public class ServletUpdateUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String pseudo = request.getParameter("pseudo");
+		request.setAttribute("pseudo", pseudo);
 		String prenom = request.getParameter("prenom");
+		request.setAttribute("prenom", prenom);
 		String nom = request.getParameter("nom");
+		request.setAttribute("nom", nom);
+		String email = request.getParameter("email");
+		request.setAttribute("email", email);
 		String telephone = request.getParameter("telephone");
+		request.setAttribute("telephone", telephone);
 		String rue = request.getParameter("rue");
+		request.setAttribute("rue", rue);
 		String CodePostal = request.getParameter("codePostal");
+		request.setAttribute("codePostal", codePostal);
 		String ville = request.getParameter("ville");
-		String password = request.getParameter("password");
-		String confirmPassword = request.getParameter("confirmPassword");
-		
-		if(!password.equals(confirmPassword)) {
-			response.sendRedirect("/updateUser.jsp");
-			
-		}
-		
+		request.setAttribute("ville", ville);
+		int credit = Integer.valueOf(request.getParameter("credit"));
+		request.setAttribute("credit", credit);
+	
 	}
 
 	/**
