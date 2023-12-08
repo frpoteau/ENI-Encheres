@@ -83,6 +83,16 @@ public class UtilisateurManager {
 		return false;
 	}
 	
+	/**
+	 * Permet de vérifier si l'utilisateur existe dans la base de donnée
+	 * @param email
+	 * @param password
+	 * @param dbDriver
+	 * @param dbUrl
+	 * @param dbUser
+	 * @param dbPassword
+	 * @return
+	 */
 	public boolean verifierUtilisateur(String email, String password, String dbDriver, String dbUrl, String dbUser, String dbPassword) {
         try {
         	// Charge le pilote JDBC spécifié dans le fichier de configuration
@@ -98,19 +108,39 @@ public class UtilisateurManager {
 
          // Exécute la requête et récupère le résultat
             ResultSet rs = ps.executeQuery();
-            boolean utilisateurExiste = rs.next();
+            boolean utilisateurExiste;
+            
+            if(rs.next()) {
+            	utilisateurExiste = true;
+            }
+            else{
+            	utilisateurExiste = false;
+            };
             
          // Ferme la connexion après utilisation
             con.close();
 
             return utilisateurExiste;
             
-            
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
         }
+        
     }
 	
-	
+	/**
+	 * Permet de récupérer le nombre de crédit de l'utilisateur
+	 * @param email
+	 * @param password
+	 * @param dbDriver
+	 * @param dbUrl
+	 * @param dbUser
+	 * @param dbPassword
+	 * @return
+	 */
+	public int RecuperationCreditUtilisateur(Utilisateur u) {
+		return utilisateurDAO.soldeCredit(u);
+	}
 }
+
