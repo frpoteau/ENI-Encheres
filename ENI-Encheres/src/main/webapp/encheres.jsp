@@ -45,13 +45,15 @@
         
     </form>
 
-    <h2>Nos enchères "Coup de Coeur"</h2>
-    
 	<!-- /ENI-Encheres/ENI-Encheres/build/classes/fr/eni/encheres/ihm/resources/ -->
 	
     <img src="img/Article_001.png" alt="Image 1">
     <img src="img/Article_002.png" alt="Image 2">
     <img src="img/Article_003.png" alt="Image 3">
+    <br>
+   	<img src="img/Article_004.png" alt="Image 4">
+    <img src="img/Article_005.png" alt="Image 5">
+    <img src="img/Article_006.png" alt="Image 6">
     
 </body>
 
