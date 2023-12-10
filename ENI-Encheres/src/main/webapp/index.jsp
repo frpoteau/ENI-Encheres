@@ -9,6 +9,9 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Plateforme d'enchères d'objets de seconde main - ENI Enchères</title>
 	    <link href="css/index.css" rel="stylesheet" />
+	    <link href="css/style.css" rel="stylesheet" />
+	    <link href="css/header.css" rel="stylesheet" />
+	    <link href="css/footer.css" rel="stylesheet" />
 	    <script src="https://cdn.tailwindcss.com"></script>
 	</head>
   
@@ -16,7 +19,7 @@
 	
 		<!-- Header -->
 		<%@ include file="header.jsp" %>	
-	
+
 		<div class="p-8 my-4 w-full bg-orange-50 text-7xl bg-gradient-to-b from-orange-50 to-white">
 			<div class="font-semibold">Adjugé,</div>
 			<div class="space">Enchères</div>
@@ -31,14 +34,9 @@
 		<body>
 		
 		    <img src="img/Liste_Articles-fictifs.png" alt="Les enchères en cours" class="z-index-2">
-		    
-    <div class="container">
-        </div>
-    <div class="carre">
-        <p class="text-2xl font-extrabold italic">FKTY</p>
-    </div>
-
-		    
+		
 		</body>
+		
+		<%@ include file="WEB-INF/includes/footer.jsp" %>
 
 </html>

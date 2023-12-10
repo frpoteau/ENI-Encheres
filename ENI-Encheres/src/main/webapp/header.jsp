@@ -1,60 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="fr">
-
-	<head>
-	    <meta charset="utf-8" />
-	    <link href="css/style.css" rel="stylesheet" />
-	    <link href="css/header.css" rel="stylesheet" />
-	    <link href="css/tailwind.css" rel="stylesheet" />
-	</head>
-	
 	<body>
 
 	    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 	        <%
-	            // RÃ©cupÃ¨re la variable de session
+	            // Récupère la variable de session
 	            Boolean isConnected = (Boolean)session.getAttribute("userConnected");
 	
-	            // VÃ©rifie si la connexion a Ã©chouÃ© et si la variable n'est pas prÃ©sente pour la premiÃ¨re visite
-	            if (isConnected != null && !isConnected) {
+	            // Vérifie si la connexion a échoué et si la variable n'est pas présente pour la première visite
+	            if (isConnected != null && !isConnected) 
+	            {
 	        %>
-	                <p class="text-red-500">La connexion a Ã©chouÃ© : Un problÃ¨me d'adresse mail ou de mot de passe certainement !?</p>
+	        
+			<p class="text-red-500">La connexion a échoué : Un problème d'adresse mail ou de mot de passe certainement !?</p>
+			
 	        <%
-	                // Nettoie la variable de session pour Ã©viter l'affichage rÃ©pÃ©tÃ©
+	                // Nettoie la variable de session pour éviter l'affichage répété
 	                session.removeAttribute("userConnected");
 	            }
 	        %>
 	        
 		    <% 
-		        // VÃ©rifie si l'utilisateur est connectÃ©
+		        // Vérifie si l'utilisateur est connecté
 		        Boolean userConnected = (Boolean) session.getAttribute("userConnected");
-		        if (userConnected != null && userConnected) {
+		    
+		        if (userConnected != null && userConnected) 
+		        {
 		            String userEmail = (String) session.getAttribute("userEmail");
 		    %>
-	
+		    
+			<%
+				    // Utilisation de la fonction dans votre code
+				    int userCredit = (session.getAttribute("userCredit") != null) ? Integer.parseInt(session.getAttribute("userCredit").toString()) : 0;
+				
+				    String creditText;
+				    
+				    if (userCredit == 0) 
+				    {
+				        creditText = "0 point";
+				    }
+				    else 
+				    {
+				        creditText = userCredit + " point" + (userCredit != 1 ? "s" : "");
+				    }
+			%>
+
 		    <div class="container">
 		        <div class="dropdown">
 		            <img src="img/icone_hamburger.png" alt="Description de l'image">
 		            <div class="dropdown-content1">
-			            <div class="menu-item"><a href="#">ActualitÃ© & astuces</a></div>
+			            <div class="menu-item"><a href="#">Actualité & astuces</a></div>
 			            <div class="menu-item"><a href="#">Aide / Contact</a></div>
 			            <div class="menu-item"><a href="#">Newsletter</a></div>
 		            </div>
 		        </div>
 		    
-			    <div class="text-container">
-			        <p>Bienvenue, <%= session.getAttribute("userPseudo") %> ! Vous Ãªtes connectÃ©. Votre crÃ©dit actuel est de <span class="credit"><%= session.getAttribute("userCredit") %> points !</span></p>
-			    </div>
+				<div class="text-container">
+				    <p>Bienvenue, <%= session.getAttribute("userPseudo") %> ! Vous êtes connecté. Votre crédit actuel est de 
+				        <span class="credit"><%= creditText %> !</span>
+				    </p>
+				</div>
 	
 			    <div class="dropdown">
 			        <img src="img/icone_perso-mon-compte.png" alt="Mon Compte">
 			        <div class="dropdown-content2">
-			        	<div class="menu-item"><a href="#">Mes enchÃ¨res actuelles</a></div>
+			        	<div class="menu-item"><a href="#">Mes enchères actuelles</a></div>
 		                <div class="menu-item"><a href="#">Mes achats</a></div>
 		                <div class="menu-item"><a href="#">Mes ventes</a></div>
 		                <div class="menu-item"><a href="userProfil.jsp">Mes informations personnelles</a></div>
-		                <div class="menu-item"><a href="ServletLogout">Se dÃ©connecter</a></div>
+		                <div class="menu-item"><a href="ServletLogout">Se déconnecter</a></div>
 			        </div>
 			    </div>
 	
@@ -65,7 +77,9 @@
 	    	</div>
         
 		    <%
-		        } else {
+		        } 
+		        else 
+		        {
 		    %>
 	
 			<div class="flex h-20 items-center justify-end">
@@ -87,7 +101,7 @@
 				</div>
 			</div>
 			<div class="flex items-center justify-end">
-				<a href="reinitpassword.jsp" class="text-sm underline -mt-2">Mot de passe oubliÃ© ?</a>
+				<a href="reinitpassword.jsp" class="text-sm underline -mt-2">Mot de passe oublié ?</a>
 			</div>
 		
     	</div>
@@ -95,5 +109,3 @@
     	<% } %>
     
 	</body>
-
-</html>
