@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+.container {
+    display: flex;
+}
+
+.dropdown {
+    position: relative;
+    margin-right: 40px; /* Espace entre le menu et le texte, ajustez selon vos besoins */
+}
+
+/* Premier menu déroulant */
+.dropdown-content1 {
+    display: none;
+    position: absolute;
+    top: 70%;
+    left: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+    width: 250px; /* Ajustez la largeur selon vos besoins */
+    overflow: auto; /* La hauteur est désormais égale à la hauteur totale des éléments enfants */
+}
+
+/* Deuxième menu déroulant */
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+    width: 180px; /* Ajustez la largeur selon vos besoins */
+    overflow: auto; /* La hauteur est désormais égale à la hauteur totale des éléments enfants */
+}
+
+.dropdown:hover .dropdown-content1,
+.dropdown:hover .dropdown-content2 {
+    display: block;
+}
+
+.dropdown-content1 a,
+.dropdown-content2 a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content1 a:hover,
+.dropdown-content2 a:hover {
+    background-color: #ddd;
+}
+
+.text-container {
+    flex: 1; /* Utilise tout l'espace disponible dans le conteneur */
+    padding-top: 13px; /* Ajoute un décalage vers le bas, ajustez selon vos besoins */
+    margin-right: 60px; /* Décalage vers la droite, ajustez selon vos besoins */
+}
+
+.image-container img {
+    margin-right: 10px; /* Espace entre les deux images, ajustez selon vos besoins */
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container:hover::after {
+    content: "Votre panier est vide";
+    position: absolute;
+    top: 100%; /* Place la bulle en dessous de l'image */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff; /* Couleur de fond de la bulle */
+    padding: 10px; /* Espace intérieur de la bulle */
+    border: 1px solid #ccc; /* Bordure de la bulle */
+    border-radius: 5px; /* Coins arrondis de la bulle */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre de la bulle */
+    z-index: 1; /* Pour s'assurer que la bulle est au-dessus de l'image */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Empêche le débordement de l'ombre */
+}
+
+.menu-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-item:hover {
+    background-color: #ddd;
+}
+
+/* Ajout de l'ombre au bas du conteneur du menu */
+.menu-container {
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+.credit {
+    color: green;
+    font-weight: bold; /* Optionnel : rendre le texte en gras */
+}

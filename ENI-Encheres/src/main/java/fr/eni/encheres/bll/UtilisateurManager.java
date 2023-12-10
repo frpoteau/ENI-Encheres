@@ -1,11 +1,5 @@
 package fr.eni.encheres.bll;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
@@ -36,6 +30,11 @@ public class UtilisateurManager {
 		}
 	// On retourne l'instance unique
 	return instance;
+	}
+	
+	public String getPseudoUser(String email) {
+	    String pseudo = utilisateurDAO.getPseudo(email);
+	    return pseudo;
 	}
 	
 	/**

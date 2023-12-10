@@ -87,7 +87,7 @@ public class Utilisateur {
 	/**
 	 * @param noUtilisateur the noUtilisateur to set
 	 */
-	public void setIdUtilisateur(int noUtilisateur) {
+	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 

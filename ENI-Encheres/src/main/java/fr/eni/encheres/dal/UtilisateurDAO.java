@@ -17,6 +17,8 @@ public interface UtilisateurDAO {
 	
 	public boolean verifierUtilisateur(String email, String password);
 	
+	public String getPseudo(String email);
+	
 	public int soldeCredit(String email);
 	
 	public boolean singleEmailVerification (String email);

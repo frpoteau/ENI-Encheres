@@ -31,6 +31,8 @@
 		Credit <input type="text" name="credit">
 	
 	</form>
-
+	
+	<a href="updateUser.jsp">Modifier mon Compte</a>
+	
 </body>
 </html>

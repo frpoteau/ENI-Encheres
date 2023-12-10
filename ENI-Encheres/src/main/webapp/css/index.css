@@ -11,19 +11,8 @@
 	font-family: 'Sawarabi Mincho', serif;
 }
 
-.carre {
-  width: 55px; /* ajustez la taille selon vos besoins */
-  height: 55px; /* ajustez la taille selon vos besoins */
-  background-color: black; /* couleur de fond du carré */
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.carre p {
-  margin-right: -4px;
-  color: #ffffff; /* couleur du texte */
-}
+        .carre {
+            position: fixed;
+            bottom: 0;
+            right: 10px;
+        }

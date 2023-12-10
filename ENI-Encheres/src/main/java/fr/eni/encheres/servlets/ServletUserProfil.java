@@ -40,7 +40,7 @@ public class ServletUserProfil extends HttpServlet {
 		String rue = request.getParameter("rue");
 		request.setAttribute("rue", rue);
 		String CodePostal = request.getParameter("codePostal");
-		request.setAttribute("codePostal", codePostal);
+		request.setAttribute("codePostal", CodePostal);
 		String ville = request.getParameter("ville");
 		request.setAttribute("ville", ville);
 		int credit = Integer.valueOf(request.getParameter("credit"));
