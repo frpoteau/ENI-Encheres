@@ -32,7 +32,11 @@ public class ServletConnectDB extends HttpServlet {
                 // Connexion réussie, stocke la variable de session
                 session.setAttribute("userConnected", true);
                 session.setAttribute("userEmail", email);
-
+                
+            	// Récupère le pseudo de l'utilisateur
+                String pseudo = UtilisateurManager.getInstance().getPseudoUser(email);
+                session.setAttribute("userPseudo", pseudo);
+                
                 // Récupère le crédit de l'utilisateur
                 int credit = UtilisateurManager.getInstance().getCreditUser(email);
                 session.setAttribute("userCredit", credit);

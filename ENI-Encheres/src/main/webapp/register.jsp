@@ -129,7 +129,7 @@
 		            
 					<div class="sm:col-span-4">
 					  <label for="pseudo" class="block leader-6 text-gray-900"> Pseudo </label>
-					  <input type="text" id="pseudo" name="pseudo" class="mt-2 w-full border py-1.5 arrondi-md px-2" charset="UTF-8" pattern="^[a-zA-Z0-9]+$">
+					  <input type="text" id="pseudo" name="pseudo" class="mt-2 w-full border py-1.5 arrondi-md px-2" pattern="^[a-zA-Z0-9]+$">
 					</div>
 		              
 		            </div>
@@ -140,14 +140,14 @@
 		                <label for="first-name" class="block leading-6 text-gray-900">
 		                   Prénom
 		                </label>
-		                <input type="text" id="prenom" name="prenom" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+		                <input type="text" id="prenom" name="prenom" required class="mt-2 w-full border py-1.5 rounded-md px-2">
 		              </div>
 		              
 		              <div class="sm:col-span-3">
 		                <label for="first-name" class="block leading-6 text-gray-900">
 		                   Nom
 		                </label>
-		                <input type="text" id="nom" name="nom" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+		                <input type="text" id="nom" name="nom" required class="mt-2 w-full border py-1.5 rounded-md px-2">
 		              </div>
 		              
 		              
@@ -156,49 +156,49 @@
 		                   Email
 		                </label>
 		                <input type="email" id="email" name="email" required placeholder="Entrez votre adresse e-mail" required 
-		                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+		                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" class="mt-2 w-full border py-1.5 rounded-md px-2">
 		              </div>
 		              
 		              <div class="sm:col-span-4">
 		                <label for="first-name" class="block leading-6 text-gray-900">
 		                   Numéro de téléphone
                         </label>
-                        <input type="tel" id="telephone" name="telephone" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+                        <input type="tel" id="telephone" name="telephone" required class="mt-2 w-full border py-1.5 rounded-md px-2">
                       </div>
                       
                       <div class="sm:col-span-6">
                         <label for="rue" class="block leading-6 text-gray-900">
                            Rue
                         </label>
-                        <input type="text" id="rue" name="rue" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+                        <input type="text" id="rue" name="rue" required class="mt-2 w-full border py-1.5 rounded-md px-2">
                       </div>
                       
                       <div class="sm:col-span-3">
                         <label for="code_postal" class="block leading-6 text-gray-900">
                            Code Postal
                         </label>
-                        <input type="text" id="code_postal" name="code_postal" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+                        <input type="text" id="code_postal" name="code_postal" required class="mt-2 w-full border py-1.5 rounded-md px-2">
                       </div>
                       
                       <div class="sm:col-span-3">
                         <label for="first-name" class="block leading-6 text-gray-900">
                            Ville
                         </label>
-                        <input type="text" id="ville" name="ville" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+                        <input type="text" id="ville" name="ville" required class="mt-2 w-full border py-1.5 rounded-md px-2">
                       </div>
                       
                       <div class="sm:col-span-4">
                         <label for="password" class="block leading-6 text-gray-900">
                            Mot de passe
                         </label>
-                        <input type="password" id="password" name="password" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+                        <input type="password" id="password" name="password" required class="mt-2 w-full border py-1.5 rounded-md px-2">
                       </div>
 		   
 					<div class="sm:col-span-4">
 					  <label for="confirmPassword" class="block leading-6 text-gray-900">
 					    Confirmer le mot de passe
 					  </label>
-					  <input type="password" id="confirmPassword" name="confirmPassword" required class="mt-2 w-full border py-1.5 rounded-md px-2" charset="UTF-8">
+					  <input type="password" id="confirmPassword" name="confirmPassword" required class="mt-2 w-full border py-1.5 rounded-md px-2">
 					  <div id="confirmPasswordError" class="text-red-500 text-sm"></div>
 					</div>
                       
@@ -206,7 +206,7 @@
 	    		   
 	    		   <div>
 	    		   
-	    		   <button type="submit"class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 leading-6 text-white shadow-sm">
+	    		   <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 leading-6 text-white shadow-sm">
                 Créer un compte
               </button>
             </div>

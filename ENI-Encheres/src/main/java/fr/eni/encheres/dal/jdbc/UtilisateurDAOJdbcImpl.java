@@ -1,7 +1,6 @@
 package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +24,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	private static final String SQL_VERIF_PSEUDO = "SELECT COUNT(*) AS pseudo_count FROM user WHERE pseudo = ?";
 	
 	private static final String SQL_SELECT_CR ="SELECT credit FROM UTILISATEURS WHERE email = ?";
+	
+	private static final String SQL_SELECT_PSEUDO ="SELECT pseudo FROM UTILISATEURS WHERE email = ?";
 	
   private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 			+ " +\" FROM UTILISATEURS";
@@ -104,6 +105,24 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			return false;
 		}
 	}
+	
+	
+    @Override
+    public String getPseudo(String email) {
+        String pseudo = null;
+        try (Connection con = JdbcTools.getConnection()) {
+            PreparedStatement rqt = con.prepareStatement(SQL_SELECT_PSEUDO);
+            rqt.setString(1, email);
+            ResultSet rs = rqt.executeQuery();
+            if (rs.next()) {
+                pseudo = rs.getString("pseudo");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pseudo;
+    }
+	
 	/**
 	 * Récupère le crédit de l'utilisateur
 	 */
