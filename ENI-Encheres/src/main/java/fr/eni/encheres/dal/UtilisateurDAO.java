@@ -21,6 +21,8 @@ public interface UtilisateurDAO {
 	
 	public int soldeCredit(String email);
 	
+	public String getCoordonnees(String email);
+	
 	public boolean singleEmailVerification (String email);
 	public boolean singlePseudoVerification (String pseudo);
 

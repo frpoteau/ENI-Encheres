@@ -9,6 +9,8 @@
     -webkit-font-smoothing : antialiased;
 }
 
+ body {	background-color: #F5F5F5; /* Couleur de fond */ }
+
 .space {
 	font-family: 'Sawarabi Mincho', serif;
 }

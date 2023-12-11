@@ -27,8 +27,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 	private static final String SQL_SELECT_PSEUDO ="SELECT pseudo FROM UTILISATEURS WHERE email = ?";
 	
-  private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
+	private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 			+ " +\" FROM UTILISATEURS";
+
+	private static final String SQL_SELECT_COORDONNEES ="SELECT rue, code_postal, ville FROM UTILISATEURS WHERE email = ?";
 	
 	private static final String SQL_UPDATE ="UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 	
@@ -144,6 +146,28 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			e.printStackTrace();
 		}
 		return credit; 
+	}
+	
+	@Override
+	public String getCoordonnees(String email) {
+	    String coordonnees = null;
+	    try (Connection con = JdbcTools.getConnection()) {
+	        PreparedStatement rqt = con.prepareStatement(SQL_SELECT_COORDONNEES);
+	        rqt.setString(1, email);
+	        ResultSet rs = rqt.executeQuery();
+
+	        if (rs.next()) {
+	            String rue = rs.getString("rue");
+	            String codePostal = rs.getString("code_postal");
+	            String ville = rs.getString("ville");
+
+	            // Concaténation des coordonnées
+	            coordonnees = rue + ", " + codePostal + " " + ville;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return coordonnees;
 	}
 	
 	@Override

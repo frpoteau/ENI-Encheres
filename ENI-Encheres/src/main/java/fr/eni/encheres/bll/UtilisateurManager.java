@@ -113,6 +113,21 @@ public class UtilisateurManager {
 	}
 	
 	/**
+	 * Permet de récupérer les coordonnées de l'utilisateur
+	 * @param email
+	 * @param password
+	 * @param dbDriver
+	 * @param dbUrl
+	 * @param dbUser
+	 * @param dbPassword
+	 * @return la valeur du credit
+	 */
+	public String getCoordonneesUser(String email) {
+		String coordonnees = utilisateurDAO.getCoordonnees(email);
+		return coordonnees;
+	}
+	
+	/**
 	 * Permet de vérifier si l'email renseigné est unique
 	 * @param email
 	 * @return emailExists (true or false)

@@ -7,12 +7,8 @@
 	<head>
 	    <meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>Plateforme d'enchères d'objets de seconde main - ENI Enchères</title>
 	    <link href="css/index.css" rel="stylesheet" />
-	    <link href="css/style.css" rel="stylesheet" />
-	    <link href="css/header.css" rel="stylesheet" />
-	    <link href="css/footer.css" rel="stylesheet" />
-	    <script src="https://cdn.tailwindcss.com"></script>
+	    <title>Plateforme d'enchères d'objets de seconde main - ENI Enchères</title>
 	</head>
 	
 	<!-- Header -->
