@@ -32,7 +32,11 @@
 	
 	</form>
 	
-	<a href="updateUser.jsp">Modifier mon Compte</a>
+	<form>
+        <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="button" value="Modifier mon Compte"/></a>
+    </form>
+	
+	
 	
 </body>
 </html>

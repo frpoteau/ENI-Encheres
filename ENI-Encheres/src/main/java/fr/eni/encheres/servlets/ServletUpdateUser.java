@@ -39,9 +39,7 @@ public class ServletUpdateUser extends HttpServlet {
 		
 		if(!password.equals(confirmPassword)) {
 			response.sendRedirect("/updateUser.jsp");
-			
 		}
-		
 	}
 
 	/**
