@@ -27,13 +27,6 @@ public class ServletUpdateUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pseudo = request.getParameter("pseudo");
-		String prenom = request.getParameter("prenom");
-		String nom = request.getParameter("nom");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String CodePostal = request.getParameter("codePostal");
-		String ville = request.getParameter("ville");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
 		

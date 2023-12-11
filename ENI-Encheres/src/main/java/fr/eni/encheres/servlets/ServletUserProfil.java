@@ -1,6 +1,8 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,16 +32,8 @@ public class ServletUserProfil extends HttpServlet {
 		
 		HttpSession session = request.getSession(true);
 		
-		session.setAttribute("pseudo", pseudo);
-		session.setAttribute("prenom", prenom);
-		session.setAttribute("nom", nom);
-		session.setAttribute("email", email);
-		session.setAttribute("telephone", telephone);
-		session.setAttribute("rue", rue);
-		session.setAttribute("codePostal", CodePostal);
-		session.setAttribute("ville", ville);
-		session.setAttribute("credit", credit);
-	
+		RequestDispatcher rd = request.getRequestDispatcher("/");
+		
 	}
 
 	/**
