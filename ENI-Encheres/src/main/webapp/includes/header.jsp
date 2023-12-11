@@ -1,4 +1,9 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<head>    
+	    <link href="css/header.css" rel="stylesheet" />
+	    <script src="https://cdn.tailwindcss.com"></script>
+</head>		    
 
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <% 
@@ -14,9 +19,9 @@
         }
     %>
 
-    <div class="container">
+    <div class="container_header common-header">
         <div class="dropdown">
-            <img src="img/icone_hamburger.png" alt="Description de l'image">
+            <a href="index.jsp"><img src="img/icone_hamburger.png" alt="Description de l'image"></a>
             <div class="dropdown-content1">
                 <div class="menu-item"><a href="#">Actualité & astuces</a></div>
                 <div class="menu-item"><a href="#">Aide / Contact</a></div>
@@ -27,7 +32,7 @@
         <% if (Boolean.TRUE.equals(isConnected)) { %>
             <div class="text-container">
                 <p>Bienvenue, <%= session.getAttribute("userPseudo") %> ! Vous êtes connecté. Votre crédit actuel est de 
-                    <span class="credit"><%= creditText %></span>
+                    <span class="credit"><%= creditText %>.</span>
                 </p>
             </div>
 
@@ -36,7 +41,7 @@
                 <div class="dropdown-content2">
                     <div class="menu-item"><a href="#">Mes enchères actuelles</a></div>
                     <div class="menu-item"><a href="#">Mes achats</a></div>
-                    <div class="menu-item"><a href="#">Mes ventes</a></div>
+                    <div class="menu-item"><a href="form_add_new_item.jsp">Mes ventes</a></div>
                     <div class="menu-item"><a href="userProfil.jsp">Mes informations personnelles</a></div>
                     <div class="menu-item"><a href="ServletLogout">Se déconnecter</a></div>
                 </div>

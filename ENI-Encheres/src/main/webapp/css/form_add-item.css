@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFF; /* Couleur de fond */
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto; /* Ajout de marges pour centrer le formulaire */
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+form label em {
+    font-style: italic;
+    display: inline;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px; /* Ajout de padding supplémentaire */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    min-height: 50px; /* Marge intérieure minimale */
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Ajout d'une marge en haut du bouton */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+textarea {
+    width: 100% !important;
+    padding: 12px !important; /* Ajout de padding supplémentaire */
+    margin-bottom: 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    box-sizing: border-box !important;
+    min-height: 50px !important; /* Marge intérieure minimale */
+}
+
+form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Example: Style pour le titre centré */
+h2 {
+    text-align: center;
+}
+
+/* Example: Style pour le formulaire et ses étiquettes */
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
