@@ -49,13 +49,13 @@
         <input type="password" id="confirmerUserPassword" name="confirmerUserPassword" value="<%=session.getAttribute("userPassword")%>">
         <br/>
 	
-		
-		<input type="submit" value="Valider" onClick="functionSubmit('')"> <!-- Retour sur la page user avec les modifications -->
+		<input type="submit" value="Valider"> <!-- Retour sur la page user avec les modifications -->
 		<br/>
-		<input type="submit" value="Annuler" onClick="functionSubmit('userProfil.jsp')"> <!-- Retour sur la page user sans les modifications -->
-		
 	</form>
-
+	
+	<form action="<%=request.getContextPath()%>/userProfil.jsp">
+  		<button type="submit">Retour</button>
+	</form>
 
 </body>
 </html>

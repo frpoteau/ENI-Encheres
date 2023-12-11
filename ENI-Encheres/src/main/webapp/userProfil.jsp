@@ -31,11 +31,9 @@
 		Credit : <%=session.getAttribute("userCredit") %>
 		<br/>
 		Adresse de Livraison : <%=session.getAttribute("userCoordonnees") %>
-	
-	</form>
-	
-	<form>
+		<br/>
         <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="button" value="Modifier mon Compte"/></a>
+        
     </form>
 	
 	
