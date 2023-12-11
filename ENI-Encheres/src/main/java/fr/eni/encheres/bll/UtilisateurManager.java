@@ -32,11 +32,7 @@ public class UtilisateurManager {
 	return instance;
 	}
 	
-	public String getPseudoUser(String email) {
-	    String pseudo = utilisateurDAO.getPseudo(email);
-	    return pseudo;
-	}
-	
+		
 	/**
 	 * Ajouter utilisateur
 	 * @param u
@@ -97,36 +93,7 @@ public class UtilisateurManager {
 		return utilisateurExiste;
 	}
 	
-	/**
-	 * Permet de récupérer le nombre de crédit de l'utilisateur
-	 * @param email
-	 * @param password
-	 * @param dbDriver
-	 * @param dbUrl
-	 * @param dbUser
-	 * @param dbPassword
-	 * @return la valeur du credit
-	 */
-	public int getCreditUser(String email) {
-		int credit = utilisateurDAO.soldeCredit(email);
-		return credit;
-	}
-	
-	/**
-	 * Permet de récupérer les coordonnées de l'utilisateur
-	 * @param email
-	 * @param password
-	 * @param dbDriver
-	 * @param dbUrl
-	 * @param dbUser
-	 * @param dbPassword
-	 * @return la valeur du credit
-	 */
-	public String getCoordonneesUser(String email) {
-		String coordonnees = utilisateurDAO.getCoordonnees(email);
-		return coordonnees;
-	}
-	
+		
 	/**
 	 * Permet de vérifier si l'email renseigné est unique
 	 * @param email
@@ -146,5 +113,11 @@ public class UtilisateurManager {
 		boolean pseudoIsUnique = utilisateurDAO.singlePseudoVerification(pseudo);
 		return pseudoIsUnique;
 	}
+	
+	public Utilisateur createUserFromDB(String email) {
+		Utilisateur u = utilisateurDAO.createUserFromDB(email);
+		return u;
+	}
+	
 }
 

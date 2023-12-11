@@ -23,15 +23,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	private static final String SQL_VERIF_EMAIL = "SELECT COUNT(*) AS email_count FROM UTILISATEURS WHERE email = ?";
 	private static final String SQL_VERIF_PSEUDO = "SELECT COUNT(*) AS pseudo_count FROM UTILISATEURS WHERE pseudo = ?";
 	
-	private static final String SQL_SELECT_CR ="SELECT credit FROM UTILISATEURS WHERE email = ?";
-	
-	private static final String SQL_SELECT_PSEUDO ="SELECT pseudo FROM UTILISATEURS WHERE email = ?";
+	private static final String SQL_SELECT_EMAIL ="SELECT * FROM UTILISATEURS WHERE email = ?";
 	
 	private static final String SQL_SELECT_ALL ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur \"\r\n"
 			+ " +\" FROM UTILISATEURS";
 
-	private static final String SQL_SELECT_COORDONNEES ="SELECT rue, code_postal, ville FROM UTILISATEURS WHERE email = ?";
-	
 	private static final String SQL_UPDATE ="UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 	
 	private static final String SQL_DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
@@ -118,77 +114,34 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			return false;
 		}
 	}
+
 	
 	/**
-	 * Permet de récupérer le Pseudo de l'utilisateur
-	 * à partir de son email
-	 * @return Pseudo
+	 * Récupère les informations de l'utilisateur dans la DB
+	 * et crée un "Utilisateur".
+	 * @param email
+	 * @return Utilisateur
 	 */
-    @Override
-    public String getPseudo(String email) {
-        String pseudo = null;
-        try (Connection con = JdbcTools.getConnection()) {
-            PreparedStatement rqt = con.prepareStatement(SQL_SELECT_PSEUDO);
+	@Override
+	public Utilisateur createUserFromDB(String email) {
+		Utilisateur	u = null;
+		try (Connection cnx = JdbcTools.getConnection()) 
+		{
+            PreparedStatement rqt = cnx.prepareStatement(SQL_SELECT_EMAIL);
             rqt.setString(1, email);
             ResultSet rs = rqt.executeQuery();
+            
             if (rs.next()) {
-                pseudo = rs.getString("pseudo");
+            	u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+            						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pseudo;
-    }
-	
-	/**
-	 * Récupère le crédit de l'utilisateur
-	 * @return credit
-	 */
-	@Override
-	public int soldeCredit(String email) {
-		int credit = 0;
-		try (Connection con = JdbcTools.getConnection()) 
-		{
-			PreparedStatement rqt = con.prepareStatement(SQL_SELECT_CR); 
-			rqt.setString(1, email);
-			ResultSet rs = rqt.executeQuery();
-			
-			if (rs.next()) {
-                credit = rs.getInt("credit");
-            }
-			
-		}catch (SQLException e) 
+            u.toString();
+            return u;
+		}catch (SQLException e)
 		{
 			e.printStackTrace();
+			return u;
 		}
-		return credit; 
-	}
-	
-	/**
-	 * Permet de récupérer les coordonnées d'un utilisateur 
-	 * à partir de son email
-	 * @return coordonnee (rue + codePostal + ville)
-	 */
-	@Override
-	public String getCoordonnees(String email) {
-	    String coordonnees = null;
-	    try (Connection con = JdbcTools.getConnection()) {
-	        PreparedStatement rqt = con.prepareStatement(SQL_SELECT_COORDONNEES);
-	        rqt.setString(1, email);
-	        ResultSet rs = rqt.executeQuery();
-
-	        if (rs.next()) {
-	            String rue = rs.getString("rue");
-	            String codePostal = rs.getString("code_postal");
-	            String ville = rs.getString("ville");
-
-	            // Concaténation des coordonnées
-	            coordonnees = rue + ", " + codePostal + " " + ville;
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return coordonnees;
 	}
 	
 	/**
@@ -339,5 +292,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return false;
 		}
 	}
+	
+	
+
 	
 }
