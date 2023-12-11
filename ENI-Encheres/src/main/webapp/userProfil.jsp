@@ -12,23 +12,25 @@
 	
 	<form method="get" action="ServletUserProfil">
 	
-		Pseudo : <% request.getAttribute("pseudo"); %>
+		Pseudo : <%= session.getAttribute("userPseudo") %>
 		<br/>
-		Nom <input type="text" name="nom">
+		Nom : <%=session.getAttribute("userNom") %>
 		<br/>
-		Prenom <input type="text" name="prenom">
+		Prenom : <%=session.getAttribute("userPrenom") %>
 		<br/>
-		Email <!--A verifier pour la modification de l'adresse mail-->
+		Email : <%=session.getAttribute("userEmail") %>
 		<br/>
-		Telephone <input type="text" name="telephone">
+		Telephone : <%=session.getAttribute("userTelephone") %>
 		<br/>
-		Rue <input type="text" name="rue">
+		Rue : <%=session.getAttribute("userRue") %>
 		<br/>
-		Code Postal <input type="text" name="codePostal">
+		Code Postal : <%=session.getAttribute("userCodePostal") %>
 		<br/>
-		Ville <input type="text" name="ville">
+		Ville : <%=session.getAttribute("userVille") %>
 		<br/>
-		Credit <input type="text" name="credit">
+		Credit : <%=session.getAttribute("userCredit") %>
+		<br/>
+		Adresse de Livraison : <%=session.getAttribute("userCoordonnees") %>
 	
 	</form>
 	
