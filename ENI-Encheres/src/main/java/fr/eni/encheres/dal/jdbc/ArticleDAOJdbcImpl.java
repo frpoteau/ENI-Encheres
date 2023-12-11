@@ -33,7 +33,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
 	private static final String SQL_DELETE ="DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
 	
-
+	/**
+	 * Ajouter un article dans la DB
+	 */
 	@Override
 	public void insert(Article a) {
 		Connection cnx = null;
@@ -62,7 +64,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 	}
 
-	
+	/**
+	 * Permet la sélection d'un article via son ID
+	 */
 	@Override
 	public Article selectById(Article a) {
 		Connection cnx = null;
@@ -78,7 +82,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return a;
 	}
 
-	
+	/**
+	 * Permet la sélection d'un article via l4ID de l'utilisateur
+	 */
 	@Override
 	public Article selectByArt(Article a) {
 		Connection cnx = null;
@@ -94,6 +100,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return a;
 	}
 	
+	/**
+	 * Permet la sélection d'un article via sa date de départ
+	 */
 	@Override
 	public Article selectByArtDateDebut(Article a) {
 		Connection cnx = null;
@@ -109,7 +118,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return a;
 	}
 	
-	
+	/**
+	 * Permet la sélection de tous les articles
+	 */
 	@Override
 	public List<Article> selectAll() {
 		Connection cnx = null;
@@ -138,7 +149,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return article;
 	}
 
-	
+	/**
+	 * Permet la mise à jour d'un article
+	 */
 	@Override
 	public void update(Article a) {
 		Connection cnx = null;
@@ -159,6 +172,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 	}
 
+	/**
+	 * Permet la suppression d'un article
+	 */
 	@Override
 	public void delete(Article a) {
 		Connection cnx = null;
