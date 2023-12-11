@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Connexion - ENI Encheres</title>
-<link href="css/style.css" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
+    	<link href="css/style.css" rel="stylesheet" />
+    	<script src="https://cdn.tailwindcss.com"></script>
 </head>
 	
 <body>
@@ -17,7 +17,7 @@
 	  
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="text-5xl text-center">Connexion</h2>
+    <div class="text-7xl font-bold">Connexion</div>
     <div class="mt-3 text-center">
       <p class="text-gray-700">Connectez-vous pour découvrir des enchères exclusives et des trésors uniques.</p>
     </div>
@@ -67,12 +67,15 @@ if (error != null) { %>
             </a>
         </div>
     </div>
+    
+    <div>
+    <div class="text-center mt-9">Vous n'êtes pas en inscrit ? <a href="register.jsp" class="underline">Créer un compte</a></div>
 </div>
       
 	       
 <div class="flex items-center justify-center mt-7 space-x-4">
     <!-- Bouton "Retour" -->
-    <a href="#" class="py-2 px-10 border border-neutral rounded-full bg-white">
+    <a href="index.jsp" class="py-2 px-10 border border-neutral rounded-full bg-white">
         Retour
     </a>
 
@@ -81,7 +84,9 @@ if (error != null) { %>
         Se connecter
     </button>
 </div>
+</div>
 </form>
+</div>
 </div>
 </div>
 </body>
