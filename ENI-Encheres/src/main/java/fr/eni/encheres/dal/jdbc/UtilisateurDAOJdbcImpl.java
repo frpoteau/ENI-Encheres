@@ -20,8 +20,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 												+ "	+\"	FROM UTLISATEURS WHERE no_utilisateur = ?";
   
 	private static final String SQL_VERIF_USER = "SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?";
-	private static final String SQL_VERIF_EMAIL = "SELECT COUNT(*) AS email_count FROM user WHERE email = ?";
-	private static final String SQL_VERIF_PSEUDO = "SELECT COUNT(*) AS pseudo_count FROM user WHERE pseudo = ?";
+	private static final String SQL_VERIF_EMAIL = "SELECT COUNT(*) AS email_count FROM UTILISATEURS WHERE email = ?";
+	private static final String SQL_VERIF_PSEUDO = "SELECT COUNT(*) AS pseudo_count FROM UTILISATEURS WHERE pseudo = ?";
 	
 	private static final String SQL_SELECT_CR ="SELECT credit FROM UTILISATEURS WHERE email = ?";
 	
@@ -279,28 +279,31 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	 */
 	@Override
 	public boolean singleEmailVerification (String email) {
-		
-		try(Connection cnx = JdbcTools.getConnection()) 
-		{
-			PreparedStatement rqt = cnx.prepareStatement(SQL_VERIF_EMAIL);
+		Connection cnx = null;
+		PreparedStatement rqt;
+		try {
+			cnx=JdbcTools.getConnection();
+			rqt=cnx.prepareStatement(SQL_VERIF_EMAIL); //"SELECT COUNT(*) AS email_count FROM UTILISATEURS WHERE email = ?";
 			rqt.setString(1, email);
 			
 			ResultSet rs = rqt.executeQuery();
-			int email_count = rs.getInt("email_count"); //si email_count est différent de 0 alors il existe déjà
-			boolean emailIsUnique;
 			
-			if(email_count > 0) {
-				emailIsUnique = false;
-			}else {
-				emailIsUnique = true;
+			int verifEmail = 0; //si email_count est différent de 0 alors il existe déjà
+			
+			if (rs.next()) { // Déplace le curseur vers la première ligne du résultat
+			    verifEmail = rs.getInt("email_count"); // Récupère la valeur de "email_count", si elle est différent de 0 alors il existe déjà
 			}
-			
+			boolean emailIsUnique = true;
+			if(verifEmail > 0) {
+				emailIsUnique = false; //email existe déjà
+			}else {
+				emailIsUnique = true; //email n'existe pas
+			}
 			return emailIsUnique;
 			
 		}catch (SQLException e) {
-		
-		e.printStackTrace();
-		return false;
+			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -317,19 +320,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			rqt.setString(1, pseudo);
 			
 			ResultSet rs = rqt.executeQuery();
-			int pseudo_count = rs.getInt("pseudo_count"); //si pseudo_count est différent de 0 alors il existe déjà
+			int verifPseudo = 0;
+					
+			if (rs.next()) {
+				verifPseudo = rs.getInt("pseudo_count"); //si pseudo_count est différent de 0 alors il existe déjà
+			}
 			boolean pseudoIsUnique;
 			
-			if(pseudo_count > 0) {
+			if(verifPseudo > 0) {
 				pseudoIsUnique = false;
 			}else {
 				pseudoIsUnique = true;
 			}
-			
 			return pseudoIsUnique;
 			
 		}catch (SQLException e) {
-		
 		e.printStackTrace();
 		return false;
 		}

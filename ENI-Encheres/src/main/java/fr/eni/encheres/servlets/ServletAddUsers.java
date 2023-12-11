@@ -41,10 +41,10 @@ public class ServletAddUsers extends HttpServlet
         }
         
         // TODO à finir de brancher = gestion de l'affichage de l'erreur
-        //boolean emailIsUnique = UtilisateurManager.getInstance().emailIsUnique(email);
-        //boolean pseudoIsUnique = UtilisateurManager.getInstance().pseudoIsUnique(pseudo);
+        boolean emailIsUnique = UtilisateurManager.getInstance().emailIsUnique(email);
+        boolean pseudoIsUnique = UtilisateurManager.getInstance().pseudoIsUnique(pseudo);
         
-        //if(emailIsUnique && pseudoIsUnique) {
+        if(emailIsUnique && pseudoIsUnique) {
 	        try {
 		        user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, confirmPassword, 0, false);
 		        UtilisateurManager.getInstance().addUser(user);	
@@ -56,6 +56,6 @@ public class ServletAddUsers extends HttpServlet
 	        {
 	            response.sendRedirect("register.jsp"); // Rediriger vers la page d'inscription avec un message d'erreur si nécessaire
 	        }
-        //}
+        }
     }
 }
