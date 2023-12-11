@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletUserProfil
@@ -27,24 +28,17 @@ public class ServletUserProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pseudo = request.getParameter("pseudo");
-		request.setAttribute("pseudo", pseudo);
-		String prenom = request.getParameter("prenom");
-		request.setAttribute("prenom", prenom);
-		String nom = request.getParameter("nom");
-		request.setAttribute("nom", nom);
-		String email = request.getParameter("email");
-		request.setAttribute("email", email);
-		String telephone = request.getParameter("telephone");
-		request.setAttribute("telephone", telephone);
-		String rue = request.getParameter("rue");
-		request.setAttribute("rue", rue);
-		String CodePostal = request.getParameter("codePostal");
-		request.setAttribute("codePostal", CodePostal);
-		String ville = request.getParameter("ville");
-		request.setAttribute("ville", ville);
-		int credit = Integer.valueOf(request.getParameter("credit"));
-		request.setAttribute("credit", credit);
+		HttpSession session = request.getSession(true);
+		
+		session.setAttribute("pseudo", pseudo);
+		session.setAttribute("prenom", prenom);
+		session.setAttribute("nom", nom);
+		session.setAttribute("email", email);
+		session.setAttribute("telephone", telephone);
+		session.setAttribute("rue", rue);
+		session.setAttribute("codePostal", CodePostal);
+		session.setAttribute("ville", ville);
+		session.setAttribute("credit", credit);
 	
 	}
 
