@@ -32,19 +32,23 @@ public class ServletConnectDB extends HttpServlet {
                 // Connexion réussie, stocke la variable de session
                 session.setAttribute("userConnected", true);
                 session.setAttribute("userEmail", email);
-                
-            	// Récupère le pseudo de l'utilisateur
+
+                // Récupère le pseudo de l'utilisateur
                 String pseudo = UtilisateurManager.getInstance().getPseudoUser(email);
                 session.setAttribute("userPseudo", pseudo);
-                
+
                 // Récupère le crédit de l'utilisateur
                 int credit = UtilisateurManager.getInstance().getCreditUser(email);
                 session.setAttribute("userCredit", credit);
 
+                // Après avoir vérifié que l'utilisateur est connecté
+                String userCoordonnees = UtilisateurManager.getInstance().getCoordonneesUser(email);
+                session.setAttribute("userCoordonnees", userCoordonnees);
+
                 // Réinitialise le message d'erreur
                 session.setAttribute("errorMessage", null);
 
-                // Redirection vers index.jsp après connexion réussie
+                // Redirection vers index.jsp, form_add_new_item.jsp après connexion réussie
                 response.sendRedirect("index.jsp");
             } else {
                 // Connexion échouée, stocke le message d'erreur dans la session

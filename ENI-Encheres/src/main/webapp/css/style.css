@@ -9,11 +9,12 @@
 }
 
 body {
-  background-image: linear-gradient(#F5F5F5 0.5px, transparent 0.5px, transparent calc(100% - 0.5px), 
-  #F5F5F5 calc(100% - 0.5px)), linear-gradient(90deg, #F5F5F5 0.5px, transparent 0.5px, 
-  transparent calc(100% - 0.5px), #F5F5F5 calc(100% - 0.5px));
-  background-size: 12.5% 100%;
-  border: 0.5px solid #F5F5F5;
+  		background-image: linear-gradient(#F5F5F5 0.5px, transparent 0.5px, transparent calc(100% - 0.5px), 
+ 		 #F5F5F5 calc(100% - 0.5px)), linear-gradient(90deg, #F5F5F5 0.5px, transparent 0.5px, 
+  		transparent calc(100% - 0.5px), #F5F5F5 calc(100% - 0.5px));
+  		background-size: 12.5% 100%;
+  		border: 0.5px solid #F5F5F5;
+		background-color: #F5F5F5; /* Couleur de fond */
 }
 
 h2 {

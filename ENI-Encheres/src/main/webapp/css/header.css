@@ -1,7 +1,18 @@
 @charset "UTF-8";
 
-.container {
+.container_header {
     display: flex;
+    background-color: #FFF; /* Couleur de fond */
+    width: 100%; /* Largeur de 100% */
+}
+
+header {
+    width: 100%; /* La largeur du header est également de 100% */
+    background-color: #333; /* Couleur de fond du header */
+    color: #FFF; /* Couleur du texte du header */
+    padding: 10px; /* Espace intérieur du header */
+    box-sizing: border-box; /* Inclut le padding dans la largeur et la hauteur du header */
+    flex-grow: 1; /* Occupe toute la largeur disponible */
 }
 
 .dropdown {

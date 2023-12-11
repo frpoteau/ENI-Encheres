@@ -11,11 +11,11 @@ import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 @WebServlet("/ServletAddUsers")
-public class ServletAddUsers extends HttpServlet {
+public class ServletAddUsers extends HttpServlet 
+{
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	Utilisateur user;
     	
@@ -33,7 +33,8 @@ public class ServletAddUsers extends HttpServlet {
 
 
         // Vérifier si les mots de passe correspondent
-        if (!password.equals(confirmPassword)) {
+        if (!password.equals(confirmPassword)) 
+        {
             // Gérer l'erreur
             response.sendRedirect("register.jsp"); // Rediriger vers la page d'inscription avec un message d'erreur si nécessaire
             return;
@@ -48,9 +49,11 @@ public class ServletAddUsers extends HttpServlet {
 		        user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, confirmPassword, 0, false);
 		        UtilisateurManager.getInstance().addUser(user);	
 		
-	            // Rediriger vers une page de confirmation ou une autre page après l'inscription
+	            // Redirige vers une page de confirmation ou une autre page après l'inscription
 	            response.sendRedirect("registration-success.jsp");
-	        }catch (Exception e) {
+	        }
+	        catch (Exception e) 
+	        {
 	            response.sendRedirect("register.jsp"); // Rediriger vers la page d'inscription avec un message d'erreur si nécessaire
 	        }
         //}
