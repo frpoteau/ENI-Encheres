@@ -27,12 +27,6 @@ public class ServletUpdateUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String password = request.getParameter("password");
-		String confirmPassword = request.getParameter("confirmPassword");
-		
-		if(!password.equals(confirmPassword)) {
-			response.sendRedirect("/updateUser.jsp");
-		}
 	}
 
 	/**
