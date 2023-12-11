@@ -37,7 +37,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	private static final String SQL_DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	
 	
-
+	/**
+	 * Permet l'ajout d'un utilisateur dans la base de donnée
+	 */
 	@Override
 	public void insert(Utilisateur u) {
 		Connection cnx = null;
@@ -74,6 +76,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			}
 	}
 	
+	/**
+	 * Permet la sélection de l'utilisateur à partir de son ID
+	 * @return Utilisateur
+	 */
 	@Override
 	public Utilisateur selectBy(Utilisateur u) {
 		Connection cnx = null;
@@ -89,6 +95,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return u;
 	}
 	
+	/**
+	 * Permet de vérifier si l'utilisateur existe ou non dans la DB
+	 * en contrôlant le duo email/mot de passe
+	 * @return si Utilisateur existe  = True
+	 */
 	public boolean verifierUtilisateur(String email, String password) {
 	
 		try (Connection cnx = JdbcTools.getConnection()) 
@@ -108,7 +119,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 	}
 	
-	
+	/**
+	 * Permet de récupérer le Pseudo de l'utilisateur
+	 * à partir de son email
+	 * @return Pseudo
+	 */
     @Override
     public String getPseudo(String email) {
         String pseudo = null;
@@ -127,6 +142,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 	/**
 	 * Récupère le crédit de l'utilisateur
+	 * @return credit
 	 */
 	@Override
 	public int soldeCredit(String email) {
@@ -148,6 +164,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return credit; 
 	}
 	
+	/**
+	 * Permet de récupérer les coordonnées d'un utilisateur 
+	 * à partir de son email
+	 * @return coordonnee (rue + codePostal + ville)
+	 */
 	@Override
 	public String getCoordonnees(String email) {
 	    String coordonnees = null;
@@ -170,6 +191,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	    return coordonnees;
 	}
 	
+	/**
+	 * Permet la sélection de tous les utilisateurs sous forme de liste
+	 */
 	@Override
 	public List<Utilisateur> selectAll() {
 		Connection cnx = null;
@@ -198,6 +222,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return utilisateur;
 	}
 	
+	/**
+	 * Permet la mise à jour d'un utilisateur
+	 */
 	@Override
 	public void update(Utilisateur u) {
 		Connection cnx = null;
@@ -220,6 +247,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 	}
 	
+	/**
+	 * Permet la suppression d'un utilisateur
+	 */
 	@Override
 	public void delete(Utilisateur u) {
 		Connection cnx = null;
@@ -281,31 +311,28 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	 */
 	@Override
 	public boolean singlePseudoVerification (String pseudo) {
-	try(Connection cnx = JdbcTools.getConnection()) 
-	{
-		PreparedStatement rqt = cnx.prepareStatement(SQL_VERIF_PSEUDO);
-		rqt.setString(1, pseudo);
+		try(Connection cnx = JdbcTools.getConnection()) 
+		{
+			PreparedStatement rqt = cnx.prepareStatement(SQL_VERIF_PSEUDO);
+			rqt.setString(1, pseudo);
+			
+			ResultSet rs = rqt.executeQuery();
+			int pseudo_count = rs.getInt("pseudo_count"); //si pseudo_count est différent de 0 alors il existe déjà
+			boolean pseudoIsUnique;
+			
+			if(pseudo_count > 0) {
+				pseudoIsUnique = false;
+			}else {
+				pseudoIsUnique = true;
+			}
+			
+			return pseudoIsUnique;
+			
+		}catch (SQLException e) {
 		
-		ResultSet rs = rqt.executeQuery();
-		int pseudo_count = rs.getInt("pseudo_count"); //si pseudo_count est différent de 0 alors il existe déjà
-		boolean pseudoIsUnique;
-		
-		if(pseudo_count > 0) {
-			pseudoIsUnique = false;
-		}else {
-			pseudoIsUnique = true;
+		e.printStackTrace();
+		return false;
 		}
-		
-		return pseudoIsUnique;
-		
-	}catch (SQLException e) {
-	
-	e.printStackTrace();
-	return false;
 	}
-}
-	
-	
-	
 	
 }
