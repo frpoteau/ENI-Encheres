@@ -89,11 +89,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return u;
 	}
 	
-	/**
-	 * Permet de vérifier si l'utilisateur existe ou non dans la DB
-	 * en contrôlant le duo email/mot de passe
-	 * @return si Utilisarteur existe  = True
-	 */
 	public boolean verifierUtilisateur(String email, String password) {
 	
 		try (Connection cnx = JdbcTools.getConnection()) 
@@ -113,11 +108,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 	}
 	
-	/**
-	 * Permet de récupérer le Pseudo de l'utilisateur
-	 * à partir de son email
-	 * @return Pseudo
-	 */
+	
     @Override
     public String getPseudo(String email) {
         String pseudo = null;
@@ -136,7 +127,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 	/**
 	 * Récupère le crédit de l'utilisateur
-	 * @return Credit
 	 */
 	@Override
 	public int soldeCredit(String email) {
@@ -158,9 +148,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return credit; 
 	}
 	
-	/**
-	 * Permet la sélection de touts les utilisateurs sous forme de liste
-	 */
 	@Override
 	public String getCoordonnees(String email) {
 	    String coordonnees = null;
@@ -211,9 +198,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		return utilisateur;
 	}
 	
-	/**
-	 * Permet la mise à jour d'un utilisateur
-	 */
 	@Override
 	public void update(Utilisateur u) {
 		Connection cnx = null;
@@ -236,9 +220,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 		}
 	}
 	
-	/**
-	 * Permet la suppremssion d'un utilisateur
-	 */
 	@Override
 	public void delete(Utilisateur u) {
 		Connection cnx = null;
