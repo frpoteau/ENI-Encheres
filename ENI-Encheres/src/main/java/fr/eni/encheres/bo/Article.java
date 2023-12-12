@@ -12,13 +12,14 @@ public class Article {
     private LocalDate dateF;
     private LocalTime heureF;
     private int prixInit;
+    private int prixFin;
     private int numeroUtili;
     private int categorie;
 
     public Article() {
     }
 
-    public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int numeroUtili, int categorie) {
+    public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int prixFin, int numeroUtili, int categorie) {
         this.idArticle = idArticle;
         this.nomArticle = nomArticle;
         this.desc = desc;
@@ -27,11 +28,12 @@ public class Article {
         this.dateF = dateF;
         this.heureF = heureF;
         this.prixInit = prixInit;
+        this.prixFin = prixFin;
         this.numeroUtili = numeroUtili;
         this.categorie = categorie;
     }
 
-    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int numeroUtili, int categorie) {
+    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixFin, int prixVente, int numeroUtili, int categorie) {
         this.nomArticle = nomArticle;
         this.desc = desc;
         this.dateD = dateD;
@@ -39,6 +41,7 @@ public class Article {
         this.dateF = dateF;
         this.heureF = heureF;
         this.prixInit = prixInit;
+        this.prixFin = prixFin;
         this.numeroUtili = numeroUtili;
         this.categorie = categorie;
     }
@@ -105,6 +108,14 @@ public class Article {
 
     public void setPrixInit(int prixInit) {
         this.prixInit = prixInit;
+    }
+    
+    public int getPrixFin() {
+    	return prixFin;
+    }
+    
+    public void setPrixFin(int prixFin) {
+    	this.prixFin = prixFin;
     }
 
     public int getNumeroUtili() {

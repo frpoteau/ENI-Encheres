@@ -18,7 +18,7 @@
 	
 	<h2>Mon Profil</h2>
 	
-	<form method="get" action="ServletUserProfil">
+	<form method="get" action="UserProfilServlet">
 	
 		Pseudo : <%= session.getAttribute("userPseudo") %>
 		<br/>

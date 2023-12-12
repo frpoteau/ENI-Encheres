@@ -3,11 +3,11 @@
     
     <%
     // Récupération des valeurs des champs de mot de passe depuis la requête
-    String userPassword = request.getParameter("userPassword");
-    String confirmerUserPassword = request.getParameter("confirmerUserPassword");
+    String newPassword = request.getParameter("userPassword");
+    String confirmerNewPassword = request.getParameter("confirmerUserPassword");
 
-    if (userPassword != null && confirmerUserPassword != null) {
-        if (userPassword.equals(confirmerUserPassword)) {
+    if (newPassword != null && confirmerNewPassword != null) {
+        if (newPassword.equals(confirmerNewPassword)) {
             out.println("Les mots de passe correspondent !");
         } else {
             out.println("Les mots de passe ne correspondent pas !");
@@ -47,17 +47,17 @@
 		<br/>
 		Ville <input type="text" name="ville" value="<%= session.getAttribute("userVille")%>">
 		<br/>
-		<label for="userPassword">Mot de passe :</label>
-        <input type="password" id="userPassword" name="userPassword" value="<%=session.getAttribute("userPassword")%>">
+		<label for="newPassword">Mot de passe :</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Vide, si vous ne mofifiez pas le mot de passe">
 		<br/>
-        <label for="confirmerUserPassword">Confirmer le mot de passe :</label>
-        <input type="password" id="confirmerUserPassword" name="confirmerUserPassword" value="<%=session.getAttribute("userPassword")%>">
+        <label for="confirmerNewPassword">Confirmer le mot de passe :</label>
+        <input type="password" id="confirmerNewPassword" name="confirmerNewPassword" placeholder="Vide, si vous ne mofifiez pas le mot de passe">
         <br/>
 	
 		<input type="submit" value="Valider"> <!-- Retour sur la page user avec les modifications -->
 		<br/>
 	</form>
-	
+
 	<form action="<%=request.getContextPath()%>/userProfil.jsp">
   		<button type="submit">Retour</button>
 	</form>

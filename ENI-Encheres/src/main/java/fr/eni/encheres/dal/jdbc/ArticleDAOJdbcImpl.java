@@ -128,8 +128,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public List<Article> selectAll() {
 		Connection cnx = null;
-		Article a = null;
-		List<Article> article = new ArrayList<>();
+		List<Article> articles = new ArrayList<>();
 		ResultSet rs;
 		Statement rqt;
 		try {
@@ -137,7 +136,18 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt=cnx.createStatement();
 			rs=rqt.executeQuery(SQL_SELECT_ALL);
 			while(rs.next()) {
-				article.add(a);
+				Article a = new Article();
+				a.setIdArticle(rs.getInt("no_article"));
+				a.setNomArticle(rs.getString("nom_article"));
+				a.setDesc(rs.getString("description"));
+				a.setDateD(rs.getLocalDate("date_debut_encheres"));
+				a.setDateF(rs.getLocalDate("date_fin_encheres"));
+				a.setPrixInit(rs.getInt("prix_initial"));
+				a.setPrixFin(rs.getInt("prix_vente"));
+				a.setNumeroUtili(rs.getInt("no_utilisateur"));
+				a.setCategorie(rs.getInt("no_categorie"));
+			
+				articles.add(a);
 			}
 			}catch(SQLException e) {
 				e.printStackTrace();
@@ -150,7 +160,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					}
 				}
 			}
-		return article;
+		return articles;
 	}
 
 	/**
