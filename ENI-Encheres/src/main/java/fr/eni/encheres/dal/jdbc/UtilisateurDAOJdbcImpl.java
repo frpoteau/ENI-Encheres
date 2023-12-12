@@ -150,8 +150,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	@Override
 	public List<Utilisateur> selectAll() {
 		Connection cnx = null;
-		Utilisateur u = null;
-		List<Utilisateur> utilisateur = new ArrayList<>();
+		List<Utilisateur> utilisateurs = new ArrayList<>();
 		ResultSet rs;
 		Statement rqt;
 		try {
@@ -159,20 +158,35 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			rqt=cnx.createStatement();
 			rs=rqt.executeQuery(SQL_SELECT_ALL);
 			while(rs.next()) {
-				utilisateur.add(u);
+				Utilisateur u = new Utilisateur();
+				
+				u.setIdUtilisateur(rs.getInt("no_utilisateur"));
+				u.setPseudo(rs.getString("pseudo"));
+				u.setNom(rs.getString("nom"));
+				u.setPrenom(rs.getString("prenom"));
+				u.setEmail(rs.getString("email"));
+				u.setTelephone(rs.getString("telephone"));
+				u.setRue(rs.getString("rue"));
+				u.setCodePostal(rs.getString("code_postal"));
+				u.setVille(rs.getString("ville"));
+				u.setMotDePasse(rs.getString("mot_de_passe"));
+				u.setCredit(rs.getInt("credit"));
+				u.setAdministrateur(rs.getBoolean("administrateur"));
+				
+				utilisateurs.add(u);
 		}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			if(cnx!=null) {
 				try {
-				JdbcTools.closeConnection(cnx);
+					JdbcTools.closeConnection(cnx);
 				}catch(SQLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return utilisateur;
+		return utilisateurs;
 	}
 	
 	/**

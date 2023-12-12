@@ -1,5 +1,8 @@
 package fr.eni.encheres.bo;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Utilisateur {
 	private int idUtilisateur;
 	private String pseudo;
@@ -43,7 +46,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.motDePasse = motDePasse;
+		this.motDePasse = hashPwd(motDePasse);
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
@@ -72,7 +75,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.motDePasse = motDePasse;
+		this.motDePasse = hashPwd(motDePasse);
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
@@ -214,7 +217,7 @@ public class Utilisateur {
 	 * @param motDePasse the motDePasse to set
 	 */
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+		this.motDePasse = hashPwd(motDePasse);
 	}
 
 	/**
@@ -253,5 +256,36 @@ public class Utilisateur {
 				+ ", administrateur=" + ((administrateur==true)?0:1) + "]";
 	}
 	
+	/**
+	 * Permet le hachage du mot de passe afin de le sécuriser dans la DB
+	 * @param motDePasse
+	 * @return
+	 */
+	public static String hashPwd(String motDePasse) {
+	    // Initialise une instance de MessageDigest pour l'algorithme de hachage
+	    MessageDigest md = null;
+	    try {
+	        // Tente d'obtenir une instance de l'algorithme de hachage SHA-256
+	        md = MessageDigest.getInstance("SHA-256");
+	    } catch (NoSuchAlgorithmException e) {
+	        // En cas d'erreur lors de la récupération de l'algorithme, affiche l'erreur
+	        e.printStackTrace();
+	    }
+	    
+	    // Met à jour l'algorithme de hachage avec les octets du mot de passe
+	    md.update(motDePasse.getBytes());
+	    
+	    // Effectue le hachage et stocke le résultat dans un tableau de bytes
+	    byte byteData[] = md.digest();
+
+	    // Convertit le tableau de bytes en une chaîne hexadécimale
+	    StringBuffer sb = new StringBuffer();
+	    for (int i = 0; i < byteData.length; i++) {
+	        // Convertit chaque byte en une représentation hexadécimale et l'ajoute à la chaîne
+	        sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	    }
+	    // Retourne la représentation hexadécimale du hachage du mot de passe
+	    return sb.toString();
+	}
 	
 }

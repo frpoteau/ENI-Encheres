@@ -46,6 +46,10 @@ public class UtilisateurManager {
 	 * @param c
 	 */
 	public void updateUser(Utilisateur u) {
+		String password = u.getMotDePasse();
+		if (u.getMotDePasse() != null) {
+			u.setMotDePasse(Utilisateur.hashPwd(password));
+		}
 		utilisateurDAO.update(u);
 	}
 
@@ -89,7 +93,7 @@ public class UtilisateurManager {
 	 * @return
 	 */
 	public boolean userExists(String email, String password) {
-        boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, password);
+        boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, Utilisateur.hashPwd(password));
 		return utilisateurExiste;
 	}
 	
