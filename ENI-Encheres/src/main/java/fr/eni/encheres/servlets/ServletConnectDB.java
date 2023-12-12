@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bo.Utilisateur;
 
 @WebServlet("/ServletConnectDB")
 public class ServletConnectDB extends HttpServlet {
@@ -31,20 +32,26 @@ public class ServletConnectDB extends HttpServlet {
             if (utilisateurExiste) {
                 // Connexion réussie, stocke la variable de session
                 session.setAttribute("userConnected", true);
-                session.setAttribute("userEmail", email);
-
-                // Récupère le pseudo de l'utilisateur
-                String pseudo = UtilisateurManager.getInstance().getPseudoUser(email);
-                session.setAttribute("userPseudo", pseudo);
-
-                // Récupère le crédit de l'utilisateur
-                int credit = UtilisateurManager.getInstance().getCreditUser(email);
-                session.setAttribute("userCredit", credit);
-
-                // Après avoir vérifié que l'utilisateur est connecté
-                String userCoordonnees = UtilisateurManager.getInstance().getCoordonneesUser(email);
-                session.setAttribute("userCoordonnees", userCoordonnees);
-
+                
+               // session.setAttribute("userEmail", email); //TODO Delete
+                
+                //Creation de l'objet Utilisateur (récupération de l'utilisateur dans la DB)
+                Utilisateur u = UtilisateurManager.getInstance().createUserFromDB(email);
+                
+                session.setAttribute("userPseudo", u.getPseudo());
+                session.setAttribute("userNom", u.getNom());
+                session.setAttribute("userPrenom", u.getPrenom());
+                session.setAttribute("userEmail", u.getEmail());
+                session.setAttribute("userTelephone", u.getTelephone());
+                session.setAttribute("userRue", u.getRue());
+                session.setAttribute("userCodePostal", u.getCodePostal());
+                session.setAttribute("userVille", u.getVille());
+                session.setAttribute("userPassword", u.getMotDePasse());
+                session.setAttribute("userCredit", u.getCredit());
+                session.setAttribute("userAdmin", u.getAdministrateur());
+                session.setAttribute("userID", u.getIdUtilisateur());
+                session.setAttribute("userCoordonnees",u.getRue() + ", " + u.getCodePostal()+ " " + u.getVille());
+                                
                 // Réinitialise le message d'erreur
                 session.setAttribute("errorMessage", null);
 

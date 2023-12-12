@@ -16,15 +16,9 @@ public interface UtilisateurDAO {
 	public void delete (Utilisateur u);
 	
 	public boolean verifierUtilisateur(String email, String password);
-	
-	public String getPseudo(String email);
-	
-	public int soldeCredit(String email);
-	
-	public String getCoordonnees(String email);
-	
 	public boolean singleEmailVerification (String email);
 	public boolean singlePseudoVerification (String pseudo);
 
+	public Utilisateur createUserFromDB (String email);
 
 }
