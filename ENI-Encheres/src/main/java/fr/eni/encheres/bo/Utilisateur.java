@@ -46,7 +46,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.motDePasse = hashPwd(motDePasse);
+		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
@@ -75,7 +75,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.motDePasse = hashPwd(motDePasse);
+		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
@@ -217,7 +217,7 @@ public class Utilisateur {
 	 * @param motDePasse the motDePasse to set
 	 */
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = hashPwd(motDePasse);
+		this.motDePasse = motDePasse;
 	}
 
 	/**

@@ -17,58 +17,61 @@ import fr.eni.encheres.bo.Utilisateur;
 @WebServlet("/ServletUpdateUser")
 public class ServletUpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
-	
-        
-        String pseudo = request.getParameter("pseudo");
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String email = request.getParameter("email");
-        String telephone = request.getParameter("telephone");
-        String rue = request.getParameter("rue");
-        String codePostal = request.getParameter("codePostal");
-        String ville = request.getParameter("ville");
-        String password = request.getParameter("password");
-        int credit = (Integer) session.getAttribute("userCredit");
-        boolean admin = (boolean)session.getAttribute("userAdmin");
-        
-        
-         Utilisateur u = new Utilisateur(
-        		pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, admin);
-        
-        UtilisateurManager.getInstance().updateUser(u);
-        
-        if(password == null) {
-        	//Pour le constructeur Utilisateur
-        	password = (String) session.getAttribute("userPassword");
-        }else {
-        	//Pour modifier le mot de passe dans la session en cours
-        	session.setAttribute("userPassword", u.getMotDePasse());
-        }
-        
-        
+
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("codePostal");
+		String ville = request.getParameter("ville");
+		String password = request.getParameter("newPassword");
+		int credit = (int) session.getAttribute("userCredit");
+		boolean admin = (boolean) session.getAttribute("userAdmin");
+		int idUser = (int) session.getAttribute("userID");
+
+
+		boolean etatPassword; // est false si ancien pwd, si c'est un nouveau password = true
+
+		if (password == null) {
+			password = (String) session.getAttribute("userPassword");
+			etatPassword = false;
+		} else
+			etatPassword = true;
+
+
+		Utilisateur u = new Utilisateur(idUser, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password,
+				credit, admin);
+
+		UtilisateurManager.getInstance().updateUser(u, etatPassword);
+
+		if (password != null) {
+			// Pour modifier le mot de passe dans la session en cours
+			session.setAttribute("userPassword", u.getMotDePasse());
+		}
+
 		session.setAttribute("userPseudo", u.getPseudo());
-        session.setAttribute("userNom", u.getNom());
-        session.setAttribute("userPrenom", u.getPrenom());
-        session.setAttribute("userEmail", u.getEmail());
-        session.setAttribute("userTelephone", u.getTelephone());
-        session.setAttribute("userRue", u.getRue());
-        session.setAttribute("userCodePostal", u.getCodePostal());
-        session.setAttribute("userVille", u.getVille());
-        session.setAttribute("userCoordonnees",u.getRue() + ", " + u.getCodePostal()+ " " + u.getVille());
-		
-        
-        response.sendRedirect("userProfil.jsp");
-        
-        
-        
-        
+		session.setAttribute("userNom", u.getNom());
+		session.setAttribute("userPrenom", u.getPrenom());
+		session.setAttribute("userEmail", u.getEmail());
+		session.setAttribute("userTelephone", u.getTelephone());
+		session.setAttribute("userRue", u.getRue());
+		session.setAttribute("userCodePostal", u.getCodePostal());
+		session.setAttribute("userVille", u.getVille());
+		session.setAttribute("userCoordonnees", u.getRue() + ", " + u.getCodePostal() + " " + u.getVille());
+
+		response.sendRedirect("userProfil.jsp");
+
 	}
 
 }

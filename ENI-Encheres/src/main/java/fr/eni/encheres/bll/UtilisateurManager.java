@@ -6,48 +6,50 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
 
-	
 	// L'instance unique est stockée en tant que variable privée statique
 	private static UtilisateurManager instance;
 	private UtilisateurDAO utilisateurDAO;
-	
-	
+
 	/**
-	 * Le constructeur est privé pour éviter la création d'instances via l'opérateur new
+	 * Le constructeur est privé pour éviter la création d'instances via l'opérateur
+	 * new
 	 */
 	private UtilisateurManager() {
 		utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	}
-	
+
 	/**
 	 * Méthode statique pour obtenir l'instance unique de la classe
+	 * 
 	 * @return instance si existante ou création d'une nouvelle le cas échéant
 	 */
 	public static UtilisateurManager getInstance() {
 		// Si l'instance n'a pas encore été créée, on en crée une nouvelle
-		if(instance==null) {
+		if (instance == null) {
 			instance = new UtilisateurManager();
 		}
-	// On retourne l'instance unique
-	return instance;
+		// On retourne l'instance unique
+		return instance;
 	}
-	
-		
+
 	/**
 	 * Ajouter utilisateur
+	 * 
 	 * @param u
 	 */
 	public void addUser(Utilisateur u) {
 		utilisateurDAO.insert(u);
 	}
-	
+
 	/**
 	 * Modifier un utilisateur
+	 * 
 	 * @param c
 	 */
-	public void updateUser(Utilisateur u) {
+	public void updateUser(Utilisateur u, boolean n) {
 		String password = u.getMotDePasse();
-		if (u.getMotDePasse() != null) {
+		boolean nP = n;
+		if (nP == true) {
 			u.setMotDePasse(Utilisateur.hashPwd(password));
 		}
 		utilisateurDAO.update(u);
@@ -55,6 +57,7 @@ public class UtilisateurManager {
 
 	/**
 	 * Selectionner un utilisateur par son ID
+	 * 
 	 * @param id
 	 * @return ID de l'utilisateur
 	 */
@@ -64,14 +67,16 @@ public class UtilisateurManager {
 
 	/**
 	 * Suppression d'un utilisateur
+	 * 
 	 * @param id
 	 */
 	public void deleteUser(Utilisateur u) {
 		utilisateurDAO.delete(u);
 	}
-	
+
 	/**
 	 * Permet de vérifier que l'email contient bien un @
+	 * 
 	 * @param email
 	 * @return
 	 */
@@ -81,9 +86,10 @@ public class UtilisateurManager {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Permet de vérifier si l'utilisateur existe dans la base de donnée
+	 * 
 	 * @param email
 	 * @param password
 	 * @param dbDriver
@@ -93,13 +99,13 @@ public class UtilisateurManager {
 	 * @return
 	 */
 	public boolean userExists(String email, String password) {
-        boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, Utilisateur.hashPwd(password));
+		boolean utilisateurExiste = utilisateurDAO.verifierUtilisateur(email, Utilisateur.hashPwd(password));
 		return utilisateurExiste;
 	}
-	
-		
+
 	/**
 	 * Permet de vérifier si l'email renseigné est unique
+	 * 
 	 * @param email
 	 * @return emailExists (true or false)
 	 */
@@ -107,9 +113,10 @@ public class UtilisateurManager {
 		boolean emailIsUnique = utilisateurDAO.singleEmailVerification(email);
 		return emailIsUnique;
 	}
-	
+
 	/**
 	 * Permet de vérifier si le pseudo renseigné est unique
+	 * 
 	 * @param pseudo
 	 * @return pseudoExists (true or false)
 	 */
@@ -117,11 +124,10 @@ public class UtilisateurManager {
 		boolean pseudoIsUnique = utilisateurDAO.singlePseudoVerification(pseudo);
 		return pseudoIsUnique;
 	}
-	
+
 	public Utilisateur createUserFromDB(String email) {
 		Utilisateur u = utilisateurDAO.createUserFromDB(email);
 		return u;
 	}
-	
-}
 
+}
