@@ -23,16 +23,52 @@ public class ServletUpdateUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		
-		
-		
 		HttpSession session = request.getSession();
+	
+        
+        String pseudo = request.getParameter("pseudo");
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String email = request.getParameter("email");
+        String telephone = request.getParameter("telephone");
+        String rue = request.getParameter("rue");
+        String codePostal = request.getParameter("codePostal");
+        String ville = request.getParameter("ville");
+        String password = request.getParameter("password");
+        int credit = (Integer) session.getAttribute("userCredit");
+        boolean admin = (boolean)session.getAttribute("userAdmin");
+        
+        
+         Utilisateur u = new Utilisateur(
+        		pseudo, nom, prenom, email, telephone, rue, codePostal, ville, password, credit, admin);
+        
+        UtilisateurManager.getInstance().updateUser(u);
+        
+        if(password == null) {
+        	//Pour le constructeur Utilisateur
+        	password = (String) session.getAttribute("userPassword");
+        }else {
+        	//Pour modifier le mot de passe dans la session en cours
+        	session.setAttribute("userPassword", u.getMotDePasse());
+        }
+        
+        
+		session.setAttribute("userPseudo", u.getPseudo());
+        session.setAttribute("userNom", u.getNom());
+        session.setAttribute("userPrenom", u.getPrenom());
+        session.setAttribute("userEmail", u.getEmail());
+        session.setAttribute("userTelephone", u.getTelephone());
+        session.setAttribute("userRue", u.getRue());
+        session.setAttribute("userCodePostal", u.getCodePostal());
+        session.setAttribute("userVille", u.getVille());
+        session.setAttribute("userCoordonnees",u.getRue() + ", " + u.getCodePostal()+ " " + u.getVille());
 		
-		Utilisateur u = UtilisateurManager.getInstance().updateUser(u);
-		
-		
-		
-		
+        
+        response.sendRedirect("userProfil.jsp");
+        
+        
+        
+        
 	}
 
 }
