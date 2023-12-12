@@ -32,6 +32,11 @@ label 	{
 			color: #333;
 		}
 
+form label em {
+    font-style: italic;
+    display: inline;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="time"],
@@ -48,7 +53,7 @@ textarea {
 
 input[type="submit"] {
     width: 100%;
-    background-color: #4caf50;
+    background-color: rgb(0, 128, 255);
     color: #fff;
     padding: 10px;
     border: none;
@@ -60,7 +65,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: rgb(118, 197, 122);
+    background-color: rgb(66, 160, 255);
 }
 
 textarea {
@@ -71,11 +76,6 @@ textarea {
     border-radius: 4px !important;
     box-sizing: border-box !important;
     min-height: 50px !important; /* Marge intérieure minimale */
-}
-
-form label em {
-    font-style: italic;
-    display: inline;
 }
 
 /* Style du label */
@@ -104,9 +104,11 @@ select {
 
 /* Style des options du menu déroulant */
 select option {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+    padding: 12px;
+    margin-bottom: 20px; /* Marge entre les options */
+    border: 1px solid #ccc;
     background-color: #fff;
+    border-radius: 4px;
 }
 
 /* Style au survol des options */

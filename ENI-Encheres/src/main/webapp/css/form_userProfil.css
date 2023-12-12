@@ -32,6 +32,11 @@ label 	{
 			color: #333;
 		}
 
+form label em {
+    font-style: italic;
+    display: inline;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="time"],
@@ -42,13 +47,13 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    padding: 8px; /* Ajoutez la marge intérieure ici */
+    padding: 8px; /* Marge intérieure */
     min-height: 10px; /* Marge intérieure minimale */
 }
 
 input[type="submit"] {
     width: 100%;
-    background-color: #4caf50;
+    background-color: rgb(255, 128, 64);
     color: #fff;
     padding: 10px;
     border: none;
@@ -60,7 +65,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: rgb(118, 197, 122);
+    background-color: rgb(255, 163, 70);
 }
 
 textarea {
@@ -71,45 +76,4 @@ textarea {
     border-radius: 4px !important;
     box-sizing: border-box !important;
     min-height: 50px !important; /* Marge intérieure minimale */
-}
-
-form label em {
-    font-style: italic;
-    display: inline;
-}
-
-/* Style du label */
-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-    margin-left: 5px; /* Décalage vers la droite */
-}
-
-/* Style du menu déroulant */
-select {
-  width: 100%;
-  padding: 10px !important;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  font-size: 16px;
-  appearance: none;
-  background: url('path/to/arrow-icon.png') no-repeat right center;
-  background-size: 20px;
-  margin-left: 5px; /* Décalage vers la droite */
-  background-color: #fff; /* Fond blanc */
-  margin-bottom: 10px; /* Marge intérieure */
-}
-
-/* Style des options du menu déroulant */
-select option {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    background-color: #fff;
-}
-
-/* Style au survol des options */
-select option:hover {
-    background-color: #f0f0f0;
 }

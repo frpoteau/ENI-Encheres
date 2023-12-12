@@ -19,10 +19,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/form_add-item.css" rel="stylesheet" />
 <title>Modification des informations de votre profil - ENI-Encheres</title>
 </head>
 <body>
-	<h1>Modification de votre profil</h1>
+
+	<!-- Header -->
+	<%@ include file="includes/header.jsp" %>
+
+	<h2>Modification de votre profil</h2>
 	
 	<form method="post" action="ServletUpdateUser">
 		
