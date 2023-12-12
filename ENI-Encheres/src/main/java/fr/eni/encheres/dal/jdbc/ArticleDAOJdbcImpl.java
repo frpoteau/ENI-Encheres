@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import fr.eni.encheres.dal.ArticleDAO;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
 	
-	private static final String SQL_INSERT ="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_INSERT ="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	//private static final String SQL_UPDATE_IMAGE_PATH = "UPDATE ARTICLES_VENDUS SET image_path=? WHERE no_article=?";
 	
 	private static final String SQL_SELECTBY_ID ="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
 												+ " +\" FROM ARTICLES_VENDUS WHERE no_article=? ";
@@ -46,11 +49,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setString(1, a.getNomArticle());
 			rqt.setString(2,  a.getDesc());
 			rqt.setDate(3, Date.valueOf(a.getDateD()));
-			rqt.setDate(4, Date.valueOf(a.getDateF()));
-			rqt.setInt(5, a.getPrixInit());
-			rqt.setInt(6, a.getPrixVente());
-			rqt.setInt(7, a.getNumeroUtili());
-			rqt.setInt(8, a.getCategorie());
+			rqt.setTime(4, Time.valueOf(a.getHeureD()));
+			rqt.setDate(5, Date.valueOf(a.getDateF()));
+			rqt.setTime(6, Time.valueOf(a.getHeureF()));
+			rqt.setInt(7, a.getPrixInit());
+			rqt.setInt(8, a.getNumeroUtili());
+			rqt.setInt(9, a.getCategorie());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -162,9 +166,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setString(1, a.getNomArticle());
 			rqt.setString(2, a.getDesc());
 			rqt.setDate(3, Date.valueOf(a.getDateD()));
-			rqt.setDate(4, Date.valueOf(a.getDateF()));
-			rqt.setInt(5, a.getPrixInit());
-			rqt.setInt(6, a.getPrixVente());
+			rqt.setTime(4, Time.valueOf(a.getHeureD()));
+			rqt.setDate(5, Date.valueOf(a.getDateF()));
+			rqt.setTime(4, Time.valueOf(a.getHeureF()));
+			rqt.setInt(7, a.getPrixInit());
+			rqt.setInt(8, a.getCategorie());
 			rqt.executeUpdate();
 			JdbcTools.closeConnection(cnx);			
 		}catch(SQLException e) {
