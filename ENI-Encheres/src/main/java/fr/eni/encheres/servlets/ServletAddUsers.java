@@ -1,6 +1,8 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,31 +33,31 @@ public class ServletAddUsers extends HttpServlet
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
 
-
-        // Vérifier si les mots de passe correspondent
-        if (!password.equals(confirmPassword)) 
-        {
-            // Gérer l'erreur
-            response.sendRedirect("register.jsp"); // Rediriger vers la page d'inscription avec un message d'erreur si nécessaire
-            return;
-        }
         
         // TODO à finir de brancher = gestion de l'affichage de l'erreur
         boolean emailIsUnique = UtilisateurManager.getInstance().emailIsUnique(email);
         boolean pseudoIsUnique = UtilisateurManager.getInstance().pseudoIsUnique(pseudo);
         
+        
         if(emailIsUnique && pseudoIsUnique) {
-	        try {
-		        user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, confirmPassword, 0, false);
-		        UtilisateurManager.getInstance().addUser(user);	
-		
-	            // Redirige vers une page de confirmation ou une autre page après l'inscription
-	            response.sendRedirect("registration-success.jsp");
+	       	user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, confirmPassword, 0, false);
+	        UtilisateurManager.getInstance().addUser(user);	
+            // Redirige vers une page de confirmation ou une autre page après l'inscription
+            response.sendRedirect("registration-success.jsp");
+        }
+        //Gestion email et pseudo déjà existant
+        if (!emailIsUnique || !pseudoIsUnique) {
+	        if (!emailIsUnique && !pseudoIsUnique){
+	        	request.setAttribute("errorMessageEmailPseudo", "L'adresse e-mail et le Pseudo existent déjà, veillez en choisir d'autres.");
 	        }
-	        catch (Exception e) 
-	        {
-	            response.sendRedirect("register.jsp"); // Rediriger vers la page d'inscription avec un message d'erreur si nécessaire
-	        }
+	        else if (!emailIsUnique){
+	        	request.setAttribute("errorMessageEmailPseudo", "L'adresse e-mail existe déjà, veuillez en choisir une autre.");
+		    }
+	        else if(!pseudoIsUnique) {
+	        	request.setAttribute("errorMessageEmailPseudo", "Le pseudo existe déjà, veuillez en choisir un autre.");
+		    }
+	        RequestDispatcher rd = request.getRequestDispatcher("/register-error.jsp");
+	    	rd.forward(request, response);
         }
     }
 }
