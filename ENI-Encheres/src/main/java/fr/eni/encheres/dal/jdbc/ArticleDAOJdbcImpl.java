@@ -232,17 +232,18 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
 		Article a = new Article();
 
-		a.setNumeroUtili(resultSet.getInt("no_utilisateur"));
 		a.setIdArticle(resultSet.getInt("no_article"));
 		a.setNomArticle(resultSet.getString("nom_article"));
-		a.setNumeroCat(resultSet.getInt("no_categorie"));
-		a.setCategorie(resultSet.getString("categorie"));
 		a.setDesc(resultSet.getString("description"));
 		a.setDateD(resultSet.getDate("date_debut_encheres").toLocalDate());
-		a.setHeureD(resultSet.getTime("heure_debut_encheres").toLocalTime());
-		a.setDateF(resultSet.getDate("date_fin_encheres").toLocalDate());
-		a.setHeureF(resultSet.getTime("heure_fin_encheres").toLocalTime());
+		a.setDateF(resultSet.getDate("date_fin_encheres").toLocalDate());		
 		a.setPrixInit(resultSet.getInt("prix_initial"));
+		//a.setPrixVente(resultSet.getInt("prix_vente"));		
+		a.setNumeroUtili(resultSet.getInt("no_utilisateur"));
+		a.setNumeroCat(resultSet.getInt("no_categorie"));		
+		//a.setCategorie(resultSet.getString("categorie"));		
+		a.setHeureD(resultSet.getTime("heure_debut_encheres").toLocalTime());
+		a.setHeureF(resultSet.getTime("heure_fin_encheres").toLocalTime());
 		a.setAdresseRetrait(resultSet.getString("adresse_retrait"));
 
 		return a;

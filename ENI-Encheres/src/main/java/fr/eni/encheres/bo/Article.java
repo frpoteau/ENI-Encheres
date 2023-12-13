@@ -160,6 +160,6 @@ public class Article {
     public String toString() {
         return "Article [idArticle=" + idArticle + ", nomArticle=" + nomArticle + ", desc=" + desc + ", dateD=" + dateD
                 + ", heureD=" + heureD + ", dateF=" + dateF + ", heureF=" + heureF + ", prixInit=" + prixInit
-                + ", numeroUtili=" + numeroUtili + ", categorie=" + categorie + "]";
+                + ", numeroUtili=" + numeroUtili + ", categorie=" + categorie + ", adresseRetrait=" + adresseRetrait + "]";
     }
 }
