@@ -74,22 +74,6 @@ public class DBManager {
         return categoryId;
     }
 
-    public static void closeResources(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static List<Article> getMesArticles(int userId) throws SQLException {
         List<Article> mesArticles = new ArrayList<>();
         Connection connection = null;
@@ -118,19 +102,35 @@ public class DBManager {
     	// Méthode utilitaire pour convertir un ResultSet en objet Article
     	private static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
         Article article = new Article();
+        article.setNumeroUtili(resultSet.getInt("no_utilisateur"));
         article.setIdArticle(resultSet.getInt("no_article"));
         article.setNomArticle(resultSet.getString("nom_article"));
+        article.setNumeroCat(resultSet.getInt("no_categorie"));
+        article.setCategorie(resultSet.getString("categorie"));
         article.setDesc(resultSet.getString("description"));
         article.setDateD(resultSet.getDate("date_debut_encheres").toLocalDate());
         article.setHeureD(resultSet.getTime("heure_debut_encheres").toLocalTime());
         article.setDateF(resultSet.getDate("date_fin_encheres").toLocalDate());
         article.setHeureF(resultSet.getTime("heure_fin_encheres").toLocalTime());
-        article.setPrixInit(resultSet.getInt("prix_initial"));
-        article.setNumeroUtili(resultSet.getInt("no_utilisateur"));
-        article.setCategorie(resultSet.getInt("no_categorie"));
+        article.setPrixInit(resultSet.getInt("prix_initial"));        
+        article.setAdresseRetrait(resultSet.getString("adresse_retrait"));
 
         return article;
     }
 
-
+        public static void closeResources(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 }
