@@ -36,11 +36,17 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Prix de départ</th>
+                    <th>No Article</th>
+                    <th>Catégorie</th>
+                    <th>Nom Article</th>                    
+                    <th>Description</th>                    
                     <th>Date de début</th>
+                    <th>Heure de début</th>
                     <th>Date de fin</th>
+                    <th>Heure de fin</th>
+                    <th>Prix initial</th>
+                    <th>Adresse de livraison</th>
+                    
                 </tr>
             </thead>
             <tbody>

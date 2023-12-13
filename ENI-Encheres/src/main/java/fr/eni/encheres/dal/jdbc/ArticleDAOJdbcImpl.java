@@ -19,15 +19,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
     //private static final String SQL_UPDATE_IMAGE_PATH = "UPDATE ARTICLES_VENDUS SET image_path=? WHERE no_article=?";
 
-    private static final String SQL_SELECTBY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS WHERE no_article=? ";
+    private static final String SQL_SELECTBY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, adresse_retrait FROM ARTICLES_VENDUS WHERE no_article=? ";
 
-    private static final String SQL_SELECT_ART = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
+    private static final String SQL_SELECT_ART = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, adresse_retrait FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
 
-    private static final String SQL_SELECT_ART_DATE_DEBUT = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, prix_initial, prix_vente WHERE date_debut_encheres=? ";
+    private static final String SQL_SELECT_ART_DATE_DEBUT = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, prix_initial FROM ARTICLES_VENDUS WHERE date_debut_encheres=? ";
 
-    private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS";
+    private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, catégorie, adresse_retrait FROM ARTICLES_VENDUS";
 
-    private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, heure_debut_encheres=?,date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, prix_vente=?, adresse_retrait=? WHERE no_article=?";
+    private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, heure_debut_encheres=?,date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, catégorie=?, adresse_retrait=? WHERE no_article=?";
 
     private static final String SQL_DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
 
@@ -49,11 +49,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
                 a.setDateD(rs.getDate("date_debut_encheres").toLocalDate());
                 a.setHeureD(rs.getTime("heure_debut_encheres").toLocalTime());
                 a.setDateF(rs.getDate("date_fin_encheres").toLocalDate());
-                a.setHeureD(rs.getTime("heure_fin_encheres").toLocalTime());
+                a.setHeureF(rs.getTime("heure_fin_encheres").toLocalTime());
                 a.setPrixInit(rs.getInt("prix_initial"));
-                a.setPrixFin(rs.getInt("prix_vente"));
-                a.setNumeroUtili(rs.getInt("no_utilisateur"));
-                a.setCategorie(rs.getInt("no_categorie"));
+                a.setCategorie(rs.getString("categorie"));
                 a.setAdresseRetrait(rs.getString("adresse_retrait"));
 
                 articles.add(a);
@@ -89,8 +87,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setDate(5, Date.valueOf(a.getDateF()));
 			rqt.setTime(6, Time.valueOf(a.getHeureF()));
 			rqt.setInt(7, a.getPrixInit());
-			rqt.setInt(8, a.getCategorie());
-			rqt.setString(8, a.getAdresseRetrait());
+			rqt.setString(8, a.getCategorie());
+			rqt.setString(9, a.getAdresseRetrait());
 			rqt.executeUpdate();
 			JdbcTools.closeConnection(cnx);			
 		}catch(SQLException e) {
@@ -130,16 +128,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	    try {
 	        cnx = JdbcTools.getConnection();
 	        rqt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-	        rqt.setString(1, a.getNomArticle());
-	        rqt.setString(2, a.getDesc());
-	        rqt.setDate(3, Date.valueOf(a.getDateD()));
-	        rqt.setTime(4, Time.valueOf(a.getHeureD()));
-	        rqt.setDate(5, Date.valueOf(a.getDateF()));
-	        rqt.setTime(6, Time.valueOf(a.getHeureF()));
-	        rqt.setInt(7, a.getPrixInit());
-	        rqt.setInt(8, a.getNumeroUtili());
-	        rqt.setInt(9, a.getCategorie());
-	        rqt.setString(9, a.getAdresseRetrait());
+	        rqt.setInt(1, a.getNumeroUtili());
+	        rqt.setString(2, a.getNomArticle());
+	        rqt.setString(3, a.getDesc());
+	        rqt.setDate(4, Date.valueOf(a.getDateD()));
+	        rqt.setTime(5, Time.valueOf(a.getHeureD()));
+	        rqt.setDate(6, Date.valueOf(a.getDateF()));
+	        rqt.setTime(7, Time.valueOf(a.getHeureF()));	        
+	        rqt.setInt(8, a.getPrixInit());
+	        rqt.setString(9, a.getCategorie());
+	        rqt.setString(10, a.getAdresseRetrait());
 	        rqt.executeUpdate();
 
 	        // Récupérer la clé générée (ID de l'article)
@@ -185,7 +183,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	            a.setPrixInit(rs.getInt("prix_initial"));
 	            a.setPrixFin(rs.getInt("prix_vente"));
 	            a.setNumeroUtili(rs.getInt("no_utilisateur"));
-	            a.setCategorie(rs.getInt("no_categorie"));
+	            a.setNumeroCat(rs.getInt("no_categorie"));
+	            a.setCategorie(rs.getString("categorie"));
 	            a.setAdresseRetrait(rs.getString("adresse_retrait"));
 	            // Ajoutez les autres attributs de la classe Article ici
 	        }
