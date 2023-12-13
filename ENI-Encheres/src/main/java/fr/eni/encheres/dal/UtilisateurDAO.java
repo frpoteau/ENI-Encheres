@@ -49,6 +49,7 @@ public interface UtilisateurDAO {
 	 * @param password
 	 * @return
 	 */
+
 	public boolean verifierUtilisateur(String email, String password);
 
 	/**

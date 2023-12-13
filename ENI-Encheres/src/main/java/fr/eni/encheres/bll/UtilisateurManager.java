@@ -72,6 +72,7 @@ public class UtilisateurManager {
 	 */
 	public void deleteUser(int id) {
 		utilisateurDAO.delete(id);
+
 	}
 
 	/**
