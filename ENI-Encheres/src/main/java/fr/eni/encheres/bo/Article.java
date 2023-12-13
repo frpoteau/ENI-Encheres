@@ -15,11 +15,12 @@ public class Article {
     private int prixFin;
     private int numeroUtili;
     private int categorie;
+    private String adresseRetrait;
 
     public Article() {
     }
 
-    public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int prixFin, int numeroUtili, int categorie) {
+    public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int prixFin, int numeroUtili, int categorie, String adresseRetrait) {
         this.idArticle = idArticle;
         this.nomArticle = nomArticle;
         this.desc = desc;
@@ -31,9 +32,10 @@ public class Article {
         this.prixFin = prixFin;
         this.numeroUtili = numeroUtili;
         this.categorie = categorie;
+        this.adresseRetrait = adresseRetrait;
     }
 
-    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixFin, int prixVente, int numeroUtili, int categorie) {
+    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixFin, int prixVente, int numeroUtili, int categorie, String adresseRetrait) {
         this.nomArticle = nomArticle;
         this.desc = desc;
         this.dateD = dateD;
@@ -44,6 +46,7 @@ public class Article {
         this.prixFin = prixFin;
         this.numeroUtili = numeroUtili;
         this.categorie = categorie;
+        this.adresseRetrait = adresseRetrait;
     }
 
     public int getIdArticle() {
@@ -132,6 +135,14 @@ public class Article {
 
     public void setCategorie(int categorie) {
         this.categorie = categorie;
+    }
+    
+    public String getAdresseRetrait() {
+        return adresseRetrait;
+    }
+
+    public void setAdresseRetrait(String adresseRetrait) {
+        this.adresseRetrait = adresseRetrait;
     }
 
     @Override

@@ -15,19 +15,19 @@ import fr.eni.encheres.dal.ArticleDAO;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
-    private static final String SQL_INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie, adresse_retrait) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     //private static final String SQL_UPDATE_IMAGE_PATH = "UPDATE ARTICLES_VENDUS SET image_path=? WHERE no_article=?";
 
-    private static final String SQL_SELECTBY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente FROM ARTICLES_VENDUS WHERE no_article=? ";
+    private static final String SQL_SELECTBY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS WHERE no_article=? ";
 
-    private static final String SQL_SELECT_ART = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
+    private static final String SQL_SELECT_ART = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
 
     private static final String SQL_SELECT_ART_DATE_DEBUT = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, prix_initial, prix_vente WHERE date_debut_encheres=? ";
 
-    private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, descriptuion, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente FROM ARTICLES_VENDUS";
+    private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS";
 
-    private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, heure_debut_encheres=?,date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, prix_vente=? WHERE no_article=?";
+    private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, heure_debut_encheres=?,date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, prix_vente=?, adresse_retrait=? WHERE no_article=?";
 
     private static final String SQL_DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
 
@@ -54,6 +54,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
                 a.setPrixFin(rs.getInt("prix_vente"));
                 a.setNumeroUtili(rs.getInt("no_utilisateur"));
                 a.setCategorie(rs.getInt("no_categorie"));
+                a.setAdresseRetrait(rs.getString("adresse_retrait"));
 
                 articles.add(a);
             }
@@ -89,6 +90,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setTime(6, Time.valueOf(a.getHeureF()));
 			rqt.setInt(7, a.getPrixInit());
 			rqt.setInt(8, a.getCategorie());
+			rqt.setString(8, a.getAdresseRetrait());
 			rqt.executeUpdate();
 			JdbcTools.closeConnection(cnx);			
 		}catch(SQLException e) {
@@ -137,6 +139,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	        rqt.setInt(7, a.getPrixInit());
 	        rqt.setInt(8, a.getNumeroUtili());
 	        rqt.setInt(9, a.getCategorie());
+	        rqt.setString(9, a.getAdresseRetrait());
 	        rqt.executeUpdate();
 
 	        // Récupérer la clé générée (ID de l'article)
@@ -183,6 +186,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	            a.setPrixFin(rs.getInt("prix_vente"));
 	            a.setNumeroUtili(rs.getInt("no_utilisateur"));
 	            a.setCategorie(rs.getInt("no_categorie"));
+	            a.setAdresseRetrait(rs.getString("adresse_retrait"));
 	            // Ajoutez les autres attributs de la classe Article ici
 	        }
 	    } catch (SQLException e) {
@@ -200,4 +204,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	    return a;
 	}
 	
+	@Override
+	public Article selectByArt(Article article) 
+	{
+	    return null;
+	}
+	
+	@Override
+	public Article selectByArtDateDebut(Article article) 
+	{
+	    return null;
+	}
 }

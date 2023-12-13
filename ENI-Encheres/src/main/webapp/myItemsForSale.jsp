@@ -54,9 +54,11 @@
                     <tr>
                         <td><%= article.getNomArticle() %></td>
                         <td><%= article.getDesc() %></td>
-                        <td><%= article.getPrixInit() %></td>
                         <td><%= article.getDateD() %></td>
+                        <td><%= article.getHeureD() %></td>
                         <td><%= article.getDateF() %></td>
+                        <td><%= article.getHeureF() %></td>
+                        <td><%= article.getPrixInit() %></td>
                     </tr>
                 <% } // Fin de la boucle for %>
             </tbody>

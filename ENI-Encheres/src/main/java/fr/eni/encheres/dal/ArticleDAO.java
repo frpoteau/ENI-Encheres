@@ -4,8 +4,8 @@ import java.util.List;
 
 import fr.eni.encheres.bo.Article;
 
-public interface ArticleDAO {
-
+public interface ArticleDAO 
+{
 	public void insert(Article a);
 	
 	Article selectById(int articleId);
@@ -19,5 +19,4 @@ public interface ArticleDAO {
 	public void update(Article a);
 	
 	public void delete(Article a);
-	
 }
