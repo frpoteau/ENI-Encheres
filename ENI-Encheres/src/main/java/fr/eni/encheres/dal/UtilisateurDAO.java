@@ -6,7 +6,7 @@ import fr.eni.encheres.bo.Utilisateur;
 public interface UtilisateurDAO {
 
 	/**
-	 * Permet la sélection de l'utilisateur à partir de son ID
+	 * Permet l'ajout d'un utilisateur dans la base de donnée
 	 * 
 	 * @param u
 	 */
