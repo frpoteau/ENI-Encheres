@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import fr.eni.encheres.bo.Article;
 
 public class DBManager {
@@ -105,24 +106,26 @@ public class DBManager {
         return mesArticles;
     }
 
-    // Méthode utilitaire pour convertir un ResultSet en objet Article
-    private static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
-        Article article = new Article();
-        article.setNumeroUtili(resultSet.getInt("no_utilisateur"));
-        article.setIdArticle(resultSet.getInt("no_article"));
-        article.setNomArticle(resultSet.getString("nom_article"));
-        article.setNumeroCat(resultSet.getInt("no_categorie"));
-        article.setCategorie(resultSet.getString("categorie"));
-        article.setDesc(resultSet.getString("description"));
-        article.setDateD(resultSet.getDate("date_debut_encheres").toLocalDate());
-        article.setHeureD(resultSet.getTime("heure_debut_encheres").toLocalTime());
-        article.setDateF(resultSet.getDate("date_fin_encheres").toLocalDate());
-        article.setHeureF(resultSet.getTime("heure_fin_encheres").toLocalTime());
-        article.setPrixInit(resultSet.getInt("prix_initial"));        
-        article.setAdresseRetrait(resultSet.getString("adresse_retrait"));
+	private static Article resultSetToArticle(ResultSet resultSet) throws SQLException 
+	{
+		Article a = new Article();
 
-        return article;
-    }
+		a.setIdArticle(resultSet.getInt("no_article"));
+		a.setNomArticle(resultSet.getString("nom_article"));
+		a.setDesc(resultSet.getString("description"));
+		a.setDateD(resultSet.getDate("date_debut_encheres").toLocalDate());
+		a.setDateF(resultSet.getDate("date_fin_encheres").toLocalDate());		
+		a.setPrixInit(resultSet.getInt("prix_initial"));
+		//a.setPrixVente(resultSet.getInt("prix_vente"));		
+		a.setNumeroUtili(resultSet.getInt("no_utilisateur"));
+		a.setNumeroCat(resultSet.getInt("no_categorie"));		
+		//a.setCategorie(resultSet.getString("categorie"));		
+		a.setHeureD(resultSet.getTime("heure_debut_encheres").toLocalTime());
+		a.setHeureF(resultSet.getTime("heure_fin_encheres").toLocalTime());
+		a.setAdresseRetrait(resultSet.getString("adresse_retrait"));
+
+		return a;
+	}
 
     public static void closeResources(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
         try {
