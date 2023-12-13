@@ -20,6 +20,8 @@
 	
 	<form method="get" action="UserProfilServlet">
 	
+		Compte n° : <%=session.getAttribute("userID") %>
+		<br/>
 		Pseudo : <%= session.getAttribute("userPseudo") %>
 		<br/>
 		Nom : <%=session.getAttribute("userNom") %>
@@ -40,9 +42,14 @@
 		<br/>
 		Adresse de Livraison : <%=session.getAttribute("userCoordonnees") %>
 		<br/>
-        <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="submit" value="Modifier mon Compte (En construction)"/></a>
+        <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="submit" value="Modifier mon Compte"/></a>
         
     </form>
 	
+	<form method="get" action="UserDeleteServlet">
+	
+	<a href="UserDeleteServlet?id=<%=session.getAttribute("userID")%>">Supprimer mon compte</a>
+	
+	</form>
 </body>
 </html>

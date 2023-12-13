@@ -70,8 +70,8 @@ public class UtilisateurManager {
 	 * 
 	 * @param id
 	 */
-	public void deleteUser(Utilisateur u) {
-		utilisateurDAO.delete(u);
+	public void deleteUser(int id) {
+		utilisateurDAO.delete(id);
 	}
 
 	/**

@@ -13,7 +13,7 @@ public interface UtilisateurDAO {
 	
 	public void update (Utilisateur u);
 	
-	public void delete (Utilisateur u);
+	public void delete (int id);
 	
 	public boolean verifierUtilisateur(String email, String password);
 	public boolean singleEmailVerification (String email);
