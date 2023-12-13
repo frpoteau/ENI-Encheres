@@ -70,21 +70,8 @@ public class UtilisateurManager {
 	 * 
 	 * @param id
 	 */
-	public void deleteUser(Utilisateur u) {
-		utilisateurDAO.delete(u);
-	}
-
-	/**
-	 * Permet de vérifier que l'email contient bien un @
-	 * 
-	 * @param email
-	 * @return
-	 */
-	public boolean verificationEmail(String email) {
-		if (email.contains("@")) {
-			return true;
-		}
-		return false;
+	public void deleteUser(int id) {
+		utilisateurDAO.delete(id);
 	}
 
 	/**

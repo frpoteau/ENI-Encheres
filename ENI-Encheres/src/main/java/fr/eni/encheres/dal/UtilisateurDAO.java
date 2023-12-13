@@ -39,7 +39,7 @@ public interface UtilisateurDAO {
 	 * 
 	 * @param u
 	 */
-	public void delete(Utilisateur u);
+	public void delete(int id);
 
 	/**
 	 * Permet de vérifier si l'utilisateur existe ou non dans la DB en contrôlant le
