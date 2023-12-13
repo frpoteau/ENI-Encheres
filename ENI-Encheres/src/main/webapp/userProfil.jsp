@@ -14,35 +14,32 @@
 	<!-- Header -->
 	<%@ include file="includes/header.jsp" %>
 	
-<body>
+	<body>
+		
+		<h2>Mon Profil</h2>
+		
+			Pseudo : <%= session.getAttribute("userPseudo") %>
+			<br/>
+			Nom : <%=session.getAttribute("userNom") %>
+			<br/>
+			Prenom : <%=session.getAttribute("userPrenom") %>
+			<br/>
+			Email : <%=session.getAttribute("userEmail") %>
+			<br/>
+			Telephone : <%=session.getAttribute("userTelephone") %>
+			<br/>
+			Rue : <%=session.getAttribute("userRue") %>
+			<br/>
+			Code Postal : <%=session.getAttribute("userCodePostal") %>
+			<br/>
+			Ville : <%=session.getAttribute("userVille") %>
+			<br/>
+			Credit : <%=session.getAttribute("userCredit") %>
+			<br/>
+			Adresse de Livraison : <%=session.getAttribute("userCoordonnees") %>
+			<br/>
+	        <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="submit" value="Modifier mon Compte (En construction)"/></a>	
+		
+	</body>
 	
-	<h2>Mon Profil</h2>
-	
-	<form method="get" action="UserProfilServlet">
-	
-		Pseudo : <%= session.getAttribute("userPseudo") %>
-		<br/>
-		Nom : <%=session.getAttribute("userNom") %>
-		<br/>
-		Prenom : <%=session.getAttribute("userPrenom") %>
-		<br/>
-		Email : <%=session.getAttribute("userEmail") %>
-		<br/>
-		Telephone : <%=session.getAttribute("userTelephone") %>
-		<br/>
-		Rue : <%=session.getAttribute("userRue") %>
-		<br/>
-		Code Postal : <%=session.getAttribute("userCodePostal") %>
-		<br/>
-		Ville : <%=session.getAttribute("userVille") %>
-		<br/>
-		Credit : <%=session.getAttribute("userCredit") %>
-		<br/>
-		Adresse de Livraison : <%=session.getAttribute("userCoordonnees") %>
-		<br/>
-        <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="submit" value="Modifier mon Compte (En construction)"/></a>
-        
-    </form>
-	
-</body>
 </html>

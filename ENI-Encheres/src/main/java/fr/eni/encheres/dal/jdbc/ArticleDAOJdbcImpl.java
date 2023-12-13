@@ -14,154 +14,62 @@ import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.dal.ArticleDAO;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
-	
-	
-	private static final String SQL_INSERT ="INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	
-	//private static final String SQL_UPDATE_IMAGE_PATH = "UPDATE ARTICLES_VENDUS SET image_path=? WHERE no_article=?";
-	
-	private static final String SQL_SELECTBY_ID ="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
-												+ " +\" FROM ARTICLES_VENDUS WHERE no_article=? ";
-	
-	private static final String SQL_SELECT_ART ="SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
-												+ " +\" FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
-	
-	private static final String SQL_SELECT_ART_DATE_DEBUT ="SELECT no_article, nom_article, description, date_debut_encheres, prix_initial, prix_vente WWHERE date_debut_encheres=? ";
-	
-	
-	private static final String SQL_SELECT_ALL ="SELECT no_article, nom_articles, descriptuion, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente \"\r\n"
-												+ " +\" FROM ARTICLES_VENDUS";
-	
-	private static final String SQL_UPDATE ="UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=? WHERE no_article=?";
-	
-	private static final String SQL_DELETE ="DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
-	
-	/**
-	 * Ajouter un article dans la DB
-	 */
-	@Override
-	public void insert(Article a) {
-		Connection cnx = null;
-		PreparedStatement rqt;
-		try {
-			cnx=JdbcTools.getConnection();
-			rqt=cnx.prepareStatement(SQL_INSERT);
-			rqt.setString(1, a.getNomArticle());
-			rqt.setString(2,  a.getDesc());
-			rqt.setDate(3, Date.valueOf(a.getDateD()));
-			rqt.setTime(4, Time.valueOf(a.getHeureD()));
-			rqt.setDate(5, Date.valueOf(a.getDateF()));
-			rqt.setTime(6, Time.valueOf(a.getHeureF()));
-			rqt.setInt(7, a.getPrixInit());
-			rqt.setInt(8, a.getNumeroUtili());
-			rqt.setInt(9, a.getCategorie());
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			if(cnx!=null) {
-				try {
-				JdbcTools.closeConnection(cnx);
-				}catch(SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 
-	/**
-	 * Permet la sélection d'un article via son ID
-	 */
-	@Override
-	public Article selectById(Article a) {
-		Connection cnx = null;
-		PreparedStatement rqt;
-		try {
-			cnx=JdbcTools.getConnection();
-			rqt=cnx.prepareStatement(SQL_SELECTBY_ID);
-			rqt.setInt(1, a.getIdArticle());
-			rqt.executeQuery();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return a;
-	}
+    private static final String SQL_INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-	/**
-	 * Permet la sélection d'un article via l4ID de l'utilisateur
-	 */
-	@Override
-	public Article selectByArt(Article a) {
-		Connection cnx = null;
-		PreparedStatement rqt;
-		try {
-			cnx=JdbcTools.getConnection();
-			rqt= cnx.prepareStatement(SQL_SELECT_ART);
-			rqt.setInt(1,  a.getNumeroUtili());
-			rqt.executeQuery();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return a;
-	}
-	
-	/**
-	 * Permet la sélection d'un article via sa date de départ
-	 */
-	@Override
-	public Article selectByArtDateDebut(Article a) {
-		Connection cnx = null;
-		PreparedStatement rqt;
-		try {
-			cnx=JdbcTools.getConnection();
-			rqt=cnx.prepareStatement(SQL_SELECT_ART_DATE_DEBUT);
-			rqt.setDate(1,  Date.valueOf(a.getDateD()));
-			rqt.executeQuery();
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return a;
-	}
-	
-	/**
-	 * Permet la sélection de tous les articles
-	 */
-	@Override
-	public List<Article> selectAll() {
-		Connection cnx = null;
-		List<Article> articles = new ArrayList<>();
-		ResultSet rs;
-		Statement rqt;
-		try {
-			cnx=JdbcTools.getConnection();
-			rqt=cnx.createStatement();
-			rs=rqt.executeQuery(SQL_SELECT_ALL);
-			while(rs.next()) {
-				Article a = new Article();
-				a.setIdArticle(rs.getInt("no_article"));
-				a.setNomArticle(rs.getString("nom_article"));
-				a.setDesc(rs.getString("description"));
-				a.setDateD(rs.getLocalDate("date_debut_encheres"));
-				a.setDateF(rs.getLocalDate("date_fin_encheres"));
-				a.setPrixInit(rs.getInt("prix_initial"));
-				a.setPrixFin(rs.getInt("prix_vente"));
-				a.setNumeroUtili(rs.getInt("no_utilisateur"));
-				a.setCategorie(rs.getInt("no_categorie"));
-			
-				articles.add(a);
-			}
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}finally {
-				if(cnx!=null) {
-					try {
-						JdbcTools.closeConnection(cnx);
-					}catch(SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		return articles;
-	}
+    //private static final String SQL_UPDATE_IMAGE_PATH = "UPDATE ARTICLES_VENDUS SET image_path=? WHERE no_article=?";
+
+    private static final String SQL_SELECTBY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente FROM ARTICLES_VENDUS WHERE no_article=? ";
+
+    private static final String SQL_SELECT_ART = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
+
+    private static final String SQL_SELECT_ART_DATE_DEBUT = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, prix_initial, prix_vente WHERE date_debut_encheres=? ";
+
+    private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, descriptuion, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente FROM ARTICLES_VENDUS";
+
+    private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, heure_debut_encheres=?,date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, prix_vente=? WHERE no_article=?";
+
+    private static final String SQL_DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
+
+    @Override
+    public List<Article> selectAll() {
+        Connection cnx = null;
+        List<Article> articles = new ArrayList<>();
+        ResultSet rs;
+        Statement rqt;
+        try {
+            cnx = JdbcTools.getConnection();
+            rqt = cnx.createStatement();
+            rs = rqt.executeQuery(SQL_SELECT_ALL);
+            while (rs.next()) {
+                Article a = new Article();
+                a.setIdArticle(rs.getInt("no_article"));
+                a.setNomArticle(rs.getString("nom_article"));
+                a.setDesc(rs.getString("description"));
+                a.setDateD(rs.getDate("date_debut_encheres").toLocalDate());
+                a.setHeureD(rs.getTime("heure_debut_encheres").toLocalTime());
+                a.setDateF(rs.getDate("date_fin_encheres").toLocalDate());
+                a.setHeureD(rs.getTime("heure_fin_encheres").toLocalTime());
+                a.setPrixInit(rs.getInt("prix_initial"));
+                a.setPrixFin(rs.getInt("prix_vente"));
+                a.setNumeroUtili(rs.getInt("no_utilisateur"));
+                a.setCategorie(rs.getInt("no_categorie"));
+
+                articles.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (cnx != null) {
+                try {
+                    JdbcTools.closeConnection(cnx);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return articles;
+    }
 
 	/**
 	 * Permet la mise à jour d'un article
@@ -178,7 +86,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setDate(3, Date.valueOf(a.getDateD()));
 			rqt.setTime(4, Time.valueOf(a.getHeureD()));
 			rqt.setDate(5, Date.valueOf(a.getDateF()));
-			rqt.setTime(4, Time.valueOf(a.getHeureF()));
+			rqt.setTime(6, Time.valueOf(a.getHeureF()));
 			rqt.setInt(7, a.getPrixInit());
 			rqt.setInt(8, a.getCategorie());
 			rqt.executeUpdate();
@@ -213,5 +121,83 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 	}
 	
+	@Override
+	public void insert(Article a) {
+	    Connection cnx = null;
+	    PreparedStatement rqt;
+	    try {
+	        cnx = JdbcTools.getConnection();
+	        rqt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
+	        rqt.setString(1, a.getNomArticle());
+	        rqt.setString(2, a.getDesc());
+	        rqt.setDate(3, Date.valueOf(a.getDateD()));
+	        rqt.setTime(4, Time.valueOf(a.getHeureD()));
+	        rqt.setDate(5, Date.valueOf(a.getDateF()));
+	        rqt.setTime(6, Time.valueOf(a.getHeureF()));
+	        rqt.setInt(7, a.getPrixInit());
+	        rqt.setInt(8, a.getNumeroUtili());
+	        rqt.setInt(9, a.getCategorie());
+	        rqt.executeUpdate();
+
+	        // Récupérer la clé générée (ID de l'article)
+	        ResultSet generatedKeys = rqt.getGeneratedKeys();
+	        if (generatedKeys.next()) {
+	            a.setIdArticle(generatedKeys.getInt(1));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (cnx != null) {
+	            try {
+	                JdbcTools.closeConnection(cnx);
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+	
+	@Override
+	public Article selectById(int articleId) {
+	    Connection cnx = null;
+	    PreparedStatement rqt;
+	    ResultSet rs;
+	    Article a = null;
+
+	    try {
+	        cnx = JdbcTools.getConnection();
+	        rqt = cnx.prepareStatement(SQL_SELECTBY_ID);
+	        rqt.setInt(1, articleId);
+	        rs = rqt.executeQuery();
+
+	        if (rs.next()) {
+	            a = new Article();
+	            a.setIdArticle(rs.getInt("no_article"));
+	            a.setNomArticle(rs.getString("nom_article"));
+	            a.setDesc(rs.getString("description"));
+	            a.setDateD(rs.getDate("date_debut_encheres").toLocalDate());
+	            a.setHeureD(rs.getTime("heure_debut_encheres").toLocalTime());
+	            a.setDateF(rs.getDate("date_fin_encheres").toLocalDate());
+	            a.setHeureF(rs.getTime("heure_fin_encheres").toLocalTime());
+	            a.setPrixInit(rs.getInt("prix_initial"));
+	            a.setPrixFin(rs.getInt("prix_vente"));
+	            a.setNumeroUtili(rs.getInt("no_utilisateur"));
+	            a.setCategorie(rs.getInt("no_categorie"));
+	            // Ajoutez les autres attributs de la classe Article ici
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (cnx != null) {
+	            try {
+	                JdbcTools.closeConnection(cnx);
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+
+	    return a;
+	}
 	
 }
