@@ -14,12 +14,14 @@ public class Article {
     private int prixInit;
     private int prixFin;
     private int numeroUtili;
-    private int categorie;
+    private String categorie;
+    private int numeroCat;
+    private String adresseRetrait;
 
     public Article() {
     }
 
-    public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int prixFin, int numeroUtili, int categorie) {
+    public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int prixFin, int numeroUtili, String categorie, int numeroCat, String adresseRetrait) {
         this.idArticle = idArticle;
         this.nomArticle = nomArticle;
         this.desc = desc;
@@ -31,9 +33,11 @@ public class Article {
         this.prixFin = prixFin;
         this.numeroUtili = numeroUtili;
         this.categorie = categorie;
+        this.numeroCat = numeroCat;
+        this.adresseRetrait = adresseRetrait;
     }
 
-    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixFin, int prixVente, int numeroUtili, int categorie) {
+    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixFin, int prixVente, int numeroUtili, String categorie, int numeroCat, String adresseRetrait) {
         this.nomArticle = nomArticle;
         this.desc = desc;
         this.dateD = dateD;
@@ -44,6 +48,8 @@ public class Article {
         this.prixFin = prixFin;
         this.numeroUtili = numeroUtili;
         this.categorie = categorie;
+        this.numeroCat = numeroCat;
+        this.adresseRetrait = adresseRetrait;
     }
 
     public int getIdArticle() {
@@ -125,13 +131,29 @@ public class Article {
     public void setNumeroUtili(int numeroUtili) {
         this.numeroUtili = numeroUtili;
     }
+    
+    public int getNumeroCat() {
+        return numeroCat;
+    }
 
-    public int getCategorie() {
+    public void setNumeroCat(int numeroCat) {
+        this.numeroCat = numeroCat;
+    }
+
+    public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(int categorie) {
+    public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+    
+    public String getAdresseRetrait() {
+        return adresseRetrait;
+    }
+
+    public void setAdresseRetrait(String adresseRetrait) {
+        this.adresseRetrait = adresseRetrait;
     }
 
     @Override

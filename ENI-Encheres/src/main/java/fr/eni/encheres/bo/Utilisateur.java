@@ -15,8 +15,8 @@ public class Utilisateur {
 	private String ville;
 	private String motDePasse;
 	private int credit;
-	private Boolean administrateur;	
-	
+	private Boolean administrateur;
+
 	public Utilisateur() {
 	}
 
@@ -81,6 +81,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer l'ID de l'utilisateur
+	 * 
 	 * @return the noUtilisateur
 	 */
 	public int getIdUtilisateur() {
@@ -88,6 +90,9 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier l'ID l'utilisateur. WARNING !! : cet ID est gérer par la
+	 * DB !!
+	 * 
 	 * @param noUtilisateur the noUtilisateur to set
 	 */
 	public void setIdUtilisateur(int idUtilisateur) {
@@ -95,6 +100,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer le Pseudo de l'utilisateur
+	 * 
 	 * @return the pseudo
 	 */
 	public String getPseudo() {
@@ -102,6 +109,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier le Pseudo de l'utilisateur.
+	 * 
 	 * @param pseudo the pseudo to set
 	 */
 	public void setPseudo(String pseudo) {
@@ -109,6 +118,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer le Nom de l'utilisateur
+	 * 
 	 * @return the nom
 	 */
 	public String getNom() {
@@ -116,6 +127,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier le Nom de l'utilisateur.
+	 * 
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
@@ -123,6 +136,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer le Prenom de l'utilisateur
+	 * 
 	 * @return the prenom
 	 */
 	public String getPrenom() {
@@ -130,6 +145,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier le Prenom de l'utilisateur.
+	 * 
 	 * @param prenom the prenom to set
 	 */
 	public void setPrenom(String prenom) {
@@ -137,6 +154,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer l'email de l'utilisateur
+	 * 
 	 * @return the email
 	 */
 	public String getEmail() {
@@ -144,6 +163,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier l'Email de l'utilisateur.
+	 * 
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
@@ -151,6 +172,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer le Numéro de Télephone de l'utilisateur
+	 * 
 	 * @return the telephone
 	 */
 	public String getTelephone() {
@@ -158,6 +181,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier le Numéro de Téléphone de l'utilisateur.
+	 * 
 	 * @param telephone the telephone to set
 	 */
 	public void setTelephone(String telephone) {
@@ -165,6 +190,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer la Rue de l'utilisateur
+	 * 
 	 * @return the rue
 	 */
 	public String getRue() {
@@ -172,6 +199,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier la Rue de l'utilisateur.
+	 * 
 	 * @param rue the rue to set
 	 */
 	public void setRue(String rue) {
@@ -179,6 +208,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer le Code Postal de l'utilisateur
+	 * 
 	 * @return the codePostal
 	 */
 	public String getCodePostal() {
@@ -186,6 +217,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier le Code Posatal de l'utilisateur.
+	 * 
 	 * @param codePostal the codePostal to set
 	 */
 	public void setCodePostal(String codePostal) {
@@ -193,6 +226,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer la Ville de l'utilisateur
+	 * 
 	 * @return the ville
 	 */
 	public String getVille() {
@@ -200,6 +235,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier la Ville de l'utilisateur.
+	 * 
 	 * @param ville the ville to set
 	 */
 	public void setVille(String ville) {
@@ -207,6 +244,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer le Mot de Passe de l'utilisateur
+	 * 
 	 * @return the motDePasse
 	 */
 	public String getMotDePasse() {
@@ -214,6 +253,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier le Mot de Passe de l'utilisateur.
+	 * 
 	 * @param motDePasse the motDePasse to set
 	 */
 	public void setMotDePasse(String motDePasse) {
@@ -221,6 +262,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de récupérer le Nombre de Credit de l'utilisateur
+	 * 
 	 * @return the credit
 	 */
 	public int getCredit() {
@@ -228,6 +271,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier la Valeur du Crédit de l'utilisateur.
+	 * 
 	 * @param credit the credit to set
 	 */
 	public void setCredit(int credit) {
@@ -235,6 +280,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de savoir si l'utilisateur est Administrateur (1) ou non (0).
+	 * 
 	 * @return the administrateur
 	 */
 	public Boolean getAdministrateur() {
@@ -242,6 +289,8 @@ public class Utilisateur {
 	}
 
 	/**
+	 * Permet de modifier l'état Administrateur.
+	 * 
 	 * @param administrateur the administrateur to set
 	 */
 	public void setAdministrateur(Boolean administrateur) {
@@ -253,39 +302,41 @@ public class Utilisateur {
 		return "Utilisateur [noUtilisateur=" + idUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
-				+ ", administrateur=" + ((administrateur==true)?0:1) + "]";
+				+ ", administrateur=" + ((administrateur == true) ? 0 : 1) + "]";
 	}
-	
+
 	/**
 	 * Permet le hachage du mot de passe afin de le sécuriser dans la DB
+	 * 
 	 * @param motDePasse
 	 * @return
 	 */
 	public static String hashPwd(String motDePasse) {
-	    // Initialise une instance de MessageDigest pour l'algorithme de hachage
-	    MessageDigest md = null;
-	    try {
-	        // Tente d'obtenir une instance de l'algorithme de hachage SHA-256
-	        md = MessageDigest.getInstance("SHA-256");
-	    } catch (NoSuchAlgorithmException e) {
-	        // En cas d'erreur lors de la récupération de l'algorithme, affiche l'erreur
-	        e.printStackTrace();
-	    }
-	    
-	    // Met à jour l'algorithme de hachage avec les octets du mot de passe
-	    md.update(motDePasse.getBytes());
-	    
-	    // Effectue le hachage et stocke le résultat dans un tableau de bytes
-	    byte byteData[] = md.digest();
+		// Initialise une instance de MessageDigest pour l'algorithme de hachage
+		MessageDigest md = null;
+		try {
+			// Tente d'obtenir une instance de l'algorithme de hachage SHA-256
+			md = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			// En cas d'erreur lors de la récupération de l'algorithme, affiche l'erreur
+			e.printStackTrace();
+		}
 
-	    // Convertit le tableau de bytes en une chaîne hexadécimale
-	    StringBuffer sb = new StringBuffer();
-	    for (int i = 0; i < byteData.length; i++) {
-	        // Convertit chaque byte en une représentation hexadécimale et l'ajoute à la chaîne
-	        sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-	    }
-	    // Retourne la représentation hexadécimale du hachage du mot de passe
-	    return sb.toString();
+		// Met à jour l'algorithme de hachage avec les octets du mot de passe
+		md.update(motDePasse.getBytes());
+
+		// Effectue le hachage et stocke le résultat dans un tableau de bytes
+		byte byteData[] = md.digest();
+
+		// Convertit le tableau de bytes en une chaîne hexadécimale
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < byteData.length; i++) {
+			// Convertit chaque byte en une représentation hexadécimale et l'ajoute à la
+			// chaîne
+			sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+		}
+		// Retourne la représentation hexadécimale du hachage du mot de passe
+		return sb.toString();
 	}
-	
+
 }

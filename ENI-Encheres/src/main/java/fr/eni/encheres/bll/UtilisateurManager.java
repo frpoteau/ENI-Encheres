@@ -72,19 +72,7 @@ public class UtilisateurManager {
 	 */
 	public void deleteUser(int id) {
 		utilisateurDAO.delete(id);
-	}
 
-	/**
-	 * Permet de vérifier que l'email contient bien un @
-	 * 
-	 * @param email
-	 * @return
-	 */
-	public boolean verificationEmail(String email) {
-		if (email.contains("@")) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -125,6 +113,13 @@ public class UtilisateurManager {
 		return pseudoIsUnique;
 	}
 
+	/**
+	 * Permet la création d'un objet Utilisateur à partir des informations de la DB.
+	 * La récupération est faite à partir de son email (String).
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public Utilisateur createUserFromDB(String email) {
 		Utilisateur u = utilisateurDAO.createUserFromDB(email);
 		return u;

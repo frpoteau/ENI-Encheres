@@ -1,9 +1,13 @@
 package fr.eni.encheres.bll;
+
 import java.util.List;
+
 import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.dal.ArticleDAO;
 import fr.eni.encheres.dal.DAOFactory;
-public class ArticleManager {
+
+public class ArticleManager 
+{
 	private static ArticleManager instance;
 	private ArticleDAO articleDAO;
 	
@@ -19,13 +23,13 @@ public class ArticleManager {
 	 * @return
 	 */
 	public static ArticleManager getArticleManager() {
-		if(instance == null) {
+		if(instance == null) 
+		{			
 			instance = new ArticleManager();
 		}
 		return instance;
 	}
 
-	//Ajouter un article
 	/**
 	 * Ajouter un article
 	 * @param a
@@ -37,11 +41,11 @@ public class ArticleManager {
 	//Selection article par ID
 	/**
 	 * Selection article par ID
-	 * @param a
-	 * @return
+	 * @param articleId L'ID de l'article à sélectionner
+	 * @return L'article correspondant à l'ID
 	 */
-	public Article selectById (Article a) {
-		return articleDAO.selectById(a);
+	public Article selectById(int articleId) {
+	    return articleDAO.selectById(articleId);
 	}
 
 	//Selection de la liste de tous les articles

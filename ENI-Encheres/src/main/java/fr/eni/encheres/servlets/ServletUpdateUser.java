@@ -43,7 +43,7 @@ public class ServletUpdateUser extends HttpServlet {
 
 		boolean etatPassword; // est false si ancien pwd, si c'est un nouveau password = true
 
-		if (password == null) {
+		if (password == null || password.length() <= 0) {
 			password = (String) session.getAttribute("userPassword");
 			etatPassword = false;
 		} else

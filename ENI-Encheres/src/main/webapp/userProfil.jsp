@@ -14,8 +14,8 @@
 	<!-- Header -->
 	<%@ include file="includes/header.jsp" %>
 	
-<body>
-	
+	<body>
+		
 	<h2>Mon Profil</h2>
 	
 	<form method="get" action="UserProfilServlet">
@@ -52,4 +52,5 @@
 	
 	</form>
 </body>
+
 </html>
