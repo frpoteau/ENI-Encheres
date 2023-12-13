@@ -204,4 +204,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	    return a;
 	}
 	
+	@Override
+	public Article selectByArt(Article article) 
+	{
+	    return null;
+	}
+	
+	@Override
+	public Article selectByArtDateDebut(Article article) 
+	{
+	    return null;
+	}
 }
