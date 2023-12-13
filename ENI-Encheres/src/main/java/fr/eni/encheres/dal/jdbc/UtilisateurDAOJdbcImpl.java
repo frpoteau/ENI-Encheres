@@ -196,8 +196,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		PreparedStatement rqt;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(SQL_UPDATE_USER); 
-			//"UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
+			rqt = cnx.prepareStatement(SQL_UPDATE_USER);
+			// "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?,
+			// rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 
 			rqt.setString(1, u.getPseudo());
 			rqt.setString(2, u.getNom());
@@ -253,8 +254,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		PreparedStatement rqt;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(SQL_VERIF_EMAIL); 
-			
+			rqt = cnx.prepareStatement(SQL_VERIF_EMAIL);
+
 			rqt.setString(1, email);
 
 			ResultSet rs = rqt.executeQuery();
