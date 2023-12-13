@@ -13,7 +13,8 @@ import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 @WebServlet("/ServletConnectDB")
-public class ServletConnectDB extends HttpServlet {
+public class ServletConnectDB extends HttpServlet 
+{
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
