@@ -69,7 +69,7 @@
 	
 	        // Fonction pour formater l'heure dans le format "HH'h'mm"
 	        function formatHeure(heureStr) {
-	            var heureFormat = new Intl.DateTimeFormat('en', { hour: 'numeric', minute: 'numeric', hour12: false });
+	            var heureFormat = new Intl.DateTimeFormat('fr', { hour: 'numeric', minute: 'numeric', hour12: false });
 	            var [hours, minutes] = heureFormat.formatToParts(new Date('2023-01-01 ' + heureStr));
 	            return hours.value + 'h' + minutes.value;
 	        }
@@ -101,7 +101,7 @@
 	
 	    <h2>Ajouter un nouvel article</h2>
 	
-	    <form action="AddArticleServlet" method="post">
+	    <form action="AddArticleServlet" method="post" enctype="multipart/form-data">
 	
 	        <label for="nomArticle">Nom de l'article :</label>
 	        <input type="text" id="nomArticle" name="nomArticle" required><br>
@@ -110,22 +110,25 @@
 	        <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
 	
 	        <label for="categorie">Catégorie:</label>
-	        <select id="categorie" name="categorie" required>
+	       <select id="categorie" name="categorie" required>
 	            <% List<String> categories = DBManager.getValidCategories();
 	            for (String category : categories) { %>
 	            <option value="<%= category %>"><%= category %></option>
 	            <% } %>
 	        </select><br>
 	
+	        <label for="imageFile">Image :</label>
+	        <input type="file" name="imageFile" id="imageFile"/>
+	
 	        <label for="dateD">Date de début de l'enchère :</label>
 	        <input type="date" id="dateD" name="dateD">
 	        <label for="heureD">Heure de début :</label>
-	        <input type="time" id="heureD" name="heureD" onblur="this.value=formatHeure(this.value)"><br>
+	        <input type="time" id="heureD" name="heureD"><br>
 	
 	        <label for="dateF">Date de fin de l'enchère :</label>
 	        <input type="date" id="dateF" name="dateF">
 	        <label for="heureF">Heure de fin:</label>
-	        <input type="time" id="heureF" name="heureF" onblur="this.value=formatHeure(this.value)"><br>
+	        <input type="time" id="heureF" name="heureF"><br>
 	
 	        <label for="prixInit">Prix initial :</label>
 	        <input type="number" id="prixInit" name="prixInit" required><br>
