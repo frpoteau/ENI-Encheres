@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import fr.eni.encheres.bo.Article;
 
 public class DBManager {
@@ -87,11 +87,17 @@ public class DBManager {
             preparedStatement.setInt(1, userId);
             resultSet = preparedStatement.executeQuery();
 
+            // Log pour vérifier si la liste d'articles est récupérée correctement
+            System.out.println("Liste d'articles récupérée pour l'utilisateur " + userId + " : " + mesArticles);
+
             while (resultSet.next()) {
                 Article article = resultSetToArticle(resultSet);
                 mesArticles.add(article);
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace(); // Gérer l'exception selon votre logique
+            throw e;
         } finally {
             closeResources(connection, preparedStatement, resultSet);
         }
@@ -99,8 +105,8 @@ public class DBManager {
         return mesArticles;
     }
 
-    	// Méthode utilitaire pour convertir un ResultSet en objet Article
-    	private static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
+    // Méthode utilitaire pour convertir un ResultSet en objet Article
+    private static Article resultSetToArticle(ResultSet resultSet) throws SQLException {
         Article article = new Article();
         article.setNumeroUtili(resultSet.getInt("no_utilisateur"));
         article.setIdArticle(resultSet.getInt("no_article"));
@@ -118,19 +124,19 @@ public class DBManager {
         return article;
     }
 
-        public static void closeResources(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public static void closeResources(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
             }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 }
