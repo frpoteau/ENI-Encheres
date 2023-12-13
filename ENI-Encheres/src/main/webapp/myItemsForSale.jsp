@@ -1,79 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 <%@ page import="fr.eni.encheres.bo.Article" %>
 
 <!DOCTYPE html>
-
 <html lang="fr">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/form_userProfil.css" rel="stylesheet" />
-        <title>Mes articles à vendre</title>
-    </head>
-    
-    <!-- Header -->
-    <%@ include file="includes/header.jsp" %>
-    
-    <body>
-    
-        <h2>Mes articles à vendre</h2>
-        
-        <%
-            // Utilise <jsp:useBean> pour récupérer la liste d'articles depuis la requête
-            List<Article> mesArticles = (List<Article>) request.getAttribute("mesArticles");
-            
-            // Log pour vérifier si la liste d'articles est présente dans la requête
-            System.out.println("Liste d'articles dans la JSP : " + mesArticles);
-            
-            // Si la liste d'articles n'est pas présente, essaie de la créer
-            if (mesArticles == null) {
-                mesArticles = new java.util.ArrayList<Article>();
-            }
-        %>
-        
-        <table class="table">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/myItemsForSale.css" rel="stylesheet" />
+    <title>Mes articles à vendre</title>
+</head>
+
+<!-- Header -->
+<%@ include file="includes/header.jsp" %>
+
+<body>
+    <div class="table-container">
+        <h2 class="table-title">Mes articles à vendre</h2>
+        <table class="styled-table">
             <thead>
                 <tr>
-                    <th>No Article</th>
-                    <th>Catégorie</th>
-                    <th>Nom Article</th>                    
-                    <th>Description</th>                    
+                    <th>ID Article</th>
+                    <th>Nom Article</th>
+                    <th>Description</th>
                     <th>Date de début</th>
                     <th>Heure de début</th>
                     <th>Date de fin</th>
                     <th>Heure de fin</th>
-                    <th>Prix initial</th>
-                    <th>Adresse de livraison</th>
-                    
+                    <th>Prix Initial</th>
+                    <th>Adresse de retrait</th>
                 </tr>
             </thead>
             <tbody>
-                <% for (Article article : mesArticles) { %>
-                    
-                    <!-- Log pour vérifier les détails de chaque article -->
-                    <%
-                        System.out.println("Détails de l'article : " + article);
-                    %>
-                    
+                <c:forEach var="article" items="${mesArticles}">
                     <tr>
-                        <td><%= article.getNomArticle() %></td>
-                        <td><%= article.getDesc() %></td>
-                        <td><%= article.getDateD() %></td>
-                        <td><%= article.getHeureD() %></td>
-                        <td><%= article.getDateF() %></td>
-                        <td><%= article.getHeureF() %></td>
-                        <td><%= article.getPrixInit() %></td>
+                        <td>${article.idArticle}</td>
+                        <td>${article.nomArticle}</td>
+                        <td>${article.desc}</td>
+                        <td>${article.dateD}</td>
+                        <td>${article.heureD}</td>
+                        <td>${article.dateF}</td>
+                        <td>${article.heureF}</td>
+                        <td>${article.prixInit}</td>
+                        <td>${article.adresseRetrait}</td>
                     </tr>
-                <% } // Fin de la boucle for %>
+                </c:forEach>
             </tbody>
         </table>
-        
-        <% if (mesArticles.isEmpty()) { %>
-            <p>Vous n'avez aucun article à vendre.</p>
-        <% } %>
-        
-    </body>
-    
+    </div>
+</body>
 </html>
