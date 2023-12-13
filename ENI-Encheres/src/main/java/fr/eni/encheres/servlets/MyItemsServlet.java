@@ -2,6 +2,7 @@ package fr.eni.encheres.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +29,7 @@ public class MyItemsServlet extends HttpServlet {
             Integer userId = (Integer) session.getAttribute("userID");
 
             // Récupère la liste des articles à vendre de l'utilisateur
-            List<Article> mesArticles = null;
+            List<Article> mesArticles = new ArrayList<>();
 
             // Log avant la récupération de la liste d'articles
             System.out.println("Avant récupération de la liste d'articles");
