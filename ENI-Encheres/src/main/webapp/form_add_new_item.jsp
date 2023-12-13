@@ -120,12 +120,12 @@
 	        <label for="dateD">Date de début de l'enchère :</label>
 	        <input type="date" id="dateD" name="dateD">
 	        <label for="heureD">Heure de début :</label>
-	        <input type="time" id="heureD" name="heureD" onblur="this.value=formatHeure(this.value)"><br>
+	        <input type="time" id="heureD" name="heureD"><br>
 	
 	        <label for="dateF">Date de fin de l'enchère :</label>
 	        <input type="date" id="dateF" name="dateF">
 	        <label for="heureF">Heure de fin:</label>
-	        <input type="time" id="heureF" name="heureF" onblur="this.value=formatHeure(this.value)"><br>
+	        <input type="time" id="heureF" name="heureF"><br>
 	
 	        <label for="prixInit">Prix initial :</label>
 	        <input type="number" id="prixInit" name="prixInit" required><br>
