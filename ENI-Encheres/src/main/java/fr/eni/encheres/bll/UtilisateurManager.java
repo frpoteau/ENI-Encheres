@@ -125,6 +125,13 @@ public class UtilisateurManager {
 		return pseudoIsUnique;
 	}
 
+	/**
+	 * Permet la création d'un objet Utilisateur à partir des informations de la DB.
+	 * La récupération est faite à partir de son email (String).
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public Utilisateur createUserFromDB(String email) {
 		Utilisateur u = utilisateurDAO.createUserFromDB(email);
 		return u;
