@@ -42,7 +42,7 @@
 		<br/>
 		Adresse de Livraison : <%=session.getAttribute("userCoordonnees") %>
 		<br/>
-        <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="submit" value="Modifier mon Compte"/></a>
+        <a href="<%=request.getContextPath()%>ServletUpdateUser"><input type="submit" value="Modifier mon Compte"/></a>
         
     </form>
 	

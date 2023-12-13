@@ -46,7 +46,7 @@
 				        <div class="menu-item">
 				            <div>Mes ventes</div>
 				            <div class="submenu">
-				                <div class="submenu-item"><a href="myItemsForSale.jsp">Mes articles</a></div>
+				                <div class="submenu-item"><a href="MyItemsServlet">Mes articles</a></div>
 				                <div class="submenu-item"><a href="form_add_new_item.jsp">Créer un nouvel article</a></div>
 				            </div>
 				        </div>
