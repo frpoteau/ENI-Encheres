@@ -25,7 +25,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
     private static final String SQL_SELECT_ART_DATE_DEBUT = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, prix_initial, prix_vente WHERE date_debut_encheres=? ";
 
-    private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, descriptuion, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS";
+    private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, prix_vente, adresse_retrait FROM ARTICLES_VENDUS";
 
     private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, heure_debut_encheres=?,date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, prix_vente=?, adresse_retrait=? WHERE no_article=?";
 
