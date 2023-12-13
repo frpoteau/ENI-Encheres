@@ -40,8 +40,8 @@ public class MyItemsServlet extends HttpServlet {
                 e.printStackTrace(); // Gère l'exception selon votre logique
             }
 
-            // Log pour vérifier si la liste d'articles est récupérée correctement
-            System.out.println("Liste d'articles récupérée : " + mesArticles);
+            // Log après la récupération de la liste d'articles
+            System.out.println("Liste d'articles après récupération : " + mesArticles);
 
             // Liste des articles mise dans la session pour être utilisée dans la JSP
             request.setAttribute("mesArticles", mesArticles);
