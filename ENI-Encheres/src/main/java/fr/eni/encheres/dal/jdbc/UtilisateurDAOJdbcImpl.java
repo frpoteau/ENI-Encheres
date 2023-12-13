@@ -221,13 +221,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	 * Permet la suppression d'un utilisateur
 	 */
 	@Override
-	public void delete(Utilisateur u) {
+	public void delete(int id) {
 		Connection cnx = null;
 		PreparedStatement rqt;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(SQL_DELETE);
-			rqt.setInt(1, u.getIdUtilisateur());
+			rqt.setInt(1, id);
 			rqt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
