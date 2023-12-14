@@ -21,7 +21,7 @@
 	
 	    <div class="container_header common-header">
 	        <div class="dropdown">
-	            <a href="index.jsp"><img src="img/icone_hamburger.png" alt="Description de l'image"></a>
+	            <a href="AccueilServlet"><img src="img/icone_hamburger.png" alt="Description de l'image"></a>
 	            <div class="dropdown-content1">
 	                <div class="menu-item"><a href="#">Actualité & astuces</a></div>
 	                <div class="menu-item"><a href="#">Aide / Contact</a></div>

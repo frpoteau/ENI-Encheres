@@ -31,7 +31,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	// nom_article, description, date_debut_encheres, heure_debut_encheres,
 	// prix_initial FROM ARTICLES_VENDUS WHERE date_debut_encheres=? ";
 
-	private static final String SQL_SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, catégorie, adresse_retrait FROM ARTICLES_VENDUS";
+	private static final String SQL_SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial,no_utilisateur, no_categorie, adresse_retrait FROM ARTICLES_VENDUS";
 
 	private static final String SQL_SELECT_ALL_BY_USERID = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
 
@@ -72,20 +72,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 	}
 
-	/*
-	 * // Préparation de la requête avec les valeurs du formulaire preparedStatement
-	 * = connection.prepareStatement(insertQuery); preparedStatement.setString(1,
-	 * nomArticle); preparedStatement.setString(2, desc);
-	 * preparedStatement.setDate(3, dateDebut); preparedStatement.setTime(4,
-	 * formattedHeureDebut); preparedStatement.setDate(5, dateFin);
-	 * preparedStatement.setTime(6, formattedHeureFin);
-	 * preparedStatement.setString(7, prixInit); preparedStatement.setString(8,
-	 * adresseRetrait); preparedStatement.setInt(9, userId); // 'no_utilisateur'
-	 * preparedStatement.setInt(10, categorieId); // 'no_categorie'
-	 * 
-	 * preparedStatement.setBytes(11, imageData);
-	 * 
-	 */
 
 	@Override
 	public List<Article> selectAll() {
@@ -107,7 +93,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				a.setDateF(rs.getDate("date_fin_encheres"));
 				a.setHeureF(rs.getTime("heure_fin_encheres"));
 				a.setPrixInit(rs.getInt("prix_initial"));
-				a.setNumeroCat(rs.getInt("categorie"));
+				a.setNumeroCat(rs.getInt("no_categorie"));
 				a.setAdresseRetrait(rs.getString("adresse_retrait"));
 
 				articles.add(a);
