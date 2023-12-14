@@ -20,7 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import fr.eni.encheres.dal.jdbc.DBManager;
+import fr.eni.encheres.DateTimeConverter;
+import fr.eni.encheres.bll.ArticleManager;
+import fr.eni.encheres.bll.CategorieManager;
+import fr.eni.encheres.bo.Article;
 
 @MultipartConfig
 @WebServlet("/AddArticleServlet")
@@ -41,7 +44,8 @@ public class AddArticleServlet extends HttpServlet {
 		String heureD = request.getParameter("heureD");
 		String dateF = request.getParameter("dateF");
 		String heureF = request.getParameter("heureF");
-		String prixInit = request.getParameter("prixInit");
+		int prixInit = Integer.valueOf(request.getParameter("prixInit"));
+		int prixVente = 0;
 		String adresseRetrait = request.getParameter("adresseRetrait");
 		Part imagePart = request.getPart("imageFile");
 
@@ -56,9 +60,6 @@ public class AddArticleServlet extends HttpServlet {
 				// ... votre code pour stocker les données binaires dans l'emplacement souhaité
 				// (0x) ...
 
-				Connection connection = null;
-				PreparedStatement preparedStatement = null;
-
 				try {
 					// Ajoutez des impressions pour vérifier les valeurs
 					System.out.println("nomArticle: " + nomArticle);
@@ -71,11 +72,8 @@ public class AddArticleServlet extends HttpServlet {
 					System.out.println("prixInit: " + prixInit);
 					System.out.println("adresseRetrait: " + adresseRetrait);
 
-					// Obtenez une connexion à la base de données en utilisant la classe DBManager
-					connection = DBManager.getConnection();
-
 					// Récupérer le no_categorie correspondant au libellé
-					int categorieId = DBManager.getCategoryIdByLabel(categorie);
+					int categorieId = CategorieManager.getInstance().getCategoryIdByLabel(categorie);
 
 					// Ajoutez des logs pour vérifier les valeurs
 					System.out.println("categorie: " + categorie);
@@ -91,69 +89,29 @@ public class AddArticleServlet extends HttpServlet {
 					}
 
 					// Conversion des chaînes en objets java.sql.Date et java.sql.Time
-					Date dateDebut = convertStringToDate(dateD);
-					Time formattedHeureDebut = convertStringToTime(heureD);
-					Date dateFin = convertStringToDate(dateF);
-					Time formattedHeureFin = convertStringToTime(heureF);
+					Date dateDebut = DateTimeConverter.convertStringToDate(dateD);
+					Time formattedHeureDebut = DateTimeConverter.convertStringToTime(heureD);
+					Date dateFin = DateTimeConverter.convertStringToDate(dateF);
+					Time formattedHeureFin = DateTimeConverter.convertStringToTime(heureF);
 
-					// Requête SQL pour l'insertion d'un nouvel article
-					String insertQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, adresse_retrait, no_utilisateur, no_categorie, image_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					Article a = new Article(nomArticle, desc, dateDebut, formattedHeureDebut, dateFin,
+							formattedHeureFin, prixInit, prixVente, userId, categorieId, adresseRetrait);
 
-					// Préparation de la requête avec les valeurs du formulaire
-					preparedStatement = connection.prepareStatement(insertQuery);
-					preparedStatement.setString(1, nomArticle);
-					preparedStatement.setString(2, desc);
-					preparedStatement.setDate(3, dateDebut);
-					preparedStatement.setTime(4, formattedHeureDebut);
-					preparedStatement.setDate(5, dateFin);
-					preparedStatement.setTime(6, formattedHeureFin);
-					preparedStatement.setString(7, prixInit);
-					preparedStatement.setString(8, adresseRetrait);
-					preparedStatement.setInt(9, userId); // 'no_utilisateur'
-					preparedStatement.setInt(10, categorieId); // 'no_categorie'
+					ArticleManager.getInstance().ajouterArticle(a);
 
-					preparedStatement.setBytes(11, imageData);
 					System.out.println("Requête SQL préparée avec succès.");
-
-					// Exécution de la requête d'insertion
-					preparedStatement.executeUpdate();
 
 					// Définir l'attribut de session pour le message de confirmation
 					session.setAttribute("confirmationMessage", "Votre article a été ajouté avec succès !");
 
 					// Redirection vers la page de confirmation après l'ajout réussi
 					response.sendRedirect("form_add_new_item.jsp");
-				} catch (SQLException e) {
-					// Gestion des erreurs de base de données
-					e.printStackTrace();
 
-					// Ajoutez des logs pour suivre l'exception
-					System.out.println("SQLException: " + e.getMessage());
-
-					// Vous pouvez rediriger vers une page d'erreur spécifique si nécessaire
-					System.out.println("Redirection vers la page d'erreur.");
-					response.sendRedirect("error.jsp");
 				} catch (ParseException e) {
 					// Gestion des erreurs de conversion de date
 					e.printStackTrace();
 					System.out.println("Erreur de conversion de date.");
 					response.sendRedirect("error.jsp");
-				} finally {
-					// Assurez-vous de fermer la connexion et la déclaration dans tous les cas
-					if (connection != null) {
-						try {
-							connection.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-					if (preparedStatement != null) {
-						try {
-							preparedStatement.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -167,28 +125,4 @@ public class AddArticleServlet extends HttpServlet {
 		}
 	}
 
-	private Date convertStringToDate(String dateStr) throws ParseException {
-		System.out.println("Date string before conversion: " + dateStr);
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH);
-		java.util.Date parsedDate = dateFormat.parse(dateStr);
-		Date sqlDate = new Date(parsedDate.getTime());
-
-		System.out.println("Date after conversion: " + sqlDate);
-
-		return sqlDate;
-	}
-
-	private Time convertStringToTime(String heureStr) throws ParseException {
-		System.out.println("Heure string before conversion: " + heureStr);
-
-		SimpleDateFormat heureFormat = new SimpleDateFormat("HH:mm", Locale.FRENCH);
-		java.util.Date parsedTime = heureFormat.parse(heureStr);
-
-		Time sqlTime = new Time(parsedTime.getTime());
-
-		System.out.println("Heure after conversion: " + sqlTime);
-
-		return sqlTime;
-	}
 }

@@ -15,24 +15,77 @@ import fr.eni.encheres.dal.ArticleDAO;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
-	private static final String SQL_INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie, adresse_retrait) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, no_utilisateur, no_categorie, adresse_retrait) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	// private static final String SQL_UPDATE_IMAGE_PATH = "UPDATE ARTICLES_VENDUS
 	// SET image_path=? WHERE no_article=?";
 
 	private static final String SQL_SELECTBY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, adresse_retrait FROM ARTICLES_VENDUS WHERE no_article=? ";
 
-	//private static final String SQL_SELECT_ART = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, adresse_retrait FROM ARTICLES_VENDUS WHERE no_utilisateur=? ";
+	// private static final String SQL_SELECT_ART = "SELECT no_article, nom_article,
+	// description, date_debut_encheres, heure_debut_encheres, date_fin_encheres,
+	// heure_fin_encheres, prix_initial, adresse_retrait FROM ARTICLES_VENDUS WHERE
+	// no_utilisateur=? ";
 
-	//private static final String SQL_SELECT_ART_DATE_DEBUT = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, prix_initial FROM ARTICLES_VENDUS WHERE date_debut_encheres=? ";
+	// private static final String SQL_SELECT_ART_DATE_DEBUT = "SELECT no_article,
+	// nom_article, description, date_debut_encheres, heure_debut_encheres,
+	// prix_initial FROM ARTICLES_VENDUS WHERE date_debut_encheres=? ";
 
-	private static final String SQL_SELECT_ALL = "SELECT no_article, nom_articles, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, catégorie, adresse_retrait FROM ARTICLES_VENDUS";
+	private static final String SQL_SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, heure_debut_encheres, date_fin_encheres, heure_fin_encheres, prix_initial, catégorie, adresse_retrait FROM ARTICLES_VENDUS";
 
 	private static final String SQL_SELECT_ALL_BY_USERID = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
 
 	private static final String SQL_UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?, description=?, date_debut_encheres=?, heure_debut_encheres=?,date_fin_encheres=?, heure_fin_encheres=?, prix_initial=?, catégorie=?, adresse_retrait=? WHERE no_article=?";
 
 	private static final String SQL_DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
+
+	@Override
+	public void insert(Article a) {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
+
+			rqt.setString(1, a.getNomArticle());
+			rqt.setString(2, a.getDesc());
+			rqt.setDate(3, a.getDateD());
+			rqt.setTime(4, a.getHeureD());
+			rqt.setDate(5, a.getDateF());
+			rqt.setTime(6, a.getHeureF());
+			rqt.setInt(7, a.getPrixInit());
+			rqt.setInt(8, a.getNumeroUtili());
+			rqt.setInt(9, a.getNumeroCat());
+			rqt.setString(10, a.getAdresseRetrait());
+			rqt.executeUpdate();
+
+			// Récupérer la clé générée (ID de l'article)
+			rs = rqt.getGeneratedKeys();
+			if (rs.next()) {
+				a.setIdArticle(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcTools.closeResources(cnx, rqt, rs);
+		}
+	}
+
+	/*
+	 * // Préparation de la requête avec les valeurs du formulaire preparedStatement
+	 * = connection.prepareStatement(insertQuery); preparedStatement.setString(1,
+	 * nomArticle); preparedStatement.setString(2, desc);
+	 * preparedStatement.setDate(3, dateDebut); preparedStatement.setTime(4,
+	 * formattedHeureDebut); preparedStatement.setDate(5, dateFin);
+	 * preparedStatement.setTime(6, formattedHeureFin);
+	 * preparedStatement.setString(7, prixInit); preparedStatement.setString(8,
+	 * adresseRetrait); preparedStatement.setInt(9, userId); // 'no_utilisateur'
+	 * preparedStatement.setInt(10, categorieId); // 'no_categorie'
+	 * 
+	 * preparedStatement.setBytes(11, imageData);
+	 * 
+	 */
 
 	@Override
 	public List<Article> selectAll() {
@@ -49,12 +102,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				a.setIdArticle(rs.getInt("no_article"));
 				a.setNomArticle(rs.getString("nom_article"));
 				a.setDesc(rs.getString("description"));
-				a.setDateD(rs.getDate("date_debut_encheres").toLocalDate());
-				a.setHeureD(rs.getTime("heure_debut_encheres").toLocalTime());
-				a.setDateF(rs.getDate("date_fin_encheres").toLocalDate());
-				a.setHeureF(rs.getTime("heure_fin_encheres").toLocalTime());
+				a.setDateD(rs.getDate("date_debut_encheres"));
+				a.setHeureD(rs.getTime("heure_debut_encheres"));
+				a.setDateF(rs.getDate("date_fin_encheres"));
+				a.setHeureF(rs.getTime("heure_fin_encheres"));
 				a.setPrixInit(rs.getInt("prix_initial"));
-				a.setCategorie(rs.getString("categorie"));
+				a.setNumeroCat(rs.getInt("categorie"));
 				a.setAdresseRetrait(rs.getString("adresse_retrait"));
 
 				articles.add(a);
@@ -79,12 +132,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt = cnx.prepareStatement(SQL_UPDATE);
 			rqt.setString(1, a.getNomArticle());
 			rqt.setString(2, a.getDesc());
-			rqt.setDate(3, Date.valueOf(a.getDateD()));
-			rqt.setTime(4, Time.valueOf(a.getHeureD()));
-			rqt.setDate(5, Date.valueOf(a.getDateF()));
-			rqt.setTime(6, Time.valueOf(a.getHeureF()));
+			rqt.setDate(3, a.getDateD());
+			rqt.setTime(4, a.getHeureD());
+			rqt.setDate(5, a.getDateF());
+			rqt.setTime(6, a.getHeureF());
 			rqt.setInt(7, a.getPrixInit());
-			rqt.setString(8, a.getCategorie());
+			rqt.setInt(8, a.getNumeroCat());
 			rqt.setString(9, a.getAdresseRetrait());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
@@ -124,38 +177,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
-	public void insert(Article a) {
-		Connection cnx = null;
-		PreparedStatement rqt = null;
-		ResultSet rs = null;
-		try {
-			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-			rqt.setInt(1, a.getNumeroUtili());
-			rqt.setString(2, a.getNomArticle());
-			rqt.setString(3, a.getDesc());
-			rqt.setDate(4, Date.valueOf(a.getDateD()));
-			rqt.setTime(5, Time.valueOf(a.getHeureD()));
-			rqt.setDate(6, Date.valueOf(a.getDateF()));
-			rqt.setTime(7, Time.valueOf(a.getHeureF()));
-			rqt.setInt(8, a.getPrixInit());
-			rqt.setString(9, a.getCategorie());
-			rqt.setString(10, a.getAdresseRetrait());
-			rqt.executeUpdate();
-
-			// Récupérer la clé générée (ID de l'article)
-			rs = rqt.getGeneratedKeys();
-			if (rs.next()) {
-				a.setIdArticle(rs.getInt(1));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JdbcTools.closeResources(cnx, rqt, rs);
-		}
-	}
-
-	@Override
 	public Article selectById(int articleId) {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -173,17 +194,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				a.setIdArticle(rs.getInt("no_article"));
 				a.setNomArticle(rs.getString("nom_article"));
 				a.setDesc(rs.getString("description"));
-				a.setDateD(rs.getDate("date_debut_encheres").toLocalDate());
-				a.setHeureD(rs.getTime("heure_debut_encheres").toLocalTime());
-				a.setDateF(rs.getDate("date_fin_encheres").toLocalDate());
-				a.setHeureF(rs.getTime("heure_fin_encheres").toLocalTime());
+				a.setDateD(rs.getDate("date_debut_encheres"));
+				a.setHeureD(rs.getTime("heure_debut_encheres"));
+				a.setDateF(rs.getDate("date_fin_encheres"));
+				a.setHeureF(rs.getTime("heure_fin_encheres"));
 				a.setPrixInit(rs.getInt("prix_initial"));
-				a.setPrixFin(rs.getInt("prix_vente"));
-				a.setNumeroUtili(rs.getInt("no_utilisateur"));
-				a.setNumeroCat(rs.getInt("no_categorie"));
-				a.setCategorie(rs.getString("categorie"));
-				a.setAdresseRetrait(rs.getString("adresse_retrait"));
-				// Ajoutez les autres attributs de la classe Article ici
+				//a.setPrixFin(rs.getInt("prix_vente"));
+				//a.setNumeroUtili(rs.getInt("no_utilisateur"));
+				//a.setNumeroCat(rs.getInt("no_categorie"));
+				//a.setAdresseRetrait(rs.getString("adresse_retrait"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,15 +254,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		a.setIdArticle(resultSet.getInt("no_article"));
 		a.setNomArticle(resultSet.getString("nom_article"));
 		a.setDesc(resultSet.getString("description"));
-		a.setDateD(resultSet.getDate("date_debut_encheres").toLocalDate());
-		a.setDateF(resultSet.getDate("date_fin_encheres").toLocalDate());		
+		a.setDateD(resultSet.getDate("date_debut_encheres"));
+		a.setDateF(resultSet.getDate("date_fin_encheres"));
 		a.setPrixInit(resultSet.getInt("prix_initial"));
-		//a.setPrixVente(resultSet.getInt("prix_vente"));		
+		// a.setPrixVente(resultSet.getInt("prix_vente"));
 		a.setNumeroUtili(resultSet.getInt("no_utilisateur"));
-		a.setNumeroCat(resultSet.getInt("no_categorie"));		
-		//a.setCategorie(resultSet.getString("categorie"));		
-		a.setHeureD(resultSet.getTime("heure_debut_encheres").toLocalTime());
-		a.setHeureF(resultSet.getTime("heure_fin_encheres").toLocalTime());
+		a.setNumeroCat(resultSet.getInt("no_categorie"));
+		// a.setCategorie(resultSet.getString("categorie"));
+		a.setHeureD(resultSet.getTime("heure_debut_encheres"));
+		a.setHeureF(resultSet.getTime("heure_fin_encheres"));
 		a.setAdresseRetrait(resultSet.getString("adresse_retrait"));
 
 		return a;

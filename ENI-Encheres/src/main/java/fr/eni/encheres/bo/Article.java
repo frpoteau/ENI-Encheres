@@ -1,165 +1,194 @@
 package fr.eni.encheres.bo;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Article {
-    private int idArticle;
-    private String nomArticle;
-    private String desc;
-    private LocalDate dateD;
-    private LocalTime heureD;
-    private LocalDate dateF;
-    private LocalTime heureF;
-    private int prixInit;
-    private int prixFin;
-    private int numeroUtili;
-    private String categorie;
-    private int numeroCat;
-    private String adresseRetrait;
+	private int idArticle;
+	private String nomArticle;
+	private String desc;
+	private Date dateD;
+	private Time heureD;
+	private Date dateF;
+	private Time heureF;
+	private int prixInit;
+	private int prixVente;
+	private int numeroUtili;
+	private int numeroCat;
+	private String adresseRetrait;
 
-    public Article() {
-    }
+	public Article() {
+	}
 
-    public Article(int idArticle, String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixVente, int prixFin, int numeroUtili, String categorie, int numeroCat, String adresseRetrait) {
-        this.idArticle = idArticle;
-        this.nomArticle = nomArticle;
-        this.desc = desc;
-        this.dateD = dateD;
-        this.heureD = heureD;
-        this.dateF = dateF;
-        this.heureF = heureF;
-        this.prixInit = prixInit;
-        this.prixFin = prixFin;
-        this.numeroUtili = numeroUtili;
-        this.categorie = categorie;
-        this.numeroCat = numeroCat;
-        this.adresseRetrait = adresseRetrait;
-    }
+	/**
+	 * Constructeur Article SANS ID de l'article.
+	 * 
+	 * @param nomArticle
+	 * @param desc
+	 * @param dateD
+	 * @param heureD
+	 * @param dateF
+	 * @param heureF
+	 * @param prixInit
+	 * @param prixVente
+	 * @param numeroUtili
+	 * @param categorie
+	 * @param numeroCat
+	 * @param adresseRetrait
+	 */
+	public Article(String nomArticle, String desc, Date dateD, Time heureD, Date dateF, Time heureF,
+			int prixInit, int prixVente, int numeroUtili, int numeroCat, String adresseRetrait) {
+		this.nomArticle = nomArticle;
+		this.desc = desc;
+		this.dateD = dateD;
+		this.heureD = heureD;
+		this.dateF = dateF;
+		this.heureF = heureF;
+		this.prixInit = prixInit;
+		this.prixVente = prixVente;
+		this.numeroUtili = numeroUtili;
+		this.numeroCat = numeroCat;
+		this.adresseRetrait = adresseRetrait;
+	}
 
-    public Article(String nomArticle, String desc, LocalDate dateD, LocalTime heureD, LocalDate dateF, LocalTime heureF, int prixInit, int prixFin, int prixVente, int numeroUtili, String categorie, int numeroCat, String adresseRetrait) {
-        this.nomArticle = nomArticle;
-        this.desc = desc;
-        this.dateD = dateD;
-        this.heureD = heureD;
-        this.dateF = dateF;
-        this.heureF = heureF;
-        this.prixInit = prixInit;
-        this.prixFin = prixFin;
-        this.numeroUtili = numeroUtili;
-        this.categorie = categorie;
-        this.numeroCat = numeroCat;
-        this.adresseRetrait = adresseRetrait;
-    }
+	/**
+	 * Constructeur Article AVEC ID de l'article.
+	 * 
+	 * @param idArticle
+	 * @param nomArticle
+	 * @param desc
+	 * @param dateD
+	 * @param heureD
+	 * @param dateF
+	 * @param heureF
+	 * @param prixInit
+	 * @param prixVente
+	 * @param numeroUtili
+	 * @param categorie
+	 * @param numeroCat
+	 * @param adresseRetrait
+	 */
+	public Article(int idArticle, String nomArticle, String desc, Date dateD, Time heureD, Date dateF,
+			Time heureF, int prixInit, int prixVente, int numeroUtili, int numeroCat, String adresseRetrait) {
+		this.idArticle = idArticle;
+		this.nomArticle = nomArticle;
+		this.desc = desc;
+		this.dateD = dateD;
+		this.heureD = heureD;
+		this.dateF = dateF;
+		this.heureF = heureF;
+		this.prixInit = prixInit;
+		this.prixVente = prixVente;
+		this.numeroUtili = numeroUtili;
+		this.numeroCat = numeroCat;
+		this.adresseRetrait = adresseRetrait;
 
-    public int getIdArticle() {
-        return idArticle;
-    }
+	}
 
-    public void setIdArticle(int idArticle) {
-        this.idArticle = idArticle;
-    }
+	public int getIdArticle() {
+		return idArticle;
+	}
 
-    public String getNomArticle() {
-        return nomArticle;
-    }
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
+	}
 
-    public void setNomArticle(String nomArticle) {
-        this.nomArticle = nomArticle;
-    }
+	public String getNomArticle() {
+		return nomArticle;
+	}
 
-    public String getDesc() {
-        return desc;
-    }
+	public void setNomArticle(String nomArticle) {
+		this.nomArticle = nomArticle;
+	}
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+	public String getDesc() {
+		return desc;
+	}
 
-    public LocalDate getDateD() {
-        return dateD;
-    }
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
-    public void setDateD(LocalDate dateD) {
-        this.dateD = dateD;
-    }
+	public Date getDateD() {
+		return dateD;
+	}
 
-    public LocalTime getHeureD() {
-        return heureD;
-    }
+	public void setDateD(Date dateD) {
+		this.dateD = dateD;
+	}
 
-    public void setHeureD(LocalTime heureD) {
-        this.heureD = heureD;
-    }
+	public Time getHeureD() {
+		return heureD;
+	}
 
-    public LocalDate getDateF() {
-        return dateF;
-    }
+	public void setHeureD(Time heureD) {
+		this.heureD = heureD;
+	}
 
-    public void setDateF(LocalDate dateF) {
-        this.dateF = dateF;
-    }
+	public Date getDateF() {
+		return dateF;
+	}
 
-    public LocalTime getHeureF() {
-        return heureF;
-    }
+	public void setDateF(Date dateF) {
+		this.dateF = dateF;
+	}
 
-    public void setHeureF(LocalTime heureF) {
-        this.heureF = heureF;
-    }
+	public Time getHeureF() {
+		return heureF;
+	}
 
-    public int getPrixInit() {
-        return prixInit;
-    }
+	public void setHeureF(Time heureF) {
+		this.heureF = heureF;
+	}
 
-    public void setPrixInit(int prixInit) {
-        this.prixInit = prixInit;
-    }
-    
-    public int getPrixFin() {
-    	return prixFin;
-    }
-    
-    public void setPrixFin(int prixFin) {
-    	this.prixFin = prixFin;
-    }
+	public int getPrixInit() {
+		return prixInit;
+	}
 
-    public int getNumeroUtili() {
-        return numeroUtili;
-    }
+	public void setPrixInit(int prixInit) {
+		this.prixInit = prixInit;
+	}
 
-    public void setNumeroUtili(int numeroUtili) {
-        this.numeroUtili = numeroUtili;
-    }
-    
-    public int getNumeroCat() {
-        return numeroCat;
-    }
+	public int getPrixFin() {
+		return prixVente;
+	}
 
-    public void setNumeroCat(int numeroCat) {
-        this.numeroCat = numeroCat;
-    }
+	public void setPrixFin(int prixVente) {
+		this.prixVente = prixVente;
+	}
 
-    public String getCategorie() {
-        return categorie;
-    }
+	public int getNumeroUtili() {
+		return numeroUtili;
+	}
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-    
-    public String getAdresseRetrait() {
-        return adresseRetrait;
-    }
+	public void setNumeroUtili(int numeroUtili) {
+		this.numeroUtili = numeroUtili;
+	}
 
-    public void setAdresseRetrait(String adresseRetrait) {
-        this.adresseRetrait = adresseRetrait;
-    }
+	public int getNumeroCat() {
+		return numeroCat;
+	}
 
-    @Override
-    public String toString() {
-        return "Article [idArticle=" + idArticle + ", nomArticle=" + nomArticle + ", desc=" + desc + ", dateD=" + dateD
-                + ", heureD=" + heureD + ", dateF=" + dateF + ", heureF=" + heureF + ", prixInit=" + prixInit
-                + ", numeroUtili=" + numeroUtili + ", categorie=" + categorie + ", adresseRetrait=" + adresseRetrait + "]";
-    }
+	public void setNumeroCat(int numeroCat) {
+		this.numeroCat = numeroCat;
+	}
+
+	public String getAdresseRetrait() {
+		return adresseRetrait;
+	}
+
+	public void setAdresseRetrait(String adresseRetrait) {
+		this.adresseRetrait = adresseRetrait;
+	}
+
+	@Override
+	public String toString() {
+		return "Article [idArticle=" + idArticle + ", nomArticle=" + nomArticle + ", desc=" + desc + ", dateD=" + dateD
+				+ ", heureD=" + heureD + ", dateF=" + dateF + ", heureF=" + heureF + ", prixInit=" + prixInit
+				+ ", prixVente=" + prixVente + ", numeroUtili=" + numeroUtili + ", numeroCat=" + numeroCat
+				+ ", adresseRetrait=" + adresseRetrait + "]";
+	}
+
 }

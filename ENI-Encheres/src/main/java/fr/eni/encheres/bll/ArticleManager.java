@@ -16,12 +16,11 @@ public class ArticleManager
 		articleDAO = DAOFactory.getArticleDAO();
 	}
 
-	//Obtenir l'instance unique
 	/**
 	 * Obtenir l'instance unique
 	 * @return
 	 */
-	public static ArticleManager getArticleManager() {
+	public static ArticleManager getInstance() {
 		if(instance == null) 
 		{			
 			instance = new ArticleManager();
@@ -74,4 +73,12 @@ public class ArticleManager
 		articleDAO.delete(a);
 	}
 	
+	/**
+	 * Permet la sélection de tous les articles d'un utilisateur à partir de son ID.
+	 * @param userId
+	 * @return la liste des articles
+	 */
+	public List<Article> getMesArticles(int userId){
+		return articleDAO.getMesArticles(userId);
+	}
 }
