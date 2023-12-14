@@ -18,7 +18,7 @@ public class DateTimeConverter {
 	 * @return
 	 * @throws ParseException
 	 */
-	public Date convertStringToDate(String dateStr) throws ParseException {
+	public static Date convertStringToDate(String dateStr) throws ParseException {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH);
 		java.util.Date parsedDate = dateFormat.parse(dateStr);
@@ -28,13 +28,13 @@ public class DateTimeConverter {
 	}
 
 	/**
-	 * Permet la converion d'une heure (Time) au format "HH:mm".
+	 * Permet la conversion d'une heure (Time) au format "HH:mm".
 	 * 
 	 * @param heureStr
 	 * @return
 	 * @throws ParseException
 	 */
-	public Time convertStringToTime(String heureStr) throws ParseException {
+	public static Time convertStringToTime(String heureStr) throws ParseException {
 
 		SimpleDateFormat heureFormat = new SimpleDateFormat("HH:mm", Locale.FRENCH);
 		java.util.Date parsedTime = heureFormat.parse(heureStr);
