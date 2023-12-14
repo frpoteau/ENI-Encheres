@@ -12,7 +12,6 @@ public class ArticleManager
 	private ArticleDAO articleDAO;
 	
 	
-	
 	private ArticleManager() {
 		articleDAO = DAOFactory.getArticleDAO();
 	}
