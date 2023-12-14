@@ -47,10 +47,10 @@
         
     </form>
 	
-	<form method="get" action="UserDeleteServlet">
+	<form method="get" action="UserDeleteConfirmationServlet">
 	
 	<!-- Supprime le profil Utilisateur de la base de donnée -->
-	<a href="UserDeleteServlet?id=<%=session.getAttribute("userID")%>">Supprimer mon compte</a>
+	<a href="<%=request.getContextPath()%>/userDeleteConfirmation.jsp">Supprimer mon compte</a>
 	
 	</form>
 </body>
