@@ -18,7 +18,7 @@
 		
 	<h2>Mon Profil</h2>
 	
-	<form method="get" action="UserProfilServlet">
+	<form method="get" action="UserProfilServlet">					<!-- Affiche le profil Utilisateur -->
 	
 		Compte n° : <%=session.getAttribute("userID") %>
 		<br/>
@@ -42,12 +42,14 @@
 		<br/>
 		Adresse de Livraison : <%=session.getAttribute("userCoordonnees") %>
 		<br/>
+		<!-- "UPDATE" Renvoie à la Servlet pour faire l'UPDATE -->
         <a href="<%=request.getContextPath()%>/updateUser.jsp"><input type="submit" value="Modifier mon Compte"/></a>
         
     </form>
 	
 	<form method="get" action="UserDeleteServlet">
 	
+	<!-- Supprime le profil Utilisateur de la base de donnée -->
 	<a href="UserDeleteServlet?id=<%=session.getAttribute("userID")%>">Supprimer mon compte</a>
 	
 	</form>

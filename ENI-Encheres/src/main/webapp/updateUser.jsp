@@ -29,7 +29,7 @@
 
 	<h2>Modification de votre profil</h2>
 	
-	<form method="post" action="ServletUpdateUser">
+	<form method="post" action="UpdateUserServlet">
 		
 		Pseudo : <input type="text" name="pseudo" value="<%= session.getAttribute("userPseudo") %>">
 		<br/>
@@ -53,11 +53,12 @@
         <label for="confirmerNewPassword">Confirmer le mot de passe :</label>
         <input type="password" id="confirmerNewPassword" name="confirmerNewPassword" placeholder="Vide, si vous ne mofifiez pas le mot de passe">
         <br/>
-	
-		<input type="submit" value="Valider"> <!-- Retour sur la page user avec les modifications -->
+		<!-- Retour sur la page user avec les modifications -->
+		<input type="submit" value="Valider">
 		<br/>
 	</form>
 
+	<!-- Retour sur la page user sans les modifications -->
 	<form action="<%=request.getContextPath()%>/userProfil.jsp">
   		<button type="submit">Retour</button>
 	</form>

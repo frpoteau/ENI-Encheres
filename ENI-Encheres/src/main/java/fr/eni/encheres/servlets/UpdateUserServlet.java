@@ -14,8 +14,8 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ServletUpdateUser
  */
-@WebServlet("/ServletUpdateUser")
-public class ServletUpdateUser extends HttpServlet {
+@WebServlet("/UpdateUserServlet")
+public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -54,12 +54,13 @@ public class ServletUpdateUser extends HttpServlet {
 				credit, admin);
 
 		UtilisateurManager.getInstance().updateUser(u, etatPassword);
-
+		
+		// Pour modifier le mot de passe dans la session en cours
 		if (password != null) {
-			// Pour modifier le mot de passe dans la session en cours
+			
 			session.setAttribute("userPassword", u.getMotDePasse());
 		}
-
+		//"UPDATE" Modification des données Utilisateur enregistré dans la base de donnée
 		session.setAttribute("userPseudo", u.getPseudo());
 		session.setAttribute("userNom", u.getNom());
 		session.setAttribute("userPrenom", u.getPrenom());
@@ -70,6 +71,7 @@ public class ServletUpdateUser extends HttpServlet {
 		session.setAttribute("userVille", u.getVille());
 		session.setAttribute("userCoordonnees", u.getRue() + ", " + u.getCodePostal() + " " + u.getVille());
 
+		//Redirige vers la jsp userProfil
 		response.sendRedirect("userProfil.jsp");
 
 	}
