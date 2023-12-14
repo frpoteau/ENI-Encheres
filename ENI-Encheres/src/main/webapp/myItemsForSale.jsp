@@ -24,6 +24,17 @@
             <table class="styled-table">
                 <thead>
                     <!-- ... (en-têtes de colonnes) ... -->
+                    <tr>
+                    <th>ID Article</th>
+                    <th>Nom Article</th>
+                    <th>Description</th>
+                    <th>Date de début</th>
+                    <th>Heure de début</th>
+                    <th>Date de fin</th>
+                    <th>Heure de fin</th>
+                    <th>Prix Initial</th>
+                    <th>Adresse de retrait</th>
+                </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="article" items="${mesArticles}">
