@@ -1,0 +1,82 @@
+/* Menu déroulant Général JavaScript */
+#menu-accordeon {
+  display: none; /* Le menu est initialement caché */
+}
+
+.image-trigger:hover + #menu-accordeon,
+#menu-accordeon:hover {
+  display: block; /* Affiche le menu lors du survol de l'image ou du menu lui-même */
+}
+
+#menu-accordeon {
+  padding:0;
+  margin:0;
+  list-style:none;
+  text-align: center;
+  width: 180px;
+  font-size:1em;
+  font-family:arial, sans-serif;
+}
+#menu-accordeon ul {
+  padding:0;
+  margin:0;
+  list-style:none;
+  text-align: center;
+}
+#menu-accordeon li {
+   background-color:#729EBF; 
+   background-image:-webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
+   background-image: linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
+   border-radius: 6px;
+   margin-bottom:2px;
+   box-shadow: 3px 3px 3px #999;
+   border:solid 1px #333A40
+}
+#menu-accordeon li li {
+   max-height:0;
+   overflow: hidden;
+   transition: all .5s;
+   border-radius:0;
+   background: #444;
+   box-shadow: none;
+   border:none;
+   margin:0
+}
+#menu-accordeon a {
+  display:block;
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 0;
+}
+#menu-accordeon ul li a {
+    font-size:0.9em
+}
+#menu-accordeon li:hover, #menu-accordeon li:focus {
+   background: #729EBF;
+}
+#menu-accordeon li li:hover {
+   background: #999;
+}
+#menu-accordeon ul li:last-child {
+   border-radius: 0 0 6px 6px;
+   border:none;
+}
+#menu-accordeon li:hover li, #menu-accordeon li:focus li {
+  max-height: 20em;
+}
+@media screen and (max-width:1024px) {
+    #menu-accordeon li:hover li {
+        max-height: 0;
+    }
+    #menu-accordeon li.active li {
+        max-height: 20em;
+    }
+    #menu-accordeon li.active {
+        background: #729EBF
+    }
+    #menu-accordeon li:hover {
+        background-color:#729EBF; 
+        background-image:-webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
+        background-image: linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
+    }
+}
