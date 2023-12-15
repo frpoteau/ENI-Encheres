@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.List" %>
+<%@ page import="fr.eni.encheres.bll.CategorieManager" %>
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -27,12 +28,12 @@
     
         <input type="text" id="nom_article" name="nom_article" placeholder="Entrez le nom de l'article">
 
-        <select id="categorie" name="categorie">
-            <option value="categorie1">Catégorie 1</option>
-            <option value="categorie2">Catégorie 2</option>
-            <option value="categorie3">Catégorie 3</option>
-            <!-- Ajoutez d'autres options de catégorie selon vos besoins -->
-        </select>
+        <select id="categorie" name="categorie" required>
+	            <% List<String> categories = CategorieManager.getInstance().getValidCategories();
+	            for (String category : categories) { %>
+	            <option value="<%= category %>"><%= category %></option>
+	            <% } %>
+	        </select><br>
 
         <input type="submit" value="Rechercher">
         
