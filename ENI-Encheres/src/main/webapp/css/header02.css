@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+header {
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	color: rgb(192, 192, 192);
+}
+
+/* Main content container */
+.content_header {
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.userConnect {
+	text-align: left;
+	margin-left: 175px;
+}
+
+/*===============================================================================*/
+/*===============================================================================*/
+/* Menu déroulant Général */
+.menu-container_general {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 9px;
+  /* Décalage vers le bas de 30px */
+  left: 110px;
+  /* Décalage vers la droite de 30px */
+  z-index: 1000;
+}
+
+.menu-icon {
+  font-size: 50px;
+  cursor: pointer;
+  color: #e1f1ff;
+  font-weight: bold;
+}
+
+.menu-container_general input {
+  display: none;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+  height: 0;
+  background-color: #f0f0f0;
+  /* Fond gris */
+  border-radius: 10px;
+  /* Arrondit les 4 coins du menu */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* Ombre légère */
+}
+
+.menu li {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #555;
+}
+
+.menu li:last-child {
+  border-bottom: none;
+}
+
+.menu li:hover {
+    background-color: #c0c0c0; /* Couleur de fond gris plus foncé lorsqu'on survole les liens */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s, background-color 0.3s; /* Transition de couleur et de fond lorsqu'on survole les liens */
+}
+
+.menu li:hover a {
+    color: #555; /* Couleur du texte plus foncée lorsqu'on survole les liens */
+}
+
+.menu-container_general:hover .menu {
+  height: auto;
+}
+
+.menu li.submenu-container:not(:hover) > ul.submenu {
+  display: none;
+}
+
+
+/* Fin Menu déroulant Général */
+/*===============================================================================*/
+/* Début Menu déroulant User JavaScript */
+.menu-container_user {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 10px;
+	width: 116px;
+	/* Ajustez la taille de l'icône en fonction de vos besoins */
+	height: 73px;
+	/*cursor: pointer;
+	/* Décalage vers le bas de 30px */
+	right: 200px;
+	/* Décalage vers la gauche de 10px */
+	z-index: 1000;
+}
+
+#menu-accordeon {
+  display: none; /* Le menu est initialement caché */
+}
+
+.image-trigger:hover + #menu-accordeon,
+#menu-accordeon:hover {
+  display: block; /* Affiche le menu lors du survol de l'image ou du menu lui-même */
+  }
+
+#menu-accordeon {
+  padding:0;
+  margin:0;
+  list-style:none;
+  text-align: center;
+  width: 180px;
+  font-size:0.7em;
+  font-family:arial, sans-serif;
+}
+#menu-accordeon ul {
+  padding:0;
+  margin:0;
+  list-style:none;
+  text-align: center;
+}
+#menu-accordeon li {
+   background-color:#729EBF; 
+   /*background-image:-webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
+   background-image: linear-gradient(to bottom, #729EBF 0%, #333A40 100%);*/
+   /*border-radius: 6px;*/
+   /*margin-bottom:2px;*/
+   box-shadow: 3px 3px 3px #999;
+   /*border:solid 1px #333A40*/
+}
+#menu-accordeon li li {
+   max-height:0;
+   overflow: hidden;
+   transition: all .5s;
+   border-radius:0;
+   background: #444;
+   box-shadow: none;
+   border:none;
+   margin:0;
+}
+#menu-accordeon a {
+  display:block;
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 0;
+}
+#menu-accordeon ul li a {
+    font-size:0.9em
+}
+#menu-accordeon li:hover, #menu-accordeon li:focus {
+   background: #729EBF;
+}
+#menu-accordeon li li:hover {
+   background: #999;
+}
+#menu-accordeon ul li:last-child {
+   /*border-radius: 0 0 6px 6px;*/
+   border:none;
+}
+#menu-accordeon li:hover li, #menu-accordeon li:focus li {
+  max-height: 20em;
+}
+@media screen and (max-width:1024px) {
+    #menu-accordeon li:hover li {
+        max-height: 0;
+    }
+    #menu-accordeon li.active li {
+        max-height: 20em;
+    }
+    #menu-accordeon li.active {
+        background: #729EBF
+    }
+    #menu-accordeon li:hover {
+        background-color:#729EBF; 
+        /*background-image:-webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
+        background-image: linear-gradient(to bottom, #729EBF 0%, #333A40 100%);*/
+    }
+}
+/* Fin Menu déroulant Utilisateur */
+/*===============================================================================*/
+/*===============================================================================*/
+
+.image-container_panier {
+	position: absolute;
+	top: 10px;
+	/* Décalage vers le bas de 30px */
+	right: 50px;
+	/* Décalage vers la gauche de 100px */
+	cursor: pointer;
+}
+
+.image-container_panier::before {
+	content: 'Votre panier est vide';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #333;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	width: auto;
+	/* Ajustement automatique de la largeur en fonction du texte */
+	white-space: nowrap;
+	/* Empêche le texte de se retourner à la ligne */
+}
+
+.image-container_panier:hover::before {
+	opacity: 1;
+}
+
+.credit {
+	color: green;
+	font-weight: bold;
+}

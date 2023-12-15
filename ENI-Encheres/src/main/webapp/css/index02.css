@@ -1,0 +1,63 @@
+/* General styles */
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap');
+
+html {
+  border: 20px solid #fff; /* Bordure blanche tout autour */
+}
+
+/* Main content container */
+.index_content {
+  width: 100%;
+  max-width: 100%;
+  /*height: 100em; /* Hauteur de 100% de la vue */
+}
+
+/* Section avec arrière-plan jaune */
+.yellow_background {
+  background: linear-gradient(to bottom, #fff7ee, #ffffff); /* Dégradé du jaune (#fdd835) vers le blanc (#ffffff) */
+  padding-top: 1px; /* Ajuster la valeur selon l'espace que doit occuper le header */
+  margin-top: 50px; /* Ajuster la valeur pour déplacer l'arrière-plan vers le bas */
+}
+
+/* Slogan container */
+.slogan {
+  margin-top: 70px;
+  text-transform: uppercase;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+.slogan p {
+  font-size: 70px;
+  text-align: left;
+  text-transform: capitalize;
+  line-height: 0.01;
+  font-family: 'Inter', sans-serif;
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+.slogan p:nth-child(2) {
+  font-family: 'Sawarabi Mincho', sans-serif;
+}
+
+.slogan p:nth-child(3) {
+  font-family: 'Inter', sans-serif;
+  text-transform: lowercase;
+}
+
+/* Image container */
+.image-container_items {
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container_items {
+  width: 1300px;
+  height: 430px;
+}
