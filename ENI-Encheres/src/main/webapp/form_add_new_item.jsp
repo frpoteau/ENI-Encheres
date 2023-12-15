@@ -3,7 +3,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.ParseException" %>
-<%@ page import="fr.eni.encheres.dal.jdbc.DBManager" %>
+<%@ page import="fr.eni.encheres.bll.CategorieManager" %>
 
 <!DOCTYPE html>
 
@@ -111,7 +111,7 @@
 	
 	        <label for="categorie">Catégorie:</label>
 	       <select id="categorie" name="categorie" required>
-	            <% List<String> categories = DBManager.getValidCategories();
+	            <% List<String> categories = CategorieManager.getInstance().getValidCategories();
 	            for (String category : categories) { %>
 	            <option value="<%= category %>"><%= category %></option>
 	            <% } %>

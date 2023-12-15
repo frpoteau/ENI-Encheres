@@ -23,9 +23,10 @@
 
         <%-- Vérifier si la liste d'articles n'est pas null avant de l'afficher --%>
         <c:if test="${not empty mesArticles}">
-        <table class="styled-table">
-            <thead>
-                <tr>
+            <table class="styled-table">
+                <thead>
+                    <!-- ... (en-têtes de colonnes) ... -->
+                    <tr>
                     <th>ID Article</th>
                     <th>Nom Article</th>
                     <th>Description</th>

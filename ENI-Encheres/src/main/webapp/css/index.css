@@ -10,3 +10,8 @@
 .space {
 	font-family: 'Sawarabi Mincho', serif;
 }
+
+/* Ajoute de l'espace entre les colonnes du tableau */
+.styled-table td {
+    padding: 20px; /* Ajustez la valeur de la marge selon vos besoins */
+}
