@@ -27,7 +27,8 @@ import fr.eni.encheres.bo.Article;
 
 @MultipartConfig
 @WebServlet("/AddArticleServlet")
-public class AddArticleServlet extends HttpServlet {
+public class AddArticleServlet extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
