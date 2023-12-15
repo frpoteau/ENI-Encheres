@@ -26,6 +26,7 @@ public class ServletLogout extends HttpServlet
         }
 
         // Redirige vers la page d'accueil ou une autre page après la déconnexion
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        //response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect("AccueilServlet");
     }
 }

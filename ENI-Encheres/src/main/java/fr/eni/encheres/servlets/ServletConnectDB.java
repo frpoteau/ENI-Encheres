@@ -57,19 +57,19 @@ public class ServletConnectDB extends HttpServlet
                 session.setAttribute("errorMessage", null);
 
                 // Redirection vers index.jsp, form_add_new_item.jsp après connexion réussie
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("AccueilServlet");
             } else {
                 // Connexion échouée, stocke le message d'erreur dans la session
                 session.setAttribute("userConnected", false);
                 session.setAttribute("errorMessage", "Email ou mot de passe incorrect.");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("AccueilServlet");
             }
         } catch (Exception e) {
             // Connexion échouée, stocke le message d'erreur dans la session
             HttpSession session = request.getSession();
             session.setAttribute("userConnected", false);
             session.setAttribute("errorMessage", "Erreur de connexion à la base de données.");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("AccueilServlet");
         }
     }
 }
